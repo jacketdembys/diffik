@@ -367,7 +367,7 @@ def train_loop(model, train_loader, val_loader, q_stats, pose_stats, device, max
 
     # 3) Plug it into a LambdaLR scheduler
     #scheduler = torch.optim.lr_scheduler.LambdaLR(opt, lr_lambda)
-    scheduler = torch.optim.lr_scheduler.ReduceLROnPlateau(opt,mode='min', factor=0.5, patience=20, min_lr=1e-8, verbose=True)
+    scheduler = torch.optim.lr_scheduler.ReduceLROnPlateau(opt,mode='min', factor=0.5, patience=10, min_lr=1e-8, verbose=True)
 
 
     global_step = 0
@@ -477,7 +477,7 @@ if __name__ == "__main__":
 
     train_ds = DiffIKDataset(train_D, train_Q)
     val_ds   = DiffIKDataset(val_D,   val_Q)
-    train_loader = DataLoader(train_ds, batch_size=256, shuffle=True, num_workers=4)
+    train_loader = DataLoader(train_ds, batch_size=128, shuffle=True, num_workers=4)
     val_loader   = DataLoader(val_ds,   batch_size=256, shuffle=False, num_workers=4)
 
     # build model
@@ -499,7 +499,7 @@ if __name__ == "__main__":
     print("Parameters:", sum(p.numel() for p in model.parameters()))
 
     # train
-    device = torch.device('cuda:1' if torch.cuda.is_available() else 'cpu')
+    device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
     q_stats = (train_ds.q_mean.to(device), train_ds.q_std.to(device))
     pose_stats = (train_ds.pose_mean.to(device), train_ds.pose_std.to(device))
     train_loop(model, train_loader, val_loader, q_stats, pose_stats, device, max_epochs=1000, lr=3e-4)

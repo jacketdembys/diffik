@@ -42,7 +42,7 @@ class DiffIKDataset(Dataset):
         }
 
 # ---------------------------------------------------------
-# --- 2.0 MLP-Denoiser with built‐in diffusion schedule ----------
+# --- 2.1 MLP-Denoiser with built‐in diffusion schedule ----------
 # ---------------------------------------------------------
 class MLPDenoiser(nn.Module):
     def __init__(self, dof=7, pose_dim=6, hidden_dim=1024,
@@ -110,7 +110,7 @@ class MLPDenoiser(nn.Module):
 
 
 # ---------------------------------------------------------
-# --- 2.1 ResMLP-Denoiser with built‐in diffusion schedule ----------
+# --- 2.2 ResMLP-Denoiser with built‐in diffusion schedule ----------
 # ---------------------------------------------------------
 class ResidualBlock(nn.Module):
     def __init__(self, dim, dropout=0.1):
@@ -212,6 +212,130 @@ class ResMLPDenoiser(nn.Module):
         )[None, :]
         args = t.unsqueeze(-1).float() * freqs
         return torch.cat([args.sin(), args.cos()], dim=-1)
+
+
+# ---------------------------------------------------------
+# --- 2.3 ResMLP-Denoiser with built‐in diffusion schedule ----------
+# ---------------------------------------------------------
+class MLPUNetDenoiser(nn.Module):
+    def __init__(
+        self,
+        dof: int = 7,
+        pose_dim: int = 6,
+        hidden_dim: int = 512,
+        time_embed_dim: int = 128,
+        pose_embed_dim: int = 128,
+        dropout: float = 0.1,
+        T: int = 1000
+    ):
+        super().__init__()
+        self.dof = dof
+        self.T   = T
+
+        # 1) Time embedding
+        self.time_embed_dim = time_embed_dim
+        self.time_mlp = nn.Sequential(
+            nn.Linear(time_embed_dim, time_embed_dim),
+            nn.SiLU(),
+            nn.Linear(time_embed_dim, time_embed_dim),
+        )
+
+        # 2) Pose embedding
+        self.pose_embed = nn.Sequential(
+            nn.Linear(pose_dim, pose_embed_dim),
+            nn.SiLU(),
+            nn.Linear(pose_embed_dim, pose_embed_dim),
+        )
+
+        # 3) Input projection to hidden_dim
+        input_dim = dof + pose_embed_dim + time_embed_dim
+        self.input_proj = nn.Sequential(
+            nn.Linear(input_dim, hidden_dim),
+            nn.SiLU(),
+            nn.Dropout(dropout),
+        )
+
+        # 4) Encoder (contracting path)
+        self.enc1 = nn.Sequential(
+            nn.Linear(hidden_dim, hidden_dim//2),
+            nn.SiLU(),
+            nn.Dropout(dropout),
+        )
+        self.enc2 = nn.Sequential(
+            nn.Linear(hidden_dim//2, hidden_dim//4),
+            nn.SiLU(),
+            nn.Dropout(dropout),
+        )
+
+        # 5) Bottleneck
+        self.bottleneck = nn.Sequential(
+            nn.Linear(hidden_dim//4, hidden_dim//4),
+            nn.SiLU(),
+            nn.Dropout(dropout),
+        )
+
+        # 6) Decoder (expanding path) with skips
+        self.dec2 = nn.Sequential(
+            nn.Linear(hidden_dim//4, hidden_dim//2),
+            nn.SiLU(),
+            nn.Dropout(dropout),
+        )
+        self.dec1 = nn.Sequential(
+            nn.Linear(hidden_dim//2, hidden_dim),
+            nn.SiLU(),
+            nn.Dropout(dropout),
+        )
+
+        # 7) Output projection back to dof
+        self.output_proj = nn.Linear(hidden_dim, dof)
+
+        # 8) Diffusion schedule buffers
+        betas = torch.linspace(1e-4, 0.02, T)
+        alphas = 1.0 - betas
+        alpha_bar = torch.cumprod(alphas, dim=0)
+        self.register_buffer('betas',      betas)
+        self.register_buffer('alphas',     alphas)
+        self.register_buffer('alpha_bar',  alpha_bar)
+
+    def forward(self, q_t, pose, t):
+        """
+        q_t:   [B, dof]      noisy joint sample
+        pose:  [B, pose_dim] normalized target pose
+        t:     [B]           timestep indices in [0..T-1]
+        """
+        # time embedding
+        te = self._sinusoidal_time_embedding(t, self.time_embed_dim).to(q_t.device)
+        te = self.time_mlp(te)
+
+        # pose embedding
+        pe = self.pose_embed(pose)
+
+        # input → hidden
+        x = torch.cat([q_t, pe, te], dim=-1)
+        x0 = self.input_proj(x)          # [B, hidden_dim]
+
+        # encoder
+        e1 = self.enc1(x0)               # [B, hidden_dim/2]
+        e2 = self.enc2(e1)               # [B, hidden_dim/4]
+
+        # bottleneck
+        b = self.bottleneck(e2)          # [B, hidden_dim/4]
+
+        # decoder with skip from e2 → dec2
+        d2 = self.dec2(b) + e1           # up to hidden_dim/2
+        d1 = self.dec1(d2) + x0          # up to hidden_dim
+
+        # final output
+        return self.output_proj(d1)      # [B, dof]
+
+    def _sinusoidal_time_embedding(self, t, dim):
+        half = dim // 2
+        freqs = torch.exp(
+            -math.log(10000) * torch.arange(half, device=t.device) / (half - 1)
+        )[None, :]
+        args = t.unsqueeze(-1).float() * freqs
+        return torch.cat([args.sin(), args.cos()], dim=-1)
+
 
 
 # ---------------------------------------------------------
@@ -345,8 +469,8 @@ def train_loop(model, train_loader, val_loader, q_stats, pose_stats, device, max
         run = wandb.init(
             entity="jacketdembys",
             project="diffik",
-            group=f"MLP_{robot_choice}_Data_2.5M",
-            name=f"MLP_{robot_choice}_Data_2.5M_Bs_128_Opt_AdamW"
+            group=f"Unet_{robot_choice}_Data_2.5M",
+            name=f"Unet_{robot_choice}_Data_2.5M_Bs_128_Opt_AdamW"
         )
 
     
@@ -485,7 +609,7 @@ if __name__ == "__main__":
     model = ResMLPDenoiser(dof=dof, 
                            pose_dim=pose_dim, 
                            T=1000)
-    """
+    
     model = ResMLPDenoiser(
         dof=dof,
         pose_dim=pose_dim,
@@ -496,6 +620,16 @@ if __name__ == "__main__":
         dropout=0.1,
         T=1000
     )
+    """
+    model = MLPUNetDenoiser(
+    dof=dof,
+    pose_dim=pose_dim,
+    hidden_dim=512,        # tweak as needed
+    time_embed_dim=128,
+    pose_embed_dim=128,
+    dropout=0.1,
+    T=1000
+)
     print("Parameters:", sum(p.numel() for p in model.parameters()))
 
     # train

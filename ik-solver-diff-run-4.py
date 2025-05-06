@@ -490,8 +490,8 @@ def train_loop(model, train_loader, val_loader, q_stats, pose_stats, device, max
         return 0.5 * (1.0 + math.cos(math.pi * progress))
 
     # 3) Plug it into a LambdaLR scheduler
-    #scheduler = torch.optim.lr_scheduler.LambdaLR(opt, lr_lambda)
-    scheduler = torch.optim.lr_scheduler.ReduceLROnPlateau(opt,mode='min', factor=0.5, patience=10, min_lr=1e-8, verbose=True)
+    scheduler = torch.optim.lr_scheduler.LambdaLR(opt, lr_lambda)
+    #scheduler = torch.optim.lr_scheduler.ReduceLROnPlateau(opt,mode='min', factor=0.5, patience=10, min_lr=1e-8, verbose=True)
 
 
     global_step = 0
@@ -519,11 +519,11 @@ def train_loop(model, train_loader, val_loader, q_stats, pose_stats, device, max
             opt.zero_grad()
             loss.backward()
             opt.step()
-            #scheduler.step()
+            scheduler.step()
             epoch_loss += loss.item()
 
-            #current_lr = scheduler.get_last_lr()[0]
-            current_lr = opt.param_groups[0]['lr']
+            current_lr = scheduler.get_last_lr()[0]
+            #current_lr = opt.param_groups[0]['lr']
             #wandb.log({'train/lr': current_lr}, step=global_step)
 
         train_loss = epoch_loss / len(train_loader)
@@ -547,7 +547,7 @@ def train_loop(model, train_loader, val_loader, q_stats, pose_stats, device, max
         }
         wandb.log({**train_metrics, **val_metrics})
         pose_loss = (avg_position_error + avg_position_error)/2
-        scheduler.step(pose_loss)
+        #scheduler.step(pose_loss)
         if pose_loss < best_pose_loss:
             best_pose_loss = pose_loss
             best_epoch = epoch

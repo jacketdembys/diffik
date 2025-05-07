@@ -522,8 +522,8 @@ def train_loop(model, train_loader, val_loader, q_stats, pose_stats, device, max
             #scheduler.step()
             epoch_loss += loss.item()
 
-            current_lr = scheduler.get_last_lr()[0]
-            #current_lr = opt.param_groups[0]['lr']
+            #current_lr = scheduler.get_last_lr()[0]
+            current_lr = opt.param_groups[0]['lr']
             #wandb.log({'train/lr': current_lr}, step=global_step)
 
         train_loss = epoch_loss / len(train_loader)

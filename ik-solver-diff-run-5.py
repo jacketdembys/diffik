@@ -498,8 +498,8 @@ def train_loop(model, train_loader, val_loader, q_stats, pose_stats, device, max
         run = wandb.init(
             entity="jacketdembys",
             project="diffik",
-            group=f"Unet_{robot_choice}_Data_2.5M",
-            name=f"Unet_{robot_choice}_Data_2.5M_Bs_128_Opt_AdamW"
+            group=f"MLP_{robot_choice}_Data_1M",
+            name=f"MLP_{robot_choice}_Data_1M_BS_128_Opt_AdamW_LR_3e_4_1e_8_qmin_qmax"
         )
 
     
@@ -519,8 +519,8 @@ def train_loop(model, train_loader, val_loader, q_stats, pose_stats, device, max
         return 0.5 * (1.0 + math.cos(math.pi * progress))
 
     # 3) Plug it into a LambdaLR scheduler
-    scheduler = torch.optim.lr_scheduler.LambdaLR(opt, lr_lambda)
-    #scheduler = torch.optim.lr_scheduler.ReduceLROnPlateau(opt,mode='min', factor=0.5, patience=10, min_lr=1e-8, verbose=True)
+    #scheduler = torch.optim.lr_scheduler.LambdaLR(opt, lr_lambda)
+    scheduler = torch.optim.lr_scheduler.ReduceLROnPlateau(opt,mode='min', factor=0.5, patience=10, min_lr=1e-8, verbose=True)
 
 
     global_step = 0
@@ -548,7 +548,7 @@ def train_loop(model, train_loader, val_loader, q_stats, pose_stats, device, max
             opt.zero_grad()
             loss.backward()
             opt.step()
-            scheduler.step()
+            #scheduler.step()
             epoch_loss += loss.item()
 
             current_lr = scheduler.get_last_lr()[0]
@@ -576,7 +576,7 @@ def train_loop(model, train_loader, val_loader, q_stats, pose_stats, device, max
         }
         wandb.log({**train_metrics, **val_metrics})
         pose_loss = (avg_position_error + avg_position_error)/2
-        #scheduler.step(pose_loss)
+        scheduler.step(pose_loss)
         if pose_loss < best_pose_loss:
             best_pose_loss = pose_loss
             best_epoch = epoch
@@ -634,11 +634,11 @@ if __name__ == "__main__":
     val_loader   = DataLoader(val_ds,   batch_size=256, shuffle=False, num_workers=4)
 
     # build model
-    """
+    
     model = ResMLPDenoiser(dof=dof, 
                            pose_dim=pose_dim, 
                            T=1000)
-    
+    """
     model = ResMLPDenoiser(
         dof=dof,
         pose_dim=pose_dim,
@@ -649,16 +649,17 @@ if __name__ == "__main__":
         dropout=0.1,
         T=1000
     )
-    """
+    
     model = MLPUNetDenoiser(
-    dof=dof,
-    pose_dim=pose_dim,
-    hidden_dim=512,        # tweak as needed
-    time_embed_dim=128,
-    pose_embed_dim=128,
-    dropout=0.1,
-    T=1000
-)
+        dof=dof,
+        pose_dim=pose_dim,
+        hidden_dim=512,        # tweak as needed
+        time_embed_dim=128,
+        pose_embed_dim=128,
+        dropout=0.1,
+        T=1000
+    )
+    """
     print("Parameters:", sum(p.numel() for p in model.parameters()))
 
     # train

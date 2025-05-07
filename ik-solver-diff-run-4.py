@@ -519,7 +519,7 @@ def train_loop(model, train_loader, val_loader, q_stats, pose_stats, device, max
             opt.zero_grad()
             loss.backward()
             opt.step()
-            scheduler.step()
+            #scheduler.step()
             epoch_loss += loss.item()
 
             current_lr = scheduler.get_last_lr()[0]
@@ -547,7 +547,7 @@ def train_loop(model, train_loader, val_loader, q_stats, pose_stats, device, max
         }
         wandb.log({**train_metrics, **val_metrics})
         pose_loss = (avg_position_error + avg_position_error)/2
-        #scheduler.step(pose_loss)
+        scheduler.step(pose_loss)
         if pose_loss < best_pose_loss:
             best_pose_loss = pose_loss
             best_epoch = epoch

@@ -1,0 +1,168 @@
+{
+    "os": "Linux-5.15.0-138-generic-x86_64-with-glibc2.35",
+    "python": "3.11.5",
+    "heartbeatAt": "2025-05-07T22:51:15.993950",
+    "startedAt": "2025-05-07T22:51:14.159370",
+    "docker": null,
+    "cuda": null,
+    "args": [],
+    "state": "running",
+    "program": "/home/retina/dembysj/Dropbox/research/diffik/ik-solver-diff-run-4.py",
+    "codePathLocal": "ik-solver-diff-run-4.py",
+    "codePath": "ik-solver-diff-run-4.py",
+    "git": {
+        "remote": "https://github.com/jacketdembys/diffik.git",
+        "commit": "6d3ae0582f4fa400fdd7f46505eb40d2af5357b6"
+    },
+    "email": "jacketdembys@yahoo.fr",
+    "root": "/home/retina/dembysj/Dropbox/research/diffik",
+    "host": "fovea",
+    "username": "dembysj",
+    "executable": "/home/retina/dembysj/.conda/envs/wcci_24/bin/python",
+    "cpu_count": 16,
+    "cpu_count_logical": 24,
+    "cpu_freq": {
+        "current": 2851.327541666667,
+        "min": 800.0,
+        "max": 4716.666666666667
+    },
+    "cpu_freq_per_core": [
+        {
+            "current": 3200.0,
+            "min": 800.0,
+            "max": 5100.0
+        },
+        {
+            "current": 3200.0,
+            "min": 800.0,
+            "max": 5100.0
+        },
+        {
+            "current": 3200.0,
+            "min": 800.0,
+            "max": 5100.0
+        },
+        {
+            "current": 3200.0,
+            "min": 800.0,
+            "max": 5100.0
+        },
+        {
+            "current": 1178.876,
+            "min": 800.0,
+            "max": 5100.0
+        },
+        {
+            "current": 3200.0,
+            "min": 800.0,
+            "max": 5100.0
+        },
+        {
+            "current": 3200.0,
+            "min": 800.0,
+            "max": 5100.0
+        },
+        {
+            "current": 3200.0,
+            "min": 800.0,
+            "max": 5100.0
+        },
+        {
+            "current": 1716.896,
+            "min": 800.0,
+            "max": 5200.0
+        },
+        {
+            "current": 3200.0,
+            "min": 800.0,
+            "max": 5200.0
+        },
+        {
+            "current": 3200.0,
+            "min": 800.0,
+            "max": 5200.0
+        },
+        {
+            "current": 3200.0,
+            "min": 800.0,
+            "max": 5200.0
+        },
+        {
+            "current": 3200.0,
+            "min": 800.0,
+            "max": 5100.0
+        },
+        {
+            "current": 3200.0,
+            "min": 800.0,
+            "max": 5100.0
+        },
+        {
+            "current": 1250.7,
+            "min": 800.0,
+            "max": 5100.0
+        },
+        {
+            "current": 3200.0,
+            "min": 800.0,
+            "max": 5100.0
+        },
+        {
+            "current": 3200.0,
+            "min": 800.0,
+            "max": 3900.0
+        },
+        {
+            "current": 3200.0,
+            "min": 800.0,
+            "max": 3900.0
+        },
+        {
+            "current": 3200.0,
+            "min": 800.0,
+            "max": 3900.0
+        },
+        {
+            "current": 3200.0,
+            "min": 800.0,
+            "max": 3900.0
+        },
+        {
+            "current": 3200.0,
+            "min": 800.0,
+            "max": 3900.0
+        },
+        {
+            "current": 3200.0,
+            "min": 800.0,
+            "max": 3900.0
+        },
+        {
+            "current": 3200.0,
+            "min": 800.0,
+            "max": 3900.0
+        },
+        {
+            "current": 3200.0,
+            "min": 800.0,
+            "max": 3900.0
+        }
+    ],
+    "disk": {
+        "/": {
+            "total": 878.0427589416504,
+            "used": 239.69520568847656
+        }
+    },
+    "gpu": "NVIDIA GeForce RTX 3090",
+    "gpu_count": 1,
+    "gpu_devices": [
+        {
+            "name": "NVIDIA GeForce RTX 3090",
+            "memory_total": 25769803776
+        }
+    ],
+    "memory": {
+        "total": 31.034576416015625
+    }
+}

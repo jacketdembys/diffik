@@ -1,0 +1,75 @@
+[Epoch 1/1000]
+Train Loss: 0.263350 | Val Loss: 0.238368 | xyz(mm): 211.50 | RPY(deg): 70.66 | Best Epoch: 0
+Epoch Time: 0m 22s
+Been Training for: 0m 38s
+[Epoch 11/1000]
+Train Loss: 0.151947 | Val Loss: 0.161260 | xyz(mm): 112.61 | RPY(deg): 48.12 | Best Epoch: 10
+Epoch Time: 0m 12s
+Been Training for: 2m 48s
+[Epoch 21/1000]
+Train Loss: 0.137930 | Val Loss: 0.152432 | xyz(mm): 110.43 | RPY(deg): 44.55 | Best Epoch: 19
+Epoch Time: 0m 11s
+Been Training for: 4m 50s
+[Epoch 31/1000]
+Train Loss: 0.131272 | Val Loss: 0.136197 | xyz(mm): 108.88 | RPY(deg): 42.17 | Best Epoch: 26
+Epoch Time: 0m 12s
+Been Training for: 6m 54s
+Epoch 00038: reducing learning rate of group 0 to 1.5000e-04.
+[Epoch 41/1000]
+Train Loss: 0.115160 | Val Loss: 0.116625 | xyz(mm): 88.69 | RPY(deg): 34.39 | Best Epoch: 39
+Epoch Time: 0m 12s
+Been Training for: 8m 56s
+[Epoch 51/1000]
+Train Loss: 0.110845 | Val Loss: 0.118329 | xyz(mm): 85.92 | RPY(deg): 32.86 | Best Epoch: 44
+Epoch Time: 0m 12s
+Been Training for: 10m 58s
+[Epoch 61/1000]
+Train Loss: 0.108288 | Val Loss: 0.110282 | xyz(mm): 77.42 | RPY(deg): 31.09 | Best Epoch: 60
+Epoch Time: 0m 12s
+Been Training for: 13m 2s
+[Epoch 71/1000]
+Train Loss: 0.105429 | Val Loss: 0.117414 | xyz(mm): 82.61 | RPY(deg): 31.21 | Best Epoch: 65
+Epoch Time: 0m 11s
+Been Training for: 15m 4s
+Epoch 00077: reducing learning rate of group 0 to 7.5000e-05.
+[Epoch 81/1000]
+Train Loss: 0.096338 | Val Loss: 0.108505 | xyz(mm): 74.92 | RPY(deg): 28.75 | Best Epoch: 79
+Epoch Time: 0m 12s
+Been Training for: 17m 7s
+[Epoch 91/1000]
+Train Loss: 0.094442 | Val Loss: 0.105534 | xyz(mm): 71.14 | RPY(deg): 26.20 | Best Epoch: 84
+Epoch Time: 0m 11s
+Been Training for: 19m 11s
+[Epoch 101/1000]
+Train Loss: 0.092986 | Val Loss: 0.111590 | xyz(mm): 66.90 | RPY(deg): 25.83 | Best Epoch: 98
+Epoch Time: 0m 12s
+Been Training for: 21m 14s
+[Epoch 111/1000]
+Train Loss: 0.091524 | Val Loss: 0.097600 | xyz(mm): 67.75 | RPY(deg): 25.33 | Best Epoch: 101
+Epoch Time: 0m 12s
+Been Training for: 23m 16s
+Epoch 00113: reducing learning rate of group 0 to 3.7500e-05.
+[Epoch 121/1000]
+Train Loss: 0.086276 | Val Loss: 0.102649 | xyz(mm): 64.29 | RPY(deg): 24.84 | Best Epoch: 119
+Epoch Time: 0m 12s
+Been Training for: 25m 18s
+[Epoch 131/1000]
+Train Loss: 0.085354 | Val Loss: 0.108791 | xyz(mm): 57.36 | RPY(deg): 22.34 | Best Epoch: 129
+Epoch Time: 0m 12s
+Been Training for: 27m 20s
+[Epoch 141/1000]
+Train Loss: 0.084198 | Val Loss: 0.104318 | xyz(mm): 59.19 | RPY(deg): 22.67 | Best Epoch: 136
+Epoch Time: 0m 12s
+Been Training for: 29m 21s
+[Epoch 151/1000]
+Train Loss: 0.083495 | Val Loss: 0.112624 | xyz(mm): 57.97 | RPY(deg): 22.90 | Best Epoch: 147
+Epoch Time: 0m 12s
+Been Training for: 31m 23s
+[Epoch 161/1000]
+Train Loss: 0.082801 | Val Loss: 0.095441 | xyz(mm): 57.98 | RPY(deg): 21.05 | Best Epoch: 151
+Epoch Time: 0m 11s
+Been Training for: 33m 24s
+Epoch 00163: reducing learning rate of group 0 to 1.8750e-05.
+[Epoch 171/1000]
+Train Loss: 0.079871 | Val Loss: 0.092667 | xyz(mm): 54.09 | RPY(deg): 21.91 | Best Epoch: 170
+Epoch Time: 0m 12s

@@ -635,7 +635,7 @@ if __name__ == "__main__":
 
     # build model
     
-    model = ResMLPDenoiser(dof=dof, 
+    model = MLPDenoiser(dof=dof, 
                            pose_dim=pose_dim, 
                            T=1000)
     """

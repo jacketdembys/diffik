@@ -637,7 +637,7 @@ if __name__ == "__main__":
     device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
     q_stats = (train_ds.q_mean.to(device), train_ds.q_std.to(device))
     pose_stats = (train_ds.pose_mean.to(device), train_ds.pose_std.to(device))
-    train_loop(model, train_loader, val_loader, q_stats, pose_stats, device, max_epochs=1000, lr=3e-4)
+    train_loop(model, train_loader, val_loader, q_stats, pose_stats, device, max_epochs=1000, lr=1e-2) #3e-4
 
 
     """

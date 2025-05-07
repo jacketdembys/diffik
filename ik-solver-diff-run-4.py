@@ -605,7 +605,7 @@ if __name__ == "__main__":
     val_loader   = DataLoader(val_ds,   batch_size=256, shuffle=False, num_workers=4)
 
     # build model
-    model = ResMLPDenoiser(dof=dof, 
+    model = MLPDenoiser(dof=dof, 
                            pose_dim=pose_dim, 
                            T=1000)
         

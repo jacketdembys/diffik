@@ -73,3 +73,7 @@ Epoch 00163: reducing learning rate of group 0 to 1.8750e-05.
 [Epoch 171/1000]
 Train Loss: 0.079871 | Val Loss: 0.092667 | xyz(mm): 54.09 | RPY(deg): 21.91 | Best Epoch: 170
 Epoch Time: 0m 12s
+Been Training for: 35m 26s
+[Epoch 181/1000]
+Train Loss: 0.079140 | Val Loss: 0.095482 | xyz(mm): 54.02 | RPY(deg): 21.56 | Best Epoch: 175
+Epoch Time: 0m 12s

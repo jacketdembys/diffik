@@ -513,6 +513,10 @@ def train_loop(model, train_loader, val_loader, q_stats, pose_stats, device, max
             q_t = sqrt_ab * q0 + sqrt_omb * eps
 
             # 3) predict & loss
+            print(q_t.shape)
+            print(pose.shape)
+            print(t.shape)
+            sys.exit()
             eps_pred = model(q_t, pose, t)
             loss = loss_fn(eps_pred, eps)
 
@@ -587,8 +591,8 @@ if __name__ == "__main__":
     random.seed(0)
 
     # load CSV, split pose vs q
-    #file_path = "../for_docker/left-out-datasets/7DoF-Combined/review_data_7DoF-7R-Panda_1000000_qlim_scale_10_seq_1.csv"  # <-- Change this to your actual CSV file path
-    file_path = "/home/datasets/7DoF-Combined/review_data_7DoF-7R-Panda_1000000_qlim_scale_10_seq_1.csv"  # <-- Change this to your actual CSV file path
+    file_path = "../for_docker/left-out-datasets/7DoF-Combined/review_data_7DoF-7R-Panda_1000000_qlim_scale_10_seq_1.csv"  # <-- Change this to your actual CSV file path
+    #file_path = "/home/datasets/7DoF-Combined/review_data_7DoF-7R-Panda_1000000_qlim_scale_10_seq_1.csv"  # <-- Change this to your actual CSV file path
     df = pd.read_csv(file_path)
     pose_dim, dof = 6, 7
     data = df.to_numpy(dtype=np.float32)

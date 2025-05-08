@@ -392,7 +392,8 @@ def sample(model, pose, q_min, q_max, pose_mean, pose_std, device, ddim_steps=50
         #ab_t1  = model.alpha_bar[t-1] if t_ > 0 else torch.ones_like(ab_t)
 
         # predict noise
-        eps_pred = model(q, pose_n, t)
+        #eps_pred = model(q, pose_n, t)
+        eps_pred = model(q, pose.view(pose.shape[0],-1), t)
 
         # DDPM posterior mean
         #coef1 = 1.0 / torch.sqrt(a_t)
@@ -442,7 +443,8 @@ def validate(model, val_loader, device, robot_choice, q_stats, pose_stats):
             q_t = sqrt_ab * q0 + sqrt_omb * eps
 
             # predict noise
-            eps_pred = model(q_t, pose, t)
+            #eps_pred = model(q_t, pose, t)
+            eps_pred = model(q_t,  pose.view(pose.shape[0],-1), t)
             total += loss_fn(eps_pred, eps).item()
 
 
@@ -542,7 +544,12 @@ def train_loop(model, train_loader, val_loader, q_stats, pose_stats, device, max
             q_t = sqrt_ab * q0 + sqrt_omb * eps
 
             # 3) predict & loss
-            eps_pred = model(q_t, pose, t)
+            #print(q_t.shape)
+            #print(pose.shape)
+            #print(t.shape)
+            #print(pose.view(pose.shape[0],-1))
+            #eps_pred = model(q_t, pose, t)
+            eps_pred = model(q_t, pose.view(pose.shape[0],-1), t)
             loss = loss_fn(eps_pred, eps)
 
             opt.zero_grad()
@@ -616,8 +623,8 @@ if __name__ == "__main__":
     random.seed(0)
 
     # load CSV, split pose vs q
-    #file_path = "../for_docker/left-out-datasets/7DoF-Combined/review_data_7DoF-7R-Panda_1000000_qlim_scale_10_seq_1.csv"  # <-- Change this to your actual CSV file path
-    file_path = "/home/datasets/7DoF-Combined/review_data_7DoF-7R-Panda_1000000_qlim_scale_10_seq_1.csv"  # <-- Change this to your actual CSV file path
+    file_path = "../for_docker/left-out-datasets/7DoF-Combined/review_data_7DoF-7R-Panda_1000000_qlim_scale_10_seq_1.csv"  # <-- Change this to your actual CSV file path
+    #file_path = "/home/datasets/7DoF-Combined/review_data_7DoF-7R-Panda_1000000_qlim_scale_10_seq_1.csv"  # <-- Change this to your actual CSV file path
     df = pd.read_csv(file_path)
     pose_dim, dof = 6, 7
     data = df.to_numpy(dtype=np.float32)

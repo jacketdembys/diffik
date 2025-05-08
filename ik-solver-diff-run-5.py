@@ -56,9 +56,9 @@ class DiffIKRangeDataset(Dataset):
 
         # 2) apply random pose jitter
         # position dims [0:3], uniform in ±pos_jitter
-        pose[:3] += (torch.rand(3) * 2 - 1) * self.pos_jitter
+        pose[:3] += (torch.rand(3) * 2 - 1) #* self.pos_jitter
         # orientation dims [3:6], uniform in ±ori_jitter
-        pose[3:6] += (torch.rand(3) * 2 - 1) * self.ori_jitter
+        pose[3:6] += (torch.rand(3) * 2 - 1) #* self.ori_jitter
 
         # 3) standardize jittered pose
         pose = (pose - self.pose_mean) / self.pose_std

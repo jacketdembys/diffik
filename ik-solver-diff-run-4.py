@@ -469,8 +469,8 @@ def train_loop(model, train_loader, val_loader, q_stats, pose_stats, device, max
         run = wandb.init(
             entity="jacketdembys",
             project="diffik",
-            group=f"MLP_{robot_choice}_Data_2.5M",
-            name=f"MLP_{robot_choice}_Data_1M_BS_128_Opt_AdamW_LR_3e_4_1e_8"
+            group=f"MLP_{robot_choice}_Data_1M",
+            name=f"MLP_{robot_choice}_Data_1M_BS_128_Opt_AdamW_LR_3e_4_1e_10"
         )
 
     
@@ -552,7 +552,7 @@ def train_loop(model, train_loader, val_loader, q_stats, pose_stats, device, max
             best_pose_loss = pose_loss
             best_epoch = epoch
             torch.save(model.state_dict(), save_path+f'/best_epoch_{best_epoch}.pth')
-            artifact = wandb.Artifact(name=f"MLP_{robot_choice}_Data_2.5M_Bs_128_Opt_AdamW", type='model')
+            artifact = wandb.Artifact(name=f"MLP_{robot_choice}_Data_1M_Bs_128_Opt_AdamW_LR_3e_4_1e_10", type='model')
             artifact.add_file(save_path+f'/best_epoch_{best_epoch}.pth')
             run.log_artifact(artifact)
         if epoch % (max_epochs/print_steps) == 0 or epoch == max_epochs-1:

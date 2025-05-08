@@ -501,7 +501,7 @@ def train_loop(model, train_loader, val_loader, q_stats, pose_stats, device, max
             entity="jacketdembys",
             project="diffik",
             group=f"MLP_{robot_choice}_Data_1M",
-            name=f"MLP_{robot_choice}_Data_1M_BS_128_Opt_AdamW_LR_3e_4_1e_8_qmin_qmax"
+            name=f"MLP_{robot_choice}_Data_1M_BS_128_Opt_AdamW_LR_3e_4_1e_10_qmin_qmax"
         )
 
     
@@ -522,7 +522,7 @@ def train_loop(model, train_loader, val_loader, q_stats, pose_stats, device, max
 
     # 3) Plug it into a LambdaLR scheduler
     #scheduler = torch.optim.lr_scheduler.LambdaLR(opt, lr_lambda)
-    scheduler = torch.optim.lr_scheduler.ReduceLROnPlateau(opt,mode='min', factor=0.5, patience=10, min_lr=1e-8, verbose=True)
+    scheduler = torch.optim.lr_scheduler.ReduceLROnPlateau(opt,mode='min', factor=0.5, patience=10, min_lr=1e-10, verbose=True)
 
 
     global_step = 0

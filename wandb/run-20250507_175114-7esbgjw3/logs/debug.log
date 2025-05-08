@@ -25,3 +25,10 @@ config: {}
 2025-05-07 17:51:27,743 INFO    MainThread:2263202 [wandb_run.py:_redirect():2119] Wrapping output streams.
 2025-05-07 17:51:27,743 INFO    MainThread:2263202 [wandb_run.py:_redirect():2144] Redirects installed.
 2025-05-07 17:51:27,745 INFO    MainThread:2263202 [wandb_init.py:init():845] run started, returning control to user process
+2025-05-07 21:13:08,769 INFO    MainThread:2263202 [wandb_run.py:_finish():1934] finishing run jacketdembys/diffik/7esbgjw3
+2025-05-07 21:13:08,769 INFO    MainThread:2263202 [wandb_run.py:_atexit_cleanup():2168] got exitcode: 0
+2025-05-07 21:13:08,770 INFO    MainThread:2263202 [wandb_run.py:_restore():2151] restore
+2025-05-07 21:13:08,770 INFO    MainThread:2263202 [wandb_run.py:_restore():2157] restore done
+2025-05-07 21:13:17,882 INFO    MainThread:2263202 [wandb_run.py:_footer_history_summary_info():3599] rendering history
+2025-05-07 21:13:17,883 INFO    MainThread:2263202 [wandb_run.py:_footer_history_summary_info():3631] rendering summary
+2025-05-07 21:13:17,888 INFO    MainThread:2263202 [wandb_run.py:_footer_sync_info():3558] logging synced files

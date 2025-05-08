@@ -491,7 +491,7 @@ def train_loop(model, train_loader, val_loader, q_stats, pose_stats, device, max
 
     # 3) Plug it into a LambdaLR scheduler
     #scheduler = torch.optim.lr_scheduler.LambdaLR(opt, lr_lambda)
-    scheduler = torch.optim.lr_scheduler.ReduceLROnPlateau(opt,mode='min', factor=0.5, patience=10, min_lr=1e-8, verbose=True)
+    scheduler = torch.optim.lr_scheduler.ReduceLROnPlateau(opt,mode='min', factor=0.5, patience=10, min_lr=1e-10, verbose=True)
 
 
     global_step = 0
@@ -637,7 +637,7 @@ if __name__ == "__main__":
     device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
     q_stats = (train_ds.q_mean.to(device), train_ds.q_std.to(device))
     pose_stats = (train_ds.pose_mean.to(device), train_ds.pose_std.to(device))
-    train_loop(model, train_loader, val_loader, q_stats, pose_stats, device, max_epochs=1000, lr=1e-2) #3e-4
+    train_loop(model, train_loader, val_loader, q_stats, pose_stats, device, max_epochs=1000, lr=3e-4) #3e-4
 
 
     """

@@ -155,3 +155,264 @@ Been Training for: 69m 37s
 [Epoch 351/1000]
 Train Loss: 0.075564 | Val Loss: 0.094918 | xyz(mm): 53.44 | RPY(deg): 21.12 | Best Epoch: 312
 Epoch Time: 0m 11s
+Been Training for: 71m 37s
+[Epoch 361/1000]
+Train Loss: 0.075648 | Val Loss: 0.090835 | xyz(mm): 53.87 | RPY(deg): 21.18 | Best Epoch: 312
+Epoch Time: 0m 12s
+Been Training for: 73m 38s
+[Epoch 371/1000]
+Train Loss: 0.075247 | Val Loss: 0.087341 | xyz(mm): 51.62 | RPY(deg): 19.92 | Best Epoch: 312
+Epoch Time: 0m 12s
+Been Training for: 75m 38s
+[Epoch 381/1000]
+Train Loss: 0.075362 | Val Loss: 0.084247 | xyz(mm): 52.75 | RPY(deg): 20.01 | Best Epoch: 371
+Epoch Time: 0m 11s
+Been Training for: 77m 39s
+[Epoch 391/1000]
+Train Loss: 0.075511 | Val Loss: 0.100308 | xyz(mm): 53.09 | RPY(deg): 21.04 | Best Epoch: 371
+Epoch Time: 0m 11s
+Been Training for: 79m 39s
+[Epoch 401/1000]
+Train Loss: 0.075765 | Val Loss: 0.091239 | xyz(mm): 53.19 | RPY(deg): 20.24 | Best Epoch: 371
+Epoch Time: 0m 12s
+Been Training for: 81m 40s
+[Epoch 411/1000]
+Train Loss: 0.075215 | Val Loss: 0.105512 | xyz(mm): 50.34 | RPY(deg): 20.45 | Best Epoch: 371
+Epoch Time: 0m 11s
+Been Training for: 83m 40s
+[Epoch 421/1000]
+Train Loss: 0.075406 | Val Loss: 0.103836 | xyz(mm): 51.61 | RPY(deg): 20.62 | Best Epoch: 371
+Epoch Time: 0m 12s
+Been Training for: 85m 40s
+[Epoch 431/1000]
+Train Loss: 0.075577 | Val Loss: 0.089631 | xyz(mm): 53.86 | RPY(deg): 20.00 | Best Epoch: 371
+Epoch Time: 0m 11s
+Been Training for: 87m 41s
+[Epoch 441/1000]
+Train Loss: 0.075545 | Val Loss: 0.096348 | xyz(mm): 51.58 | RPY(deg): 20.58 | Best Epoch: 371
+Epoch Time: 0m 11s
+Been Training for: 89m 41s
+[Epoch 451/1000]
+Train Loss: 0.075595 | Val Loss: 0.091446 | xyz(mm): 51.04 | RPY(deg): 20.16 | Best Epoch: 445
+Epoch Time: 0m 11s
+Been Training for: 91m 43s
+[Epoch 461/1000]
+Train Loss: 0.075625 | Val Loss: 0.085655 | xyz(mm): 52.82 | RPY(deg): 20.97 | Best Epoch: 445
+Epoch Time: 0m 12s
+Been Training for: 93m 43s
+[Epoch 471/1000]
+Train Loss: 0.075712 | Val Loss: 0.084603 | xyz(mm): 51.62 | RPY(deg): 20.38 | Best Epoch: 445
+Epoch Time: 0m 12s
+Been Training for: 95m 44s
+[Epoch 481/1000]
+Train Loss: 0.075649 | Val Loss: 0.086422 | xyz(mm): 51.63 | RPY(deg): 20.57 | Best Epoch: 445
+Epoch Time: 0m 12s
+Been Training for: 97m 45s
+[Epoch 491/1000]
+Train Loss: 0.075382 | Val Loss: 0.095604 | xyz(mm): 50.93 | RPY(deg): 20.20 | Best Epoch: 445
+Epoch Time: 0m 11s
+Been Training for: 99m 45s
+[Epoch 501/1000]
+Train Loss: 0.075606 | Val Loss: 0.095473 | xyz(mm): 50.87 | RPY(deg): 20.10 | Best Epoch: 445
+Epoch Time: 0m 12s
+Been Training for: 101m 46s
+[Epoch 511/1000]
+Train Loss: 0.075626 | Val Loss: 0.094767 | xyz(mm): 51.22 | RPY(deg): 19.54 | Best Epoch: 445
+Epoch Time: 0m 12s
+Been Training for: 103m 47s
+[Epoch 521/1000]
+Train Loss: 0.075765 | Val Loss: 0.093331 | xyz(mm): 51.20 | RPY(deg): 19.94 | Best Epoch: 445
+Epoch Time: 0m 11s
+Been Training for: 105m 47s
+[Epoch 531/1000]
+Train Loss: 0.075362 | Val Loss: 0.095101 | xyz(mm): 50.61 | RPY(deg): 20.85 | Best Epoch: 445
+Epoch Time: 0m 11s
+Been Training for: 107m 48s
+[Epoch 541/1000]
+Train Loss: 0.075381 | Val Loss: 0.091184 | xyz(mm): 51.09 | RPY(deg): 20.47 | Best Epoch: 445
+Epoch Time: 0m 11s
+Been Training for: 109m 48s
+[Epoch 551/1000]
+Train Loss: 0.075803 | Val Loss: 0.094636 | xyz(mm): 53.02 | RPY(deg): 20.32 | Best Epoch: 445
+Epoch Time: 0m 12s
+Been Training for: 111m 48s
+[Epoch 561/1000]
+Train Loss: 0.075630 | Val Loss: 0.102188 | xyz(mm): 53.61 | RPY(deg): 21.85 | Best Epoch: 445
+Epoch Time: 0m 12s
+Been Training for: 113m 49s
+[Epoch 571/1000]
+Train Loss: 0.075399 | Val Loss: 0.108891 | xyz(mm): 53.18 | RPY(deg): 20.72 | Best Epoch: 445
+Epoch Time: 0m 11s
+Been Training for: 115m 49s
+[Epoch 581/1000]
+Train Loss: 0.075461 | Val Loss: 0.079511 | xyz(mm): 53.44 | RPY(deg): 20.61 | Best Epoch: 445
+Epoch Time: 0m 11s
+Been Training for: 117m 49s
+[Epoch 591/1000]
+Train Loss: 0.075717 | Val Loss: 0.083964 | xyz(mm): 53.16 | RPY(deg): 20.78 | Best Epoch: 445
+Epoch Time: 0m 12s
+Been Training for: 119m 49s
+[Epoch 601/1000]
+Train Loss: 0.075797 | Val Loss: 0.089259 | xyz(mm): 48.38 | RPY(deg): 20.28 | Best Epoch: 445
+Epoch Time: 0m 11s
+Been Training for: 121m 49s
+[Epoch 611/1000]
+Train Loss: 0.075646 | Val Loss: 0.086815 | xyz(mm): 51.56 | RPY(deg): 21.32 | Best Epoch: 445
+Epoch Time: 0m 11s
+Been Training for: 123m 50s
+[Epoch 621/1000]
+Train Loss: 0.075530 | Val Loss: 0.088454 | xyz(mm): 52.98 | RPY(deg): 19.95 | Best Epoch: 445
+Epoch Time: 0m 12s
+Been Training for: 125m 50s
+[Epoch 631/1000]
+Train Loss: 0.075707 | Val Loss: 0.092386 | xyz(mm): 53.64 | RPY(deg): 20.69 | Best Epoch: 445
+Epoch Time: 0m 12s
+Been Training for: 127m 51s
+[Epoch 641/1000]
+Train Loss: 0.075466 | Val Loss: 0.094843 | xyz(mm): 51.50 | RPY(deg): 19.90 | Best Epoch: 445
+Epoch Time: 0m 12s
+Been Training for: 129m 51s
+[Epoch 651/1000]
+Train Loss: 0.075910 | Val Loss: 0.097164 | xyz(mm): 52.02 | RPY(deg): 20.00 | Best Epoch: 445
+Epoch Time: 0m 11s
+Been Training for: 131m 51s
+[Epoch 661/1000]
+Train Loss: 0.075312 | Val Loss: 0.094810 | xyz(mm): 53.22 | RPY(deg): 20.76 | Best Epoch: 445
+Epoch Time: 0m 11s
+Been Training for: 133m 51s
+[Epoch 671/1000]
+Train Loss: 0.075737 | Val Loss: 0.102800 | xyz(mm): 54.64 | RPY(deg): 20.92 | Best Epoch: 445
+Epoch Time: 0m 12s
+Been Training for: 135m 52s
+[Epoch 681/1000]
+Train Loss: 0.075530 | Val Loss: 0.096204 | xyz(mm): 52.68 | RPY(deg): 21.26 | Best Epoch: 445
+Epoch Time: 0m 12s
+Been Training for: 137m 52s
+[Epoch 691/1000]
+Train Loss: 0.075671 | Val Loss: 0.094152 | xyz(mm): 54.19 | RPY(deg): 22.19 | Best Epoch: 445
+Epoch Time: 0m 12s
+Been Training for: 139m 53s
+[Epoch 701/1000]
+Train Loss: 0.075399 | Val Loss: 0.085347 | xyz(mm): 53.07 | RPY(deg): 20.86 | Best Epoch: 445
+Epoch Time: 0m 12s
+Been Training for: 141m 53s
+[Epoch 711/1000]
+Train Loss: 0.075445 | Val Loss: 0.090314 | xyz(mm): 50.38 | RPY(deg): 20.49 | Best Epoch: 445
+Epoch Time: 0m 12s
+Been Training for: 143m 53s
+[Epoch 721/1000]
+Train Loss: 0.075663 | Val Loss: 0.083224 | xyz(mm): 51.70 | RPY(deg): 19.30 | Best Epoch: 445
+Epoch Time: 0m 12s
+Been Training for: 145m 53s
+[Epoch 731/1000]
+Train Loss: 0.075482 | Val Loss: 0.097365 | xyz(mm): 51.36 | RPY(deg): 19.85 | Best Epoch: 445
+Epoch Time: 0m 11s
+Been Training for: 147m 54s
+[Epoch 741/1000]
+Train Loss: 0.075330 | Val Loss: 0.094774 | xyz(mm): 52.07 | RPY(deg): 19.71 | Best Epoch: 445
+Epoch Time: 0m 12s
+Been Training for: 149m 55s
+[Epoch 751/1000]
+Train Loss: 0.075436 | Val Loss: 0.090840 | xyz(mm): 56.01 | RPY(deg): 20.77 | Best Epoch: 445
+Epoch Time: 0m 12s
+Been Training for: 151m 55s
+[Epoch 761/1000]
+Train Loss: 0.075139 | Val Loss: 0.105325 | xyz(mm): 51.61 | RPY(deg): 20.70 | Best Epoch: 445
+Epoch Time: 0m 12s
+Been Training for: 153m 55s
+[Epoch 771/1000]
+Train Loss: 0.075595 | Val Loss: 0.100463 | xyz(mm): 53.99 | RPY(deg): 21.27 | Best Epoch: 445
+Epoch Time: 0m 11s
+Been Training for: 155m 56s
+[Epoch 781/1000]
+Train Loss: 0.075523 | Val Loss: 0.096526 | xyz(mm): 53.04 | RPY(deg): 20.33 | Best Epoch: 445
+Epoch Time: 0m 11s
+Been Training for: 157m 56s
+[Epoch 791/1000]
+Train Loss: 0.075578 | Val Loss: 0.090006 | xyz(mm): 52.86 | RPY(deg): 21.10 | Best Epoch: 445
+Epoch Time: 0m 12s
+Been Training for: 159m 57s
+[Epoch 801/1000]
+Train Loss: 0.075690 | Val Loss: 0.091210 | xyz(mm): 56.50 | RPY(deg): 20.90 | Best Epoch: 445
+Epoch Time: 0m 12s
+Been Training for: 161m 58s
+[Epoch 811/1000]
+Train Loss: 0.075360 | Val Loss: 0.094287 | xyz(mm): 51.77 | RPY(deg): 20.44 | Best Epoch: 445
+Epoch Time: 0m 12s
+Been Training for: 163m 59s
+[Epoch 821/1000]
+Train Loss: 0.075581 | Val Loss: 0.089262 | xyz(mm): 51.59 | RPY(deg): 20.53 | Best Epoch: 445
+Epoch Time: 0m 12s
+Been Training for: 165m 59s
+[Epoch 831/1000]
+Train Loss: 0.075254 | Val Loss: 0.092514 | xyz(mm): 54.73 | RPY(deg): 20.45 | Best Epoch: 445
+Epoch Time: 0m 12s
+Been Training for: 168m 0s
+[Epoch 841/1000]
+Train Loss: 0.075700 | Val Loss: 0.079305 | xyz(mm): 50.92 | RPY(deg): 20.51 | Best Epoch: 445
+Epoch Time: 0m 12s
+Been Training for: 170m 1s
+[Epoch 851/1000]
+Train Loss: 0.075317 | Val Loss: 0.087602 | xyz(mm): 51.95 | RPY(deg): 19.92 | Best Epoch: 445
+Epoch Time: 0m 12s
+Been Training for: 172m 1s
+[Epoch 861/1000]
+Train Loss: 0.075649 | Val Loss: 0.091691 | xyz(mm): 54.89 | RPY(deg): 21.19 | Best Epoch: 445
+Epoch Time: 0m 11s
+Been Training for: 174m 1s
+[Epoch 871/1000]
+Train Loss: 0.075635 | Val Loss: 0.087266 | xyz(mm): 51.64 | RPY(deg): 20.58 | Best Epoch: 445
+Epoch Time: 0m 12s
+Been Training for: 176m 2s
+[Epoch 881/1000]
+Train Loss: 0.075574 | Val Loss: 0.095710 | xyz(mm): 52.32 | RPY(deg): 20.59 | Best Epoch: 445
+Epoch Time: 0m 12s
+Been Training for: 178m 3s
+[Epoch 891/1000]
+Train Loss: 0.075537 | Val Loss: 0.100606 | xyz(mm): 54.84 | RPY(deg): 21.20 | Best Epoch: 445
+Epoch Time: 0m 12s
+Been Training for: 180m 3s
+[Epoch 901/1000]
+Train Loss: 0.075773 | Val Loss: 0.097037 | xyz(mm): 52.71 | RPY(deg): 20.74 | Best Epoch: 445
+Epoch Time: 0m 12s
+Been Training for: 182m 4s
+[Epoch 911/1000]
+Train Loss: 0.075439 | Val Loss: 0.090397 | xyz(mm): 56.31 | RPY(deg): 21.37 | Best Epoch: 445
+Epoch Time: 0m 12s
+Been Training for: 184m 4s
+[Epoch 921/1000]
+Train Loss: 0.075423 | Val Loss: 0.090645 | xyz(mm): 54.39 | RPY(deg): 20.97 | Best Epoch: 445
+Epoch Time: 0m 12s
+Been Training for: 186m 5s
+[Epoch 931/1000]
+Train Loss: 0.075475 | Val Loss: 0.097997 | xyz(mm): 52.76 | RPY(deg): 20.61 | Best Epoch: 445
+Epoch Time: 0m 12s
+Been Training for: 188m 5s
+[Epoch 941/1000]
+Train Loss: 0.075690 | Val Loss: 0.097371 | xyz(mm): 51.33 | RPY(deg): 20.34 | Best Epoch: 445
+Epoch Time: 0m 12s
+Been Training for: 190m 6s
+[Epoch 951/1000]
+Train Loss: 0.075868 | Val Loss: 0.090680 | xyz(mm): 52.28 | RPY(deg): 20.85 | Best Epoch: 445
+Epoch Time: 0m 12s
+Been Training for: 192m 6s
+[Epoch 961/1000]
+Train Loss: 0.075433 | Val Loss: 0.088170 | xyz(mm): 53.23 | RPY(deg): 21.23 | Best Epoch: 445
+Epoch Time: 0m 12s
+Been Training for: 194m 7s
+[Epoch 971/1000]
+Train Loss: 0.075583 | Val Loss: 0.093524 | xyz(mm): 53.37 | RPY(deg): 20.75 | Best Epoch: 445
+Epoch Time: 0m 12s
+Been Training for: 196m 8s
+[Epoch 981/1000]
+Train Loss: 0.075646 | Val Loss: 0.089022 | xyz(mm): 49.09 | RPY(deg): 19.45 | Best Epoch: 445
+Epoch Time: 0m 12s
+Been Training for: 198m 8s
+[Epoch 991/1000]
+Train Loss: 0.075743 | Val Loss: 0.086060 | xyz(mm): 59.26 | RPY(deg): 21.83 | Best Epoch: 445
+Epoch Time: 0m 12s
+Been Training for: 200m 9s
+[Epoch 1000/1000]
+Train Loss: 0.075274 | Val Loss: 0.094473 | xyz(mm): 54.16 | RPY(deg): 20.35 | Best Epoch: 445
+Epoch Time: 0m 12s
+Been Training for: 201m 57s

@@ -3511,3 +3511,538 @@
 2025-05-07 18:54:35,344 DEBUG   SenderThread:2264511 [sender.py:send_request():407] send_request: summary_record
 2025-05-07 18:54:35,447 INFO    SenderThread:2264511 [sender.py:_save_file():1378] saving file wandb-summary.json with policy end
 2025-05-07 18:54:35,637 INFO    Thread-12 :2264511 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/retina/dembysj/Dropbox/research/diffik/wandb/run-20250507_175114-7esbgjw3/files/wandb-summary.json
+2025-05-07 18:54:36,448 DEBUG   HandlerThread:2264511 [handler.py:handle_request():146] handle_request: status_report
+2025-05-07 18:54:41,449 DEBUG   HandlerThread:2264511 [handler.py:handle_request():146] handle_request: status_report
+2025-05-07 18:54:42,804 DEBUG   HandlerThread:2264511 [handler.py:handle_request():146] handle_request: keepalive
+2025-05-07 18:54:42,815 DEBUG   HandlerThread:2264511 [handler.py:handle_request():146] handle_request: stop_status
+2025-05-07 18:54:42,815 DEBUG   SenderThread:2264511 [sender.py:send_request():407] send_request: stop_status
+2025-05-07 18:54:42,816 DEBUG   HandlerThread:2264511 [handler.py:handle_request():146] handle_request: internal_messages
+2025-05-07 18:54:45,974 DEBUG   SenderThread:2264511 [sender.py:send():380] send: stats
+2025-05-07 18:54:46,975 DEBUG   HandlerThread:2264511 [handler.py:handle_request():146] handle_request: status_report
+2025-05-07 18:54:47,281 DEBUG   HandlerThread:2264511 [handler.py:handle_request():146] handle_request: partial_history
+2025-05-07 18:54:47,282 DEBUG   SenderThread:2264511 [sender.py:send():380] send: history
+2025-05-07 18:54:47,282 DEBUG   SenderThread:2264511 [sender.py:send_request():407] send_request: summary_record
+2025-05-07 18:54:47,494 INFO    SenderThread:2264511 [sender.py:_save_file():1378] saving file wandb-summary.json with policy end
+2025-05-07 18:54:47,647 INFO    Thread-12 :2264511 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/retina/dembysj/Dropbox/research/diffik/wandb/run-20250507_175114-7esbgjw3/files/wandb-summary.json
+2025-05-07 18:54:48,684 INFO    Thread-12 :2264511 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/retina/dembysj/Dropbox/research/diffik/wandb/run-20250507_175114-7esbgjw3/files/output.log
+2025-05-07 18:54:52,495 DEBUG   HandlerThread:2264511 [handler.py:handle_request():146] handle_request: status_report
+2025-05-07 18:54:57,495 DEBUG   HandlerThread:2264511 [handler.py:handle_request():146] handle_request: status_report
+2025-05-07 18:54:57,804 DEBUG   HandlerThread:2264511 [handler.py:handle_request():146] handle_request: keepalive
+2025-05-07 18:54:57,815 DEBUG   HandlerThread:2264511 [handler.py:handle_request():146] handle_request: stop_status
+2025-05-07 18:54:57,816 DEBUG   SenderThread:2264511 [sender.py:send_request():407] send_request: stop_status
+2025-05-07 18:54:57,817 DEBUG   HandlerThread:2264511 [handler.py:handle_request():146] handle_request: internal_messages
+2025-05-07 18:54:59,384 DEBUG   HandlerThread:2264511 [handler.py:handle_request():146] handle_request: partial_history
+2025-05-07 18:54:59,385 DEBUG   SenderThread:2264511 [sender.py:send():380] send: history
+2025-05-07 18:54:59,385 DEBUG   SenderThread:2264511 [sender.py:send_request():407] send_request: summary_record
+2025-05-07 18:54:59,444 INFO    SenderThread:2264511 [sender.py:_save_file():1378] saving file wandb-summary.json with policy end
+2025-05-07 18:54:59,694 INFO    Thread-12 :2264511 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/retina/dembysj/Dropbox/research/diffik/wandb/run-20250507_175114-7esbgjw3/files/wandb-summary.json
+2025-05-07 18:55:03,445 DEBUG   HandlerThread:2264511 [handler.py:handle_request():146] handle_request: status_report
+2025-05-07 18:55:08,446 DEBUG   HandlerThread:2264511 [handler.py:handle_request():146] handle_request: status_report
+2025-05-07 18:55:11,371 DEBUG   HandlerThread:2264511 [handler.py:handle_request():146] handle_request: partial_history
+2025-05-07 18:55:11,372 DEBUG   SenderThread:2264511 [sender.py:send():380] send: history
+2025-05-07 18:55:11,372 DEBUG   SenderThread:2264511 [sender.py:send_request():407] send_request: summary_record
+2025-05-07 18:55:11,685 INFO    SenderThread:2264511 [sender.py:_save_file():1378] saving file wandb-summary.json with policy end
+2025-05-07 18:55:11,705 INFO    Thread-12 :2264511 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/retina/dembysj/Dropbox/research/diffik/wandb/run-20250507_175114-7esbgjw3/files/wandb-summary.json
+2025-05-07 18:55:12,366 DEBUG   HandlerThread:2264511 [handler.py:handle_request():146] handle_request: log_artifact
+2025-05-07 18:55:12,366 DEBUG   SenderThread:2264511 [sender.py:send_request():407] send_request: log_artifact
+2025-05-07 18:55:12,804 DEBUG   HandlerThread:2264511 [handler.py:handle_request():146] handle_request: keepalive
+2025-05-07 18:55:12,815 DEBUG   HandlerThread:2264511 [handler.py:handle_request():146] handle_request: stop_status
+2025-05-07 18:55:12,816 DEBUG   HandlerThread:2264511 [handler.py:handle_request():146] handle_request: internal_messages
+2025-05-07 18:55:14,363 INFO    wandb-upload_0:2264511 [upload_job.py:push():89] Uploaded file /home/retina/dembysj/.local/share/wandb/artifacts/staging/tmpuo3fxriy
+2025-05-07 18:55:15,213 INFO    SenderThread:2264511 [sender.py:send_request_log_artifact():1444] logged artifact MLP_7DoF-7R-Panda_Data_2.5M_Bs_128_Opt_AdamW - {'id': 'QXJ0aWZhY3Q6MTcxNjg1Mzg1Ng==', 'state': 'PENDING', 'artifactSequence': {'id': 'QXJ0aWZhY3RDb2xsZWN0aW9uOjYxMjUyNTM0OQ==', 'latestArtifact': {'id': 'QXJ0aWZhY3Q6MTcxNjgzODYzOA==', 'versionIndex': 628}}}
+2025-05-07 18:55:15,214 DEBUG   SenderThread:2264511 [sender.py:send_request():407] send_request: stop_status
+2025-05-07 18:55:15,214 DEBUG   HandlerThread:2264511 [handler.py:handle_request():146] handle_request: status_report
+2025-05-07 18:55:15,975 DEBUG   SenderThread:2264511 [sender.py:send():380] send: stats
+2025-05-07 18:55:20,976 DEBUG   HandlerThread:2264511 [handler.py:handle_request():146] handle_request: status_report
+2025-05-07 18:55:24,320 DEBUG   HandlerThread:2264511 [handler.py:handle_request():146] handle_request: partial_history
+2025-05-07 18:55:24,321 DEBUG   SenderThread:2264511 [sender.py:send():380] send: history
+2025-05-07 18:55:24,321 DEBUG   SenderThread:2264511 [sender.py:send_request():407] send_request: summary_record
+2025-05-07 18:55:24,400 INFO    SenderThread:2264511 [sender.py:_save_file():1378] saving file wandb-summary.json with policy end
+2025-05-07 18:55:24,717 INFO    Thread-12 :2264511 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/retina/dembysj/Dropbox/research/diffik/wandb/run-20250507_175114-7esbgjw3/files/wandb-summary.json
+2025-05-07 18:55:26,401 DEBUG   HandlerThread:2264511 [handler.py:handle_request():146] handle_request: status_report
+2025-05-07 18:55:27,804 DEBUG   HandlerThread:2264511 [handler.py:handle_request():146] handle_request: keepalive
+2025-05-07 18:55:27,815 DEBUG   HandlerThread:2264511 [handler.py:handle_request():146] handle_request: stop_status
+2025-05-07 18:55:27,816 DEBUG   SenderThread:2264511 [sender.py:send_request():407] send_request: stop_status
+2025-05-07 18:55:27,816 DEBUG   HandlerThread:2264511 [handler.py:handle_request():146] handle_request: internal_messages
+2025-05-07 18:55:31,937 DEBUG   HandlerThread:2264511 [handler.py:handle_request():146] handle_request: status_report
+2025-05-07 18:55:36,367 DEBUG   HandlerThread:2264511 [handler.py:handle_request():146] handle_request: partial_history
+2025-05-07 18:55:36,368 DEBUG   SenderThread:2264511 [sender.py:send():380] send: history
+2025-05-07 18:55:36,368 DEBUG   SenderThread:2264511 [sender.py:send_request():407] send_request: summary_record
+2025-05-07 18:55:36,431 INFO    SenderThread:2264511 [sender.py:_save_file():1378] saving file wandb-summary.json with policy end
+2025-05-07 18:55:36,726 INFO    Thread-12 :2264511 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/retina/dembysj/Dropbox/research/diffik/wandb/run-20250507_175114-7esbgjw3/files/wandb-summary.json
+2025-05-07 18:55:37,432 DEBUG   HandlerThread:2264511 [handler.py:handle_request():146] handle_request: status_report
+2025-05-07 18:55:42,432 DEBUG   HandlerThread:2264511 [handler.py:handle_request():146] handle_request: status_report
+2025-05-07 18:55:42,804 DEBUG   HandlerThread:2264511 [handler.py:handle_request():146] handle_request: keepalive
+2025-05-07 18:55:42,816 DEBUG   HandlerThread:2264511 [handler.py:handle_request():146] handle_request: stop_status
+2025-05-07 18:55:42,816 DEBUG   SenderThread:2264511 [sender.py:send_request():407] send_request: stop_status
+2025-05-07 18:55:42,816 DEBUG   HandlerThread:2264511 [handler.py:handle_request():146] handle_request: internal_messages
+2025-05-07 18:55:45,975 DEBUG   SenderThread:2264511 [sender.py:send():380] send: stats
+2025-05-07 18:55:47,976 DEBUG   HandlerThread:2264511 [handler.py:handle_request():146] handle_request: status_report
+2025-05-07 18:55:48,405 DEBUG   HandlerThread:2264511 [handler.py:handle_request():146] handle_request: partial_history
+2025-05-07 18:55:48,405 DEBUG   SenderThread:2264511 [sender.py:send():380] send: history
+2025-05-07 18:55:48,405 DEBUG   SenderThread:2264511 [sender.py:send_request():407] send_request: summary_record
+2025-05-07 18:55:48,491 INFO    SenderThread:2264511 [sender.py:_save_file():1378] saving file wandb-summary.json with policy end
+2025-05-07 18:55:48,738 INFO    Thread-12 :2264511 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/retina/dembysj/Dropbox/research/diffik/wandb/run-20250507_175114-7esbgjw3/files/wandb-summary.json
+2025-05-07 18:55:53,492 DEBUG   HandlerThread:2264511 [handler.py:handle_request():146] handle_request: status_report
+2025-05-07 18:55:57,804 DEBUG   HandlerThread:2264511 [handler.py:handle_request():146] handle_request: keepalive
+2025-05-07 18:55:57,816 DEBUG   HandlerThread:2264511 [handler.py:handle_request():146] handle_request: stop_status
+2025-05-07 18:55:57,816 DEBUG   SenderThread:2264511 [sender.py:send_request():407] send_request: stop_status
+2025-05-07 18:55:57,817 DEBUG   HandlerThread:2264511 [handler.py:handle_request():146] handle_request: internal_messages
+2025-05-07 18:55:58,865 DEBUG   HandlerThread:2264511 [handler.py:handle_request():146] handle_request: status_report
+2025-05-07 18:56:00,440 DEBUG   HandlerThread:2264511 [handler.py:handle_request():146] handle_request: partial_history
+2025-05-07 18:56:00,441 DEBUG   SenderThread:2264511 [sender.py:send():380] send: history
+2025-05-07 18:56:00,441 DEBUG   SenderThread:2264511 [sender.py:send_request():407] send_request: summary_record
+2025-05-07 18:56:00,514 INFO    SenderThread:2264511 [sender.py:_save_file():1378] saving file wandb-summary.json with policy end
+2025-05-07 18:56:00,750 INFO    Thread-12 :2264511 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/retina/dembysj/Dropbox/research/diffik/wandb/run-20250507_175114-7esbgjw3/files/wandb-summary.json
+2025-05-07 18:56:04,514 DEBUG   HandlerThread:2264511 [handler.py:handle_request():146] handle_request: status_report
+2025-05-07 18:56:09,515 DEBUG   HandlerThread:2264511 [handler.py:handle_request():146] handle_request: status_report
+2025-05-07 18:56:12,463 DEBUG   HandlerThread:2264511 [handler.py:handle_request():146] handle_request: partial_history
+2025-05-07 18:56:12,463 DEBUG   SenderThread:2264511 [sender.py:send():380] send: history
+2025-05-07 18:56:12,464 DEBUG   SenderThread:2264511 [sender.py:send_request():407] send_request: summary_record
+2025-05-07 18:56:12,517 INFO    SenderThread:2264511 [sender.py:_save_file():1378] saving file wandb-summary.json with policy end
+2025-05-07 18:56:12,762 INFO    Thread-12 :2264511 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/retina/dembysj/Dropbox/research/diffik/wandb/run-20250507_175114-7esbgjw3/files/wandb-summary.json
+2025-05-07 18:56:12,804 DEBUG   HandlerThread:2264511 [handler.py:handle_request():146] handle_request: keepalive
+2025-05-07 18:56:12,816 DEBUG   HandlerThread:2264511 [handler.py:handle_request():146] handle_request: stop_status
+2025-05-07 18:56:12,816 DEBUG   SenderThread:2264511 [sender.py:send_request():407] send_request: stop_status
+2025-05-07 18:56:12,817 DEBUG   HandlerThread:2264511 [handler.py:handle_request():146] handle_request: internal_messages
+2025-05-07 18:56:14,963 DEBUG   HandlerThread:2264511 [handler.py:handle_request():146] handle_request: status_report
+2025-05-07 18:56:15,976 DEBUG   SenderThread:2264511 [sender.py:send():380] send: stats
+2025-05-07 18:56:19,977 DEBUG   HandlerThread:2264511 [handler.py:handle_request():146] handle_request: status_report
+2025-05-07 18:56:24,513 DEBUG   HandlerThread:2264511 [handler.py:handle_request():146] handle_request: partial_history
+2025-05-07 18:56:24,514 DEBUG   SenderThread:2264511 [sender.py:send():380] send: history
+2025-05-07 18:56:24,514 DEBUG   SenderThread:2264511 [sender.py:send_request():407] send_request: summary_record
+2025-05-07 18:56:24,593 INFO    SenderThread:2264511 [sender.py:_save_file():1378] saving file wandb-summary.json with policy end
+2025-05-07 18:56:24,772 INFO    Thread-12 :2264511 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/retina/dembysj/Dropbox/research/diffik/wandb/run-20250507_175114-7esbgjw3/files/wandb-summary.json
+2025-05-07 18:56:25,594 DEBUG   HandlerThread:2264511 [handler.py:handle_request():146] handle_request: status_report
+2025-05-07 18:56:27,805 DEBUG   HandlerThread:2264511 [handler.py:handle_request():146] handle_request: keepalive
+2025-05-07 18:56:27,816 DEBUG   HandlerThread:2264511 [handler.py:handle_request():146] handle_request: stop_status
+2025-05-07 18:56:27,816 DEBUG   SenderThread:2264511 [sender.py:send_request():407] send_request: stop_status
+2025-05-07 18:56:27,817 DEBUG   HandlerThread:2264511 [handler.py:handle_request():146] handle_request: internal_messages
+2025-05-07 18:56:30,892 DEBUG   HandlerThread:2264511 [handler.py:handle_request():146] handle_request: status_report
+2025-05-07 18:56:35,892 DEBUG   HandlerThread:2264511 [handler.py:handle_request():146] handle_request: status_report
+2025-05-07 18:56:36,464 DEBUG   HandlerThread:2264511 [handler.py:handle_request():146] handle_request: partial_history
+2025-05-07 18:56:36,465 DEBUG   SenderThread:2264511 [sender.py:send():380] send: history
+2025-05-07 18:56:36,465 DEBUG   SenderThread:2264511 [sender.py:send_request():407] send_request: summary_record
+2025-05-07 18:56:36,539 INFO    SenderThread:2264511 [sender.py:_save_file():1378] saving file wandb-summary.json with policy end
+2025-05-07 18:56:36,780 INFO    Thread-12 :2264511 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/retina/dembysj/Dropbox/research/diffik/wandb/run-20250507_175114-7esbgjw3/files/wandb-summary.json
+2025-05-07 18:56:41,540 DEBUG   HandlerThread:2264511 [handler.py:handle_request():146] handle_request: status_report
+2025-05-07 18:56:42,805 DEBUG   HandlerThread:2264511 [handler.py:handle_request():146] handle_request: keepalive
+2025-05-07 18:56:42,816 DEBUG   HandlerThread:2264511 [handler.py:handle_request():146] handle_request: stop_status
+2025-05-07 18:56:42,816 DEBUG   SenderThread:2264511 [sender.py:send_request():407] send_request: stop_status
+2025-05-07 18:56:42,817 DEBUG   HandlerThread:2264511 [handler.py:handle_request():146] handle_request: internal_messages
+2025-05-07 18:56:45,977 DEBUG   SenderThread:2264511 [sender.py:send():380] send: stats
+2025-05-07 18:56:46,977 DEBUG   HandlerThread:2264511 [handler.py:handle_request():146] handle_request: status_report
+2025-05-07 18:56:48,484 DEBUG   HandlerThread:2264511 [handler.py:handle_request():146] handle_request: partial_history
+2025-05-07 18:56:48,484 DEBUG   SenderThread:2264511 [sender.py:send():380] send: history
+2025-05-07 18:56:48,484 DEBUG   SenderThread:2264511 [sender.py:send_request():407] send_request: summary_record
+2025-05-07 18:56:48,544 INFO    SenderThread:2264511 [sender.py:_save_file():1378] saving file wandb-summary.json with policy end
+2025-05-07 18:56:48,790 INFO    Thread-12 :2264511 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/retina/dembysj/Dropbox/research/diffik/wandb/run-20250507_175114-7esbgjw3/files/wandb-summary.json
+2025-05-07 18:56:50,834 INFO    Thread-12 :2264511 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/retina/dembysj/Dropbox/research/diffik/wandb/run-20250507_175114-7esbgjw3/files/output.log
+2025-05-07 18:56:52,545 DEBUG   HandlerThread:2264511 [handler.py:handle_request():146] handle_request: status_report
+2025-05-07 18:56:57,546 DEBUG   HandlerThread:2264511 [handler.py:handle_request():146] handle_request: status_report
+2025-05-07 18:56:57,805 DEBUG   HandlerThread:2264511 [handler.py:handle_request():146] handle_request: keepalive
+2025-05-07 18:56:57,816 DEBUG   HandlerThread:2264511 [handler.py:handle_request():146] handle_request: stop_status
+2025-05-07 18:56:57,817 DEBUG   SenderThread:2264511 [sender.py:send_request():407] send_request: stop_status
+2025-05-07 18:56:57,817 DEBUG   HandlerThread:2264511 [handler.py:handle_request():146] handle_request: internal_messages
+2025-05-07 18:57:00,368 DEBUG   HandlerThread:2264511 [handler.py:handle_request():146] handle_request: partial_history
+2025-05-07 18:57:00,369 DEBUG   SenderThread:2264511 [sender.py:send():380] send: history
+2025-05-07 18:57:00,369 DEBUG   SenderThread:2264511 [sender.py:send_request():407] send_request: summary_record
+2025-05-07 18:57:00,484 INFO    SenderThread:2264511 [sender.py:_save_file():1378] saving file wandb-summary.json with policy end
+2025-05-07 18:57:00,843 INFO    Thread-12 :2264511 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/retina/dembysj/Dropbox/research/diffik/wandb/run-20250507_175114-7esbgjw3/files/wandb-summary.json
+2025-05-07 18:57:03,484 DEBUG   HandlerThread:2264511 [handler.py:handle_request():146] handle_request: status_report
+2025-05-07 18:57:08,485 DEBUG   HandlerThread:2264511 [handler.py:handle_request():146] handle_request: status_report
+2025-05-07 18:57:12,498 DEBUG   HandlerThread:2264511 [handler.py:handle_request():146] handle_request: partial_history
+2025-05-07 18:57:12,499 DEBUG   SenderThread:2264511 [sender.py:send():380] send: history
+2025-05-07 18:57:12,499 DEBUG   SenderThread:2264511 [sender.py:send_request():407] send_request: summary_record
+2025-05-07 18:57:12,549 INFO    SenderThread:2264511 [sender.py:_save_file():1378] saving file wandb-summary.json with policy end
+2025-05-07 18:57:12,805 DEBUG   HandlerThread:2264511 [handler.py:handle_request():146] handle_request: keepalive
+2025-05-07 18:57:12,816 DEBUG   HandlerThread:2264511 [handler.py:handle_request():146] handle_request: stop_status
+2025-05-07 18:57:12,817 DEBUG   SenderThread:2264511 [sender.py:send_request():407] send_request: stop_status
+2025-05-07 18:57:12,818 DEBUG   HandlerThread:2264511 [handler.py:handle_request():146] handle_request: internal_messages
+2025-05-07 18:57:12,853 INFO    Thread-12 :2264511 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/retina/dembysj/Dropbox/research/diffik/wandb/run-20250507_175114-7esbgjw3/files/wandb-summary.json
+2025-05-07 18:57:13,914 DEBUG   HandlerThread:2264511 [handler.py:handle_request():146] handle_request: status_report
+2025-05-07 18:57:15,977 DEBUG   SenderThread:2264511 [sender.py:send():380] send: stats
+2025-05-07 18:57:18,978 DEBUG   HandlerThread:2264511 [handler.py:handle_request():146] handle_request: status_report
+2025-05-07 18:57:23,979 DEBUG   HandlerThread:2264511 [handler.py:handle_request():146] handle_request: status_report
+2025-05-07 18:57:24,517 DEBUG   HandlerThread:2264511 [handler.py:handle_request():146] handle_request: partial_history
+2025-05-07 18:57:24,517 DEBUG   SenderThread:2264511 [sender.py:send():380] send: history
+2025-05-07 18:57:24,518 DEBUG   SenderThread:2264511 [sender.py:send_request():407] send_request: summary_record
+2025-05-07 18:57:24,577 INFO    SenderThread:2264511 [sender.py:_save_file():1378] saving file wandb-summary.json with policy end
+2025-05-07 18:57:24,863 INFO    Thread-12 :2264511 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/retina/dembysj/Dropbox/research/diffik/wandb/run-20250507_175114-7esbgjw3/files/wandb-summary.json
+2025-05-07 18:57:26,901 INFO    Thread-12 :2264511 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/retina/dembysj/Dropbox/research/diffik/wandb/run-20250507_175114-7esbgjw3/files/output.log
+2025-05-07 18:57:27,805 DEBUG   HandlerThread:2264511 [handler.py:handle_request():146] handle_request: keepalive
+2025-05-07 18:57:27,816 DEBUG   HandlerThread:2264511 [handler.py:handle_request():146] handle_request: stop_status
+2025-05-07 18:57:27,817 DEBUG   SenderThread:2264511 [sender.py:send_request():407] send_request: stop_status
+2025-05-07 18:57:27,818 DEBUG   HandlerThread:2264511 [handler.py:handle_request():146] handle_request: internal_messages
+2025-05-07 18:57:29,870 DEBUG   HandlerThread:2264511 [handler.py:handle_request():146] handle_request: status_report
+2025-05-07 18:57:34,870 DEBUG   HandlerThread:2264511 [handler.py:handle_request():146] handle_request: status_report
+2025-05-07 18:57:36,518 DEBUG   HandlerThread:2264511 [handler.py:handle_request():146] handle_request: partial_history
+2025-05-07 18:57:36,519 DEBUG   SenderThread:2264511 [sender.py:send():380] send: history
+2025-05-07 18:57:36,519 DEBUG   SenderThread:2264511 [sender.py:send_request():407] send_request: summary_record
+2025-05-07 18:57:36,593 INFO    SenderThread:2264511 [sender.py:_save_file():1378] saving file wandb-summary.json with policy end
+2025-05-07 18:57:36,908 INFO    Thread-12 :2264511 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/retina/dembysj/Dropbox/research/diffik/wandb/run-20250507_175114-7esbgjw3/files/wandb-summary.json
+2025-05-07 18:57:40,594 DEBUG   HandlerThread:2264511 [handler.py:handle_request():146] handle_request: status_report
+2025-05-07 18:57:42,805 DEBUG   HandlerThread:2264511 [handler.py:handle_request():146] handle_request: keepalive
+2025-05-07 18:57:42,817 DEBUG   HandlerThread:2264511 [handler.py:handle_request():146] handle_request: stop_status
+2025-05-07 18:57:42,817 DEBUG   SenderThread:2264511 [sender.py:send_request():407] send_request: stop_status
+2025-05-07 18:57:42,818 DEBUG   HandlerThread:2264511 [handler.py:handle_request():146] handle_request: internal_messages
+2025-05-07 18:57:45,930 DEBUG   HandlerThread:2264511 [handler.py:handle_request():146] handle_request: status_report
+2025-05-07 18:57:45,978 DEBUG   SenderThread:2264511 [sender.py:send():380] send: stats
+2025-05-07 18:57:48,534 DEBUG   HandlerThread:2264511 [handler.py:handle_request():146] handle_request: partial_history
+2025-05-07 18:57:48,534 DEBUG   SenderThread:2264511 [sender.py:send():380] send: history
+2025-05-07 18:57:48,534 DEBUG   SenderThread:2264511 [sender.py:send_request():407] send_request: summary_record
+2025-05-07 18:57:48,619 INFO    SenderThread:2264511 [sender.py:_save_file():1378] saving file wandb-summary.json with policy end
+2025-05-07 18:57:48,917 INFO    Thread-12 :2264511 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/retina/dembysj/Dropbox/research/diffik/wandb/run-20250507_175114-7esbgjw3/files/wandb-summary.json
+2025-05-07 18:57:51,620 DEBUG   HandlerThread:2264511 [handler.py:handle_request():146] handle_request: status_report
+2025-05-07 18:57:56,620 DEBUG   HandlerThread:2264511 [handler.py:handle_request():146] handle_request: status_report
+2025-05-07 18:57:57,805 DEBUG   HandlerThread:2264511 [handler.py:handle_request():146] handle_request: keepalive
+2025-05-07 18:57:57,817 DEBUG   HandlerThread:2264511 [handler.py:handle_request():146] handle_request: stop_status
+2025-05-07 18:57:57,817 DEBUG   SenderThread:2264511 [sender.py:send_request():407] send_request: stop_status
+2025-05-07 18:57:57,818 DEBUG   HandlerThread:2264511 [handler.py:handle_request():146] handle_request: internal_messages
+2025-05-07 18:58:00,641 DEBUG   HandlerThread:2264511 [handler.py:handle_request():146] handle_request: partial_history
+2025-05-07 18:58:00,641 DEBUG   SenderThread:2264511 [sender.py:send():380] send: history
+2025-05-07 18:58:00,641 DEBUG   SenderThread:2264511 [sender.py:send_request():407] send_request: summary_record
+2025-05-07 18:58:00,703 INFO    SenderThread:2264511 [sender.py:_save_file():1378] saving file wandb-summary.json with policy end
+2025-05-07 18:58:00,927 INFO    Thread-12 :2264511 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/retina/dembysj/Dropbox/research/diffik/wandb/run-20250507_175114-7esbgjw3/files/wandb-summary.json
+2025-05-07 18:58:01,703 DEBUG   HandlerThread:2264511 [handler.py:handle_request():146] handle_request: status_report
+2025-05-07 18:58:06,704 DEBUG   HandlerThread:2264511 [handler.py:handle_request():146] handle_request: status_report
+2025-05-07 18:58:11,705 DEBUG   HandlerThread:2264511 [handler.py:handle_request():146] handle_request: status_report
+2025-05-07 18:58:12,646 DEBUG   HandlerThread:2264511 [handler.py:handle_request():146] handle_request: partial_history
+2025-05-07 18:58:12,646 DEBUG   SenderThread:2264511 [sender.py:send():380] send: history
+2025-05-07 18:58:12,647 DEBUG   SenderThread:2264511 [sender.py:send_request():407] send_request: summary_record
+2025-05-07 18:58:12,719 INFO    SenderThread:2264511 [sender.py:_save_file():1378] saving file wandb-summary.json with policy end
+2025-05-07 18:58:12,806 DEBUG   HandlerThread:2264511 [handler.py:handle_request():146] handle_request: keepalive
+2025-05-07 18:58:12,817 DEBUG   HandlerThread:2264511 [handler.py:handle_request():146] handle_request: stop_status
+2025-05-07 18:58:12,817 DEBUG   SenderThread:2264511 [sender.py:send_request():407] send_request: stop_status
+2025-05-07 18:58:12,818 DEBUG   HandlerThread:2264511 [handler.py:handle_request():146] handle_request: internal_messages
+2025-05-07 18:58:12,937 INFO    Thread-12 :2264511 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/retina/dembysj/Dropbox/research/diffik/wandb/run-20250507_175114-7esbgjw3/files/wandb-summary.json
+2025-05-07 18:58:15,978 DEBUG   SenderThread:2264511 [sender.py:send():380] send: stats
+2025-05-07 18:58:16,979 DEBUG   HandlerThread:2264511 [handler.py:handle_request():146] handle_request: status_report
+2025-05-07 18:58:21,979 DEBUG   HandlerThread:2264511 [handler.py:handle_request():146] handle_request: status_report
+2025-05-07 18:58:24,772 DEBUG   HandlerThread:2264511 [handler.py:handle_request():146] handle_request: partial_history
+2025-05-07 18:58:24,773 DEBUG   SenderThread:2264511 [sender.py:send():380] send: history
+2025-05-07 18:58:24,773 DEBUG   SenderThread:2264511 [sender.py:send_request():407] send_request: summary_record
+2025-05-07 18:58:24,835 INFO    SenderThread:2264511 [sender.py:_save_file():1378] saving file wandb-summary.json with policy end
+2025-05-07 18:58:24,946 INFO    Thread-12 :2264511 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/retina/dembysj/Dropbox/research/diffik/wandb/run-20250507_175114-7esbgjw3/files/wandb-summary.json
+2025-05-07 18:58:27,806 DEBUG   HandlerThread:2264511 [handler.py:handle_request():146] handle_request: keepalive
+2025-05-07 18:58:27,817 DEBUG   HandlerThread:2264511 [handler.py:handle_request():146] handle_request: stop_status
+2025-05-07 18:58:27,817 DEBUG   SenderThread:2264511 [sender.py:send_request():407] send_request: stop_status
+2025-05-07 18:58:27,818 DEBUG   HandlerThread:2264511 [handler.py:handle_request():146] handle_request: internal_messages
+2025-05-07 18:58:27,930 DEBUG   HandlerThread:2264511 [handler.py:handle_request():146] handle_request: status_report
+2025-05-07 18:58:32,931 DEBUG   HandlerThread:2264511 [handler.py:handle_request():146] handle_request: status_report
+2025-05-07 18:58:36,767 DEBUG   HandlerThread:2264511 [handler.py:handle_request():146] handle_request: partial_history
+2025-05-07 18:58:36,767 DEBUG   SenderThread:2264511 [sender.py:send():380] send: history
+2025-05-07 18:58:36,767 DEBUG   SenderThread:2264511 [sender.py:send_request():407] send_request: summary_record
+2025-05-07 18:58:36,828 INFO    SenderThread:2264511 [sender.py:_save_file():1378] saving file wandb-summary.json with policy end
+2025-05-07 18:58:36,955 INFO    Thread-12 :2264511 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/retina/dembysj/Dropbox/research/diffik/wandb/run-20250507_175114-7esbgjw3/files/wandb-summary.json
+2025-05-07 18:58:38,829 DEBUG   HandlerThread:2264511 [handler.py:handle_request():146] handle_request: status_report
+2025-05-07 18:58:42,806 DEBUG   HandlerThread:2264511 [handler.py:handle_request():146] handle_request: keepalive
+2025-05-07 18:58:42,817 DEBUG   HandlerThread:2264511 [handler.py:handle_request():146] handle_request: stop_status
+2025-05-07 18:58:42,818 DEBUG   SenderThread:2264511 [sender.py:send_request():407] send_request: stop_status
+2025-05-07 18:58:42,819 DEBUG   HandlerThread:2264511 [handler.py:handle_request():146] handle_request: internal_messages
+2025-05-07 18:58:43,916 DEBUG   HandlerThread:2264511 [handler.py:handle_request():146] handle_request: status_report
+2025-05-07 18:58:45,979 DEBUG   SenderThread:2264511 [sender.py:send():380] send: stats
+2025-05-07 18:58:48,725 DEBUG   HandlerThread:2264511 [handler.py:handle_request():146] handle_request: partial_history
+2025-05-07 18:58:48,726 DEBUG   SenderThread:2264511 [sender.py:send():380] send: history
+2025-05-07 18:58:48,726 DEBUG   SenderThread:2264511 [sender.py:send_request():407] send_request: summary_record
+2025-05-07 18:58:48,801 INFO    SenderThread:2264511 [sender.py:_save_file():1378] saving file wandb-summary.json with policy end
+2025-05-07 18:58:48,964 INFO    Thread-12 :2264511 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/retina/dembysj/Dropbox/research/diffik/wandb/run-20250507_175114-7esbgjw3/files/wandb-summary.json
+2025-05-07 18:58:49,801 DEBUG   HandlerThread:2264511 [handler.py:handle_request():146] handle_request: status_report
+2025-05-07 18:58:51,012 INFO    Thread-12 :2264511 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/retina/dembysj/Dropbox/research/diffik/wandb/run-20250507_175114-7esbgjw3/files/output.log
+2025-05-07 18:58:54,802 DEBUG   HandlerThread:2264511 [handler.py:handle_request():146] handle_request: status_report
+2025-05-07 18:58:57,806 DEBUG   HandlerThread:2264511 [handler.py:handle_request():146] handle_request: keepalive
+2025-05-07 18:58:57,817 DEBUG   HandlerThread:2264511 [handler.py:handle_request():146] handle_request: stop_status
+2025-05-07 18:58:57,818 DEBUG   SenderThread:2264511 [sender.py:send_request():407] send_request: stop_status
+2025-05-07 18:58:57,819 DEBUG   HandlerThread:2264511 [handler.py:handle_request():146] handle_request: internal_messages
+2025-05-07 18:58:59,968 DEBUG   HandlerThread:2264511 [handler.py:handle_request():146] handle_request: status_report
+2025-05-07 18:59:00,782 DEBUG   HandlerThread:2264511 [handler.py:handle_request():146] handle_request: partial_history
+2025-05-07 18:59:00,782 DEBUG   SenderThread:2264511 [sender.py:send():380] send: history
+2025-05-07 18:59:00,783 DEBUG   SenderThread:2264511 [sender.py:send_request():407] send_request: summary_record
+2025-05-07 18:59:00,849 INFO    SenderThread:2264511 [sender.py:_save_file():1378] saving file wandb-summary.json with policy end
+2025-05-07 18:59:01,020 INFO    Thread-12 :2264511 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/retina/dembysj/Dropbox/research/diffik/wandb/run-20250507_175114-7esbgjw3/files/wandb-summary.json
+2025-05-07 18:59:05,850 DEBUG   HandlerThread:2264511 [handler.py:handle_request():146] handle_request: status_report
+2025-05-07 18:59:10,851 DEBUG   HandlerThread:2264511 [handler.py:handle_request():146] handle_request: status_report
+2025-05-07 18:59:12,806 DEBUG   HandlerThread:2264511 [handler.py:handle_request():146] handle_request: keepalive
+2025-05-07 18:59:12,818 DEBUG   HandlerThread:2264511 [handler.py:handle_request():146] handle_request: partial_history
+2025-05-07 18:59:12,818 DEBUG   SenderThread:2264511 [sender.py:send():380] send: history
+2025-05-07 18:59:12,818 DEBUG   SenderThread:2264511 [sender.py:send_request():407] send_request: summary_record
+2025-05-07 18:59:12,866 DEBUG   HandlerThread:2264511 [handler.py:handle_request():146] handle_request: stop_status
+2025-05-07 18:59:12,867 DEBUG   HandlerThread:2264511 [handler.py:handle_request():146] handle_request: internal_messages
+2025-05-07 18:59:12,890 INFO    SenderThread:2264511 [sender.py:_save_file():1378] saving file wandb-summary.json with policy end
+2025-05-07 18:59:12,890 DEBUG   SenderThread:2264511 [sender.py:send_request():407] send_request: stop_status
+2025-05-07 18:59:13,031 INFO    Thread-12 :2264511 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/retina/dembysj/Dropbox/research/diffik/wandb/run-20250507_175114-7esbgjw3/files/wandb-summary.json
+2025-05-07 18:59:15,979 DEBUG   HandlerThread:2264511 [handler.py:handle_request():146] handle_request: status_report
+2025-05-07 18:59:15,980 DEBUG   SenderThread:2264511 [sender.py:send():380] send: stats
+2025-05-07 18:59:20,981 DEBUG   HandlerThread:2264511 [handler.py:handle_request():146] handle_request: status_report
+2025-05-07 18:59:24,877 DEBUG   HandlerThread:2264511 [handler.py:handle_request():146] handle_request: partial_history
+2025-05-07 18:59:24,878 DEBUG   SenderThread:2264511 [sender.py:send():380] send: history
+2025-05-07 18:59:24,878 DEBUG   SenderThread:2264511 [sender.py:send_request():407] send_request: summary_record
+2025-05-07 18:59:24,940 INFO    SenderThread:2264511 [sender.py:_save_file():1378] saving file wandb-summary.json with policy end
+2025-05-07 18:59:25,041 INFO    Thread-12 :2264511 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/retina/dembysj/Dropbox/research/diffik/wandb/run-20250507_175114-7esbgjw3/files/wandb-summary.json
+2025-05-07 18:59:26,941 DEBUG   HandlerThread:2264511 [handler.py:handle_request():146] handle_request: status_report
+2025-05-07 18:59:27,807 DEBUG   HandlerThread:2264511 [handler.py:handle_request():146] handle_request: keepalive
+2025-05-07 18:59:27,843 DEBUG   HandlerThread:2264511 [handler.py:handle_request():146] handle_request: internal_messages
+2025-05-07 18:59:27,843 DEBUG   HandlerThread:2264511 [handler.py:handle_request():146] handle_request: stop_status
+2025-05-07 18:59:27,843 DEBUG   SenderThread:2264511 [sender.py:send_request():407] send_request: stop_status
+2025-05-07 18:59:32,005 DEBUG   HandlerThread:2264511 [handler.py:handle_request():146] handle_request: status_report
+2025-05-07 18:59:36,934 DEBUG   HandlerThread:2264511 [handler.py:handle_request():146] handle_request: partial_history
+2025-05-07 18:59:36,934 DEBUG   SenderThread:2264511 [sender.py:send():380] send: history
+2025-05-07 18:59:36,934 DEBUG   SenderThread:2264511 [sender.py:send_request():407] send_request: summary_record
+2025-05-07 18:59:37,000 INFO    SenderThread:2264511 [sender.py:_save_file():1378] saving file wandb-summary.json with policy end
+2025-05-07 18:59:37,049 INFO    Thread-12 :2264511 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/retina/dembysj/Dropbox/research/diffik/wandb/run-20250507_175114-7esbgjw3/files/wandb-summary.json
+2025-05-07 18:59:38,000 DEBUG   HandlerThread:2264511 [handler.py:handle_request():146] handle_request: status_report
+2025-05-07 18:59:42,807 DEBUG   HandlerThread:2264511 [handler.py:handle_request():146] handle_request: keepalive
+2025-05-07 18:59:42,843 DEBUG   HandlerThread:2264511 [handler.py:handle_request():146] handle_request: internal_messages
+2025-05-07 18:59:42,843 DEBUG   HandlerThread:2264511 [handler.py:handle_request():146] handle_request: stop_status
+2025-05-07 18:59:42,843 DEBUG   SenderThread:2264511 [sender.py:send_request():407] send_request: stop_status
+2025-05-07 18:59:43,920 DEBUG   HandlerThread:2264511 [handler.py:handle_request():146] handle_request: status_report
+2025-05-07 18:59:45,980 DEBUG   SenderThread:2264511 [sender.py:send():380] send: stats
+2025-05-07 18:59:48,958 DEBUG   HandlerThread:2264511 [handler.py:handle_request():146] handle_request: partial_history
+2025-05-07 18:59:48,958 DEBUG   SenderThread:2264511 [sender.py:send():380] send: history
+2025-05-07 18:59:48,958 DEBUG   SenderThread:2264511 [sender.py:send_request():407] send_request: summary_record
+2025-05-07 18:59:48,959 DEBUG   HandlerThread:2264511 [handler.py:handle_request():146] handle_request: status_report
+2025-05-07 18:59:49,038 INFO    SenderThread:2264511 [sender.py:_save_file():1378] saving file wandb-summary.json with policy end
+2025-05-07 18:59:49,058 INFO    Thread-12 :2264511 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/retina/dembysj/Dropbox/research/diffik/wandb/run-20250507_175114-7esbgjw3/files/wandb-summary.json
+2025-05-07 18:59:54,039 DEBUG   HandlerThread:2264511 [handler.py:handle_request():146] handle_request: status_report
+2025-05-07 18:59:57,807 DEBUG   HandlerThread:2264511 [handler.py:handle_request():146] handle_request: keepalive
+2025-05-07 18:59:57,843 DEBUG   HandlerThread:2264511 [handler.py:handle_request():146] handle_request: internal_messages
+2025-05-07 18:59:57,843 DEBUG   HandlerThread:2264511 [handler.py:handle_request():146] handle_request: stop_status
+2025-05-07 18:59:57,843 DEBUG   SenderThread:2264511 [sender.py:send_request():407] send_request: stop_status
+2025-05-07 18:59:59,926 DEBUG   HandlerThread:2264511 [handler.py:handle_request():146] handle_request: status_report
+2025-05-07 19:00:00,936 DEBUG   HandlerThread:2264511 [handler.py:handle_request():146] handle_request: partial_history
+2025-05-07 19:00:00,936 DEBUG   SenderThread:2264511 [sender.py:send():380] send: history
+2025-05-07 19:00:00,936 DEBUG   SenderThread:2264511 [sender.py:send_request():407] send_request: summary_record
+2025-05-07 19:00:01,044 INFO    SenderThread:2264511 [sender.py:_save_file():1378] saving file wandb-summary.json with policy end
+2025-05-07 19:00:01,068 INFO    Thread-12 :2264511 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/retina/dembysj/Dropbox/research/diffik/wandb/run-20250507_175114-7esbgjw3/files/wandb-summary.json
+2025-05-07 19:00:05,044 DEBUG   HandlerThread:2264511 [handler.py:handle_request():146] handle_request: status_report
+2025-05-07 19:00:10,045 DEBUG   HandlerThread:2264511 [handler.py:handle_request():146] handle_request: status_report
+2025-05-07 19:00:12,807 DEBUG   HandlerThread:2264511 [handler.py:handle_request():146] handle_request: keepalive
+2025-05-07 19:00:12,843 DEBUG   HandlerThread:2264511 [handler.py:handle_request():146] handle_request: internal_messages
+2025-05-07 19:00:12,843 DEBUG   HandlerThread:2264511 [handler.py:handle_request():146] handle_request: stop_status
+2025-05-07 19:00:12,843 DEBUG   SenderThread:2264511 [sender.py:send_request():407] send_request: stop_status
+2025-05-07 19:00:12,978 DEBUG   HandlerThread:2264511 [handler.py:handle_request():146] handle_request: partial_history
+2025-05-07 19:00:12,979 DEBUG   SenderThread:2264511 [sender.py:send():380] send: history
+2025-05-07 19:00:12,979 DEBUG   SenderThread:2264511 [sender.py:send_request():407] send_request: summary_record
+2025-05-07 19:00:13,049 INFO    SenderThread:2264511 [sender.py:_save_file():1378] saving file wandb-summary.json with policy end
+2025-05-07 19:00:13,078 INFO    Thread-12 :2264511 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/retina/dembysj/Dropbox/research/diffik/wandb/run-20250507_175114-7esbgjw3/files/wandb-summary.json
+2025-05-07 19:00:15,050 DEBUG   HandlerThread:2264511 [handler.py:handle_request():146] handle_request: status_report
+2025-05-07 19:00:15,981 DEBUG   SenderThread:2264511 [sender.py:send():380] send: stats
+2025-05-07 19:00:20,982 DEBUG   HandlerThread:2264511 [handler.py:handle_request():146] handle_request: status_report
+2025-05-07 19:00:24,990 DEBUG   HandlerThread:2264511 [handler.py:handle_request():146] handle_request: partial_history
+2025-05-07 19:00:24,991 DEBUG   SenderThread:2264511 [sender.py:send():380] send: history
+2025-05-07 19:00:24,991 DEBUG   SenderThread:2264511 [sender.py:send_request():407] send_request: summary_record
+2025-05-07 19:00:25,059 INFO    SenderThread:2264511 [sender.py:_save_file():1378] saving file wandb-summary.json with policy end
+2025-05-07 19:00:25,088 INFO    Thread-12 :2264511 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/retina/dembysj/Dropbox/research/diffik/wandb/run-20250507_175114-7esbgjw3/files/wandb-summary.json
+2025-05-07 19:00:26,059 DEBUG   HandlerThread:2264511 [handler.py:handle_request():146] handle_request: status_report
+2025-05-07 19:00:27,808 DEBUG   HandlerThread:2264511 [handler.py:handle_request():146] handle_request: keepalive
+2025-05-07 19:00:27,843 DEBUG   HandlerThread:2264511 [handler.py:handle_request():146] handle_request: internal_messages
+2025-05-07 19:00:27,843 DEBUG   HandlerThread:2264511 [handler.py:handle_request():146] handle_request: stop_status
+2025-05-07 19:00:27,844 DEBUG   SenderThread:2264511 [sender.py:send_request():407] send_request: stop_status
+2025-05-07 19:00:31,982 DEBUG   HandlerThread:2264511 [handler.py:handle_request():146] handle_request: status_report
+2025-05-07 19:00:36,982 DEBUG   HandlerThread:2264511 [handler.py:handle_request():146] handle_request: status_report
+2025-05-07 19:00:37,020 DEBUG   HandlerThread:2264511 [handler.py:handle_request():146] handle_request: partial_history
+2025-05-07 19:00:37,073 DEBUG   SenderThread:2264511 [sender.py:send():380] send: history
+2025-05-07 19:00:37,073 DEBUG   SenderThread:2264511 [sender.py:send_request():407] send_request: summary_record
+2025-05-07 19:00:37,185 INFO    SenderThread:2264511 [sender.py:_save_file():1378] saving file wandb-summary.json with policy end
+2025-05-07 19:00:38,096 INFO    Thread-12 :2264511 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/retina/dembysj/Dropbox/research/diffik/wandb/run-20250507_175114-7esbgjw3/files/wandb-summary.json
+2025-05-07 19:00:42,186 DEBUG   HandlerThread:2264511 [handler.py:handle_request():146] handle_request: status_report
+2025-05-07 19:00:42,808 DEBUG   HandlerThread:2264511 [handler.py:handle_request():146] handle_request: keepalive
+2025-05-07 19:00:42,843 DEBUG   HandlerThread:2264511 [handler.py:handle_request():146] handle_request: internal_messages
+2025-05-07 19:00:42,843 DEBUG   HandlerThread:2264511 [handler.py:handle_request():146] handle_request: stop_status
+2025-05-07 19:00:42,844 DEBUG   SenderThread:2264511 [sender.py:send_request():407] send_request: stop_status
+2025-05-07 19:00:45,981 DEBUG   SenderThread:2264511 [sender.py:send():380] send: stats
+2025-05-07 19:00:47,982 DEBUG   HandlerThread:2264511 [handler.py:handle_request():146] handle_request: status_report
+2025-05-07 19:00:48,969 DEBUG   HandlerThread:2264511 [handler.py:handle_request():146] handle_request: partial_history
+2025-05-07 19:00:48,969 DEBUG   SenderThread:2264511 [sender.py:send():380] send: history
+2025-05-07 19:00:48,969 DEBUG   SenderThread:2264511 [sender.py:send_request():407] send_request: summary_record
+2025-05-07 19:00:49,034 INFO    SenderThread:2264511 [sender.py:_save_file():1378] saving file wandb-summary.json with policy end
+2025-05-07 19:00:49,104 INFO    Thread-12 :2264511 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/retina/dembysj/Dropbox/research/diffik/wandb/run-20250507_175114-7esbgjw3/files/wandb-summary.json
+2025-05-07 19:00:51,144 INFO    Thread-12 :2264511 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/retina/dembysj/Dropbox/research/diffik/wandb/run-20250507_175114-7esbgjw3/files/output.log
+2025-05-07 19:00:53,034 DEBUG   HandlerThread:2264511 [handler.py:handle_request():146] handle_request: status_report
+2025-05-07 19:00:57,808 DEBUG   HandlerThread:2264511 [handler.py:handle_request():146] handle_request: keepalive
+2025-05-07 19:00:57,843 DEBUG   HandlerThread:2264511 [handler.py:handle_request():146] handle_request: internal_messages
+2025-05-07 19:00:57,844 DEBUG   HandlerThread:2264511 [handler.py:handle_request():146] handle_request: stop_status
+2025-05-07 19:00:57,844 DEBUG   SenderThread:2264511 [sender.py:send_request():407] send_request: stop_status
+2025-05-07 19:00:58,921 DEBUG   HandlerThread:2264511 [handler.py:handle_request():146] handle_request: status_report
+2025-05-07 19:01:00,838 DEBUG   HandlerThread:2264511 [handler.py:handle_request():146] handle_request: partial_history
+2025-05-07 19:01:00,839 DEBUG   SenderThread:2264511 [sender.py:send():380] send: history
+2025-05-07 19:01:00,839 DEBUG   SenderThread:2264511 [sender.py:send_request():407] send_request: summary_record
+2025-05-07 19:01:00,911 INFO    SenderThread:2264511 [sender.py:_save_file():1378] saving file wandb-summary.json with policy end
+2025-05-07 19:01:01,152 INFO    Thread-12 :2264511 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/retina/dembysj/Dropbox/research/diffik/wandb/run-20250507_175114-7esbgjw3/files/wandb-summary.json
+2025-05-07 19:01:04,912 DEBUG   HandlerThread:2264511 [handler.py:handle_request():146] handle_request: status_report
+2025-05-07 19:01:09,912 DEBUG   HandlerThread:2264511 [handler.py:handle_request():146] handle_request: status_report
+2025-05-07 19:01:12,808 DEBUG   HandlerThread:2264511 [handler.py:handle_request():146] handle_request: keepalive
+2025-05-07 19:01:12,814 DEBUG   HandlerThread:2264511 [handler.py:handle_request():146] handle_request: partial_history
+2025-05-07 19:01:12,815 DEBUG   SenderThread:2264511 [sender.py:send():380] send: history
+2025-05-07 19:01:12,815 DEBUG   SenderThread:2264511 [sender.py:send_request():407] send_request: summary_record
+2025-05-07 19:01:12,863 DEBUG   HandlerThread:2264511 [handler.py:handle_request():146] handle_request: stop_status
+2025-05-07 19:01:12,863 DEBUG   HandlerThread:2264511 [handler.py:handle_request():146] handle_request: internal_messages
+2025-05-07 19:01:12,892 INFO    SenderThread:2264511 [sender.py:_save_file():1378] saving file wandb-summary.json with policy end
+2025-05-07 19:01:12,892 DEBUG   SenderThread:2264511 [sender.py:send_request():407] send_request: stop_status
+2025-05-07 19:01:13,162 INFO    Thread-12 :2264511 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/retina/dembysj/Dropbox/research/diffik/wandb/run-20250507_175114-7esbgjw3/files/wandb-summary.json
+2025-05-07 19:01:15,005 DEBUG   HandlerThread:2264511 [handler.py:handle_request():146] handle_request: status_report
+2025-05-07 19:01:15,982 DEBUG   SenderThread:2264511 [sender.py:send():380] send: stats
+2025-05-07 19:01:20,983 DEBUG   HandlerThread:2264511 [handler.py:handle_request():146] handle_request: status_report
+2025-05-07 19:01:24,827 DEBUG   HandlerThread:2264511 [handler.py:handle_request():146] handle_request: partial_history
+2025-05-07 19:01:24,827 DEBUG   SenderThread:2264511 [sender.py:send():380] send: history
+2025-05-07 19:01:24,827 DEBUG   SenderThread:2264511 [sender.py:send_request():407] send_request: summary_record
+2025-05-07 19:01:24,897 INFO    SenderThread:2264511 [sender.py:_save_file():1378] saving file wandb-summary.json with policy end
+2025-05-07 19:01:25,171 INFO    Thread-12 :2264511 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/retina/dembysj/Dropbox/research/diffik/wandb/run-20250507_175114-7esbgjw3/files/wandb-summary.json
+2025-05-07 19:01:26,898 DEBUG   HandlerThread:2264511 [handler.py:handle_request():146] handle_request: status_report
+2025-05-07 19:01:27,808 DEBUG   HandlerThread:2264511 [handler.py:handle_request():146] handle_request: keepalive
+2025-05-07 19:01:27,850 DEBUG   HandlerThread:2264511 [handler.py:handle_request():146] handle_request: stop_status
+2025-05-07 19:01:27,851 DEBUG   SenderThread:2264511 [sender.py:send_request():407] send_request: stop_status
+2025-05-07 19:01:27,852 DEBUG   HandlerThread:2264511 [handler.py:handle_request():146] handle_request: internal_messages
+2025-05-07 19:01:32,009 DEBUG   HandlerThread:2264511 [handler.py:handle_request():146] handle_request: status_report
+2025-05-07 19:01:36,770 DEBUG   HandlerThread:2264511 [handler.py:handle_request():146] handle_request: partial_history
+2025-05-07 19:01:36,770 DEBUG   SenderThread:2264511 [sender.py:send():380] send: history
+2025-05-07 19:01:36,770 DEBUG   SenderThread:2264511 [sender.py:send_request():407] send_request: summary_record
+2025-05-07 19:01:36,835 INFO    SenderThread:2264511 [sender.py:_save_file():1378] saving file wandb-summary.json with policy end
+2025-05-07 19:01:37,179 INFO    Thread-12 :2264511 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/retina/dembysj/Dropbox/research/diffik/wandb/run-20250507_175114-7esbgjw3/files/wandb-summary.json
+2025-05-07 19:01:37,835 DEBUG   HandlerThread:2264511 [handler.py:handle_request():146] handle_request: status_report
+2025-05-07 19:01:42,808 DEBUG   HandlerThread:2264511 [handler.py:handle_request():146] handle_request: keepalive
+2025-05-07 19:01:42,836 DEBUG   HandlerThread:2264511 [handler.py:handle_request():146] handle_request: status_report
+2025-05-07 19:01:42,851 DEBUG   HandlerThread:2264511 [handler.py:handle_request():146] handle_request: stop_status
+2025-05-07 19:01:42,851 DEBUG   SenderThread:2264511 [sender.py:send_request():407] send_request: stop_status
+2025-05-07 19:01:42,852 DEBUG   HandlerThread:2264511 [handler.py:handle_request():146] handle_request: internal_messages
+2025-05-07 19:01:45,982 DEBUG   SenderThread:2264511 [sender.py:send():380] send: stats
+2025-05-07 19:01:47,983 DEBUG   HandlerThread:2264511 [handler.py:handle_request():146] handle_request: status_report
+2025-05-07 19:01:48,773 DEBUG   HandlerThread:2264511 [handler.py:handle_request():146] handle_request: partial_history
+2025-05-07 19:01:48,773 DEBUG   SenderThread:2264511 [sender.py:send():380] send: history
+2025-05-07 19:01:48,773 DEBUG   SenderThread:2264511 [sender.py:send_request():407] send_request: summary_record
+2025-05-07 19:01:48,851 INFO    SenderThread:2264511 [sender.py:_save_file():1378] saving file wandb-summary.json with policy end
+2025-05-07 19:01:49,188 INFO    Thread-12 :2264511 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/retina/dembysj/Dropbox/research/diffik/wandb/run-20250507_175114-7esbgjw3/files/wandb-summary.json
+2025-05-07 19:01:53,852 DEBUG   HandlerThread:2264511 [handler.py:handle_request():146] handle_request: status_report
+2025-05-07 19:01:57,809 DEBUG   HandlerThread:2264511 [handler.py:handle_request():146] handle_request: keepalive
+2025-05-07 19:01:57,851 DEBUG   HandlerThread:2264511 [handler.py:handle_request():146] handle_request: stop_status
+2025-05-07 19:01:57,851 DEBUG   SenderThread:2264511 [sender.py:send_request():407] send_request: stop_status
+2025-05-07 19:01:57,852 DEBUG   HandlerThread:2264511 [handler.py:handle_request():146] handle_request: internal_messages
+2025-05-07 19:01:59,002 DEBUG   HandlerThread:2264511 [handler.py:handle_request():146] handle_request: status_report
+2025-05-07 19:02:00,923 DEBUG   HandlerThread:2264511 [handler.py:handle_request():146] handle_request: partial_history
+2025-05-07 19:02:00,924 DEBUG   SenderThread:2264511 [sender.py:send():380] send: history
+2025-05-07 19:02:00,924 DEBUG   SenderThread:2264511 [sender.py:send_request():407] send_request: summary_record
+2025-05-07 19:02:00,977 INFO    SenderThread:2264511 [sender.py:_save_file():1378] saving file wandb-summary.json with policy end
+2025-05-07 19:02:01,200 INFO    Thread-12 :2264511 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/retina/dembysj/Dropbox/research/diffik/wandb/run-20250507_175114-7esbgjw3/files/wandb-summary.json
+2025-05-07 19:02:04,978 DEBUG   HandlerThread:2264511 [handler.py:handle_request():146] handle_request: status_report
+2025-05-07 19:02:09,979 DEBUG   HandlerThread:2264511 [handler.py:handle_request():146] handle_request: status_report
+2025-05-07 19:02:12,809 DEBUG   HandlerThread:2264511 [handler.py:handle_request():146] handle_request: keepalive
+2025-05-07 19:02:12,851 DEBUG   HandlerThread:2264511 [handler.py:handle_request():146] handle_request: stop_status
+2025-05-07 19:02:12,851 DEBUG   SenderThread:2264511 [sender.py:send_request():407] send_request: stop_status
+2025-05-07 19:02:12,852 DEBUG   HandlerThread:2264511 [handler.py:handle_request():146] handle_request: internal_messages
+2025-05-07 19:02:13,004 DEBUG   HandlerThread:2264511 [handler.py:handle_request():146] handle_request: partial_history
+2025-05-07 19:02:13,005 DEBUG   SenderThread:2264511 [sender.py:send():380] send: history
+2025-05-07 19:02:13,005 DEBUG   SenderThread:2264511 [sender.py:send_request():407] send_request: summary_record
+2025-05-07 19:02:13,082 INFO    SenderThread:2264511 [sender.py:_save_file():1378] saving file wandb-summary.json with policy end
+2025-05-07 19:02:13,212 INFO    Thread-12 :2264511 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/retina/dembysj/Dropbox/research/diffik/wandb/run-20250507_175114-7esbgjw3/files/wandb-summary.json
+2025-05-07 19:02:15,083 DEBUG   HandlerThread:2264511 [handler.py:handle_request():146] handle_request: status_report
+2025-05-07 19:02:15,983 DEBUG   SenderThread:2264511 [sender.py:send():380] send: stats
+2025-05-07 19:02:20,984 DEBUG   HandlerThread:2264511 [handler.py:handle_request():146] handle_request: status_report
+2025-05-07 19:02:24,963 DEBUG   HandlerThread:2264511 [handler.py:handle_request():146] handle_request: partial_history
+2025-05-07 19:02:24,963 DEBUG   SenderThread:2264511 [sender.py:send():380] send: history
+2025-05-07 19:02:24,963 DEBUG   SenderThread:2264511 [sender.py:send_request():407] send_request: summary_record
+2025-05-07 19:02:25,032 INFO    SenderThread:2264511 [sender.py:_save_file():1378] saving file wandb-summary.json with policy end
+2025-05-07 19:02:25,222 INFO    Thread-12 :2264511 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/retina/dembysj/Dropbox/research/diffik/wandb/run-20250507_175114-7esbgjw3/files/wandb-summary.json
+2025-05-07 19:02:26,032 DEBUG   HandlerThread:2264511 [handler.py:handle_request():146] handle_request: status_report
+2025-05-07 19:02:27,809 DEBUG   HandlerThread:2264511 [handler.py:handle_request():146] handle_request: keepalive
+2025-05-07 19:02:27,851 DEBUG   HandlerThread:2264511 [handler.py:handle_request():146] handle_request: stop_status
+2025-05-07 19:02:27,851 DEBUG   SenderThread:2264511 [sender.py:send_request():407] send_request: stop_status
+2025-05-07 19:02:27,852 DEBUG   HandlerThread:2264511 [handler.py:handle_request():146] handle_request: internal_messages
+2025-05-07 19:02:31,237 DEBUG   HandlerThread:2264511 [handler.py:handle_request():146] handle_request: status_report
+2025-05-07 19:02:36,238 DEBUG   HandlerThread:2264511 [handler.py:handle_request():146] handle_request: status_report
+2025-05-07 19:02:36,936 DEBUG   HandlerThread:2264511 [handler.py:handle_request():146] handle_request: partial_history
+2025-05-07 19:02:36,937 DEBUG   SenderThread:2264511 [sender.py:send():380] send: history
+2025-05-07 19:02:36,937 DEBUG   SenderThread:2264511 [sender.py:send_request():407] send_request: summary_record
+2025-05-07 19:02:37,001 INFO    SenderThread:2264511 [sender.py:_save_file():1378] saving file wandb-summary.json with policy end
+2025-05-07 19:02:37,231 INFO    Thread-12 :2264511 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/retina/dembysj/Dropbox/research/diffik/wandb/run-20250507_175114-7esbgjw3/files/wandb-summary.json
+2025-05-07 19:02:42,002 DEBUG   HandlerThread:2264511 [handler.py:handle_request():146] handle_request: status_report
+2025-05-07 19:02:42,809 DEBUG   HandlerThread:2264511 [handler.py:handle_request():146] handle_request: keepalive
+2025-05-07 19:02:42,851 DEBUG   HandlerThread:2264511 [handler.py:handle_request():146] handle_request: stop_status
+2025-05-07 19:02:42,852 DEBUG   SenderThread:2264511 [sender.py:send_request():407] send_request: stop_status
+2025-05-07 19:02:42,852 DEBUG   HandlerThread:2264511 [handler.py:handle_request():146] handle_request: internal_messages
+2025-05-07 19:02:45,984 DEBUG   SenderThread:2264511 [sender.py:send():380] send: stats
+2025-05-07 19:02:47,984 DEBUG   HandlerThread:2264511 [handler.py:handle_request():146] handle_request: status_report
+2025-05-07 19:02:48,934 DEBUG   HandlerThread:2264511 [handler.py:handle_request():146] handle_request: partial_history
+2025-05-07 19:02:48,934 DEBUG   SenderThread:2264511 [sender.py:send():380] send: history
+2025-05-07 19:02:48,934 DEBUG   SenderThread:2264511 [sender.py:send_request():407] send_request: summary_record
+2025-05-07 19:02:48,997 INFO    SenderThread:2264511 [sender.py:_save_file():1378] saving file wandb-summary.json with policy end
+2025-05-07 19:02:49,239 INFO    Thread-12 :2264511 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/retina/dembysj/Dropbox/research/diffik/wandb/run-20250507_175114-7esbgjw3/files/wandb-summary.json
+2025-05-07 19:02:51,341 INFO    Thread-12 :2264511 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/retina/dembysj/Dropbox/research/diffik/wandb/run-20250507_175114-7esbgjw3/files/output.log
+2025-05-07 19:02:52,998 DEBUG   HandlerThread:2264511 [handler.py:handle_request():146] handle_request: status_report
+2025-05-07 19:02:57,809 DEBUG   HandlerThread:2264511 [handler.py:handle_request():146] handle_request: keepalive
+2025-05-07 19:02:57,851 DEBUG   HandlerThread:2264511 [handler.py:handle_request():146] handle_request: stop_status
+2025-05-07 19:02:57,851 DEBUG   SenderThread:2264511 [sender.py:send_request():407] send_request: stop_status
+2025-05-07 19:02:57,853 DEBUG   HandlerThread:2264511 [handler.py:handle_request():146] handle_request: internal_messages
+2025-05-07 19:02:58,995 DEBUG   HandlerThread:2264511 [handler.py:handle_request():146] handle_request: status_report
+2025-05-07 19:03:00,990 DEBUG   HandlerThread:2264511 [handler.py:handle_request():146] handle_request: partial_history
+2025-05-07 19:03:00,990 DEBUG   SenderThread:2264511 [sender.py:send():380] send: history
+2025-05-07 19:03:00,990 DEBUG   SenderThread:2264511 [sender.py:send_request():407] send_request: summary_record
+2025-05-07 19:03:01,059 INFO    SenderThread:2264511 [sender.py:_save_file():1378] saving file wandb-summary.json with policy end
+2025-05-07 19:03:01,349 INFO    Thread-12 :2264511 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/retina/dembysj/Dropbox/research/diffik/wandb/run-20250507_175114-7esbgjw3/files/wandb-summary.json
+2025-05-07 19:03:04,060 DEBUG   HandlerThread:2264511 [handler.py:handle_request():146] handle_request: status_report
+2025-05-07 19:03:09,060 DEBUG   HandlerThread:2264511 [handler.py:handle_request():146] handle_request: status_report
+2025-05-07 19:03:12,810 DEBUG   HandlerThread:2264511 [handler.py:handle_request():146] handle_request: keepalive
+2025-05-07 19:03:12,851 DEBUG   HandlerThread:2264511 [handler.py:handle_request():146] handle_request: stop_status
+2025-05-07 19:03:12,852 DEBUG   SenderThread:2264511 [sender.py:send_request():407] send_request: stop_status
+2025-05-07 19:03:12,853 DEBUG   HandlerThread:2264511 [handler.py:handle_request():146] handle_request: internal_messages
+2025-05-07 19:03:13,022 DEBUG   HandlerThread:2264511 [handler.py:handle_request():146] handle_request: partial_history
+2025-05-07 19:03:13,022 DEBUG   SenderThread:2264511 [sender.py:send():380] send: history
+2025-05-07 19:03:13,022 DEBUG   SenderThread:2264511 [sender.py:send_request():407] send_request: summary_record
+2025-05-07 19:03:13,100 INFO    SenderThread:2264511 [sender.py:_save_file():1378] saving file wandb-summary.json with policy end
+2025-05-07 19:03:13,360 INFO    Thread-12 :2264511 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/retina/dembysj/Dropbox/research/diffik/wandb/run-20250507_175114-7esbgjw3/files/wandb-summary.json
+2025-05-07 19:03:14,101 DEBUG   HandlerThread:2264511 [handler.py:handle_request():146] handle_request: status_report
+2025-05-07 19:03:15,984 DEBUG   SenderThread:2264511 [sender.py:send():380] send: stats
+2025-05-07 19:03:19,985 DEBUG   HandlerThread:2264511 [handler.py:handle_request():146] handle_request: status_report
+2025-05-07 19:03:24,986 DEBUG   HandlerThread:2264511 [handler.py:handle_request():146] handle_request: status_report
+2025-05-07 19:03:25,056 DEBUG   HandlerThread:2264511 [handler.py:handle_request():146] handle_request: partial_history
+2025-05-07 19:03:25,057 DEBUG   SenderThread:2264511 [sender.py:send():380] send: history
+2025-05-07 19:03:25,057 DEBUG   SenderThread:2264511 [sender.py:send_request():407] send_request: summary_record
+2025-05-07 19:03:25,132 INFO    SenderThread:2264511 [sender.py:_save_file():1378] saving file wandb-summary.json with policy end
+2025-05-07 19:03:25,369 INFO    Thread-12 :2264511 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/retina/dembysj/Dropbox/research/diffik/wandb/run-20250507_175114-7esbgjw3/files/wandb-summary.json
+2025-05-07 19:03:27,810 DEBUG   HandlerThread:2264511 [handler.py:handle_request():146] handle_request: keepalive
+2025-05-07 19:03:27,852 DEBUG   HandlerThread:2264511 [handler.py:handle_request():146] handle_request: stop_status
+2025-05-07 19:03:27,852 DEBUG   SenderThread:2264511 [sender.py:send_request():407] send_request: stop_status
+2025-05-07 19:03:27,853 DEBUG   HandlerThread:2264511 [handler.py:handle_request():146] handle_request: internal_messages
+2025-05-07 19:03:30,973 DEBUG   HandlerThread:2264511 [handler.py:handle_request():146] handle_request: status_report
+2025-05-07 19:03:35,973 DEBUG   HandlerThread:2264511 [handler.py:handle_request():146] handle_request: status_report
+2025-05-07 19:03:37,161 DEBUG   HandlerThread:2264511 [handler.py:handle_request():146] handle_request: partial_history
+2025-05-07 19:03:37,162 DEBUG   SenderThread:2264511 [sender.py:send():380] send: history
+2025-05-07 19:03:37,162 DEBUG   SenderThread:2264511 [sender.py:send_request():407] send_request: summary_record
+2025-05-07 19:03:37,214 INFO    SenderThread:2264511 [sender.py:_save_file():1378] saving file wandb-summary.json with policy end
+2025-05-07 19:03:37,378 INFO    Thread-12 :2264511 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/retina/dembysj/Dropbox/research/diffik/wandb/run-20250507_175114-7esbgjw3/files/wandb-summary.json
+2025-05-07 19:03:41,215 DEBUG   HandlerThread:2264511 [handler.py:handle_request():146] handle_request: status_report
+2025-05-07 19:03:42,810 DEBUG   HandlerThread:2264511 [handler.py:handle_request():146] handle_request: keepalive
+2025-05-07 19:03:42,852 DEBUG   HandlerThread:2264511 [handler.py:handle_request():146] handle_request: stop_status
+2025-05-07 19:03:42,852 DEBUG   SenderThread:2264511 [sender.py:send_request():407] send_request: stop_status
+2025-05-07 19:03:42,853 DEBUG   HandlerThread:2264511 [handler.py:handle_request():146] handle_request: internal_messages
+2025-05-07 19:03:45,985 DEBUG   SenderThread:2264511 [sender.py:send():380] send: stats
+2025-05-07 19:03:46,985 DEBUG   HandlerThread:2264511 [handler.py:handle_request():146] handle_request: status_report
+2025-05-07 19:03:49,048 DEBUG   HandlerThread:2264511 [handler.py:handle_request():146] handle_request: partial_history
+2025-05-07 19:03:49,048 DEBUG   SenderThread:2264511 [sender.py:send():380] send: history
+2025-05-07 19:03:49,049 DEBUG   SenderThread:2264511 [sender.py:send_request():407] send_request: summary_record
+2025-05-07 19:03:49,167 INFO    SenderThread:2264511 [sender.py:_save_file():1378] saving file wandb-summary.json with policy end
+2025-05-07 19:03:49,387 INFO    Thread-12 :2264511 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/retina/dembysj/Dropbox/research/diffik/wandb/run-20250507_175114-7esbgjw3/files/wandb-summary.json
+2025-05-07 19:03:52,168 DEBUG   HandlerThread:2264511 [handler.py:handle_request():146] handle_request: status_report
+2025-05-07 19:03:57,168 DEBUG   HandlerThread:2264511 [handler.py:handle_request():146] handle_request: status_report
+2025-05-07 19:03:57,810 DEBUG   HandlerThread:2264511 [handler.py:handle_request():146] handle_request: keepalive
+2025-05-07 19:03:57,852 DEBUG   HandlerThread:2264511 [handler.py:handle_request():146] handle_request: stop_status
+2025-05-07 19:03:57,852 DEBUG   SenderThread:2264511 [sender.py:send_request():407] send_request: stop_status
+2025-05-07 19:03:57,853 DEBUG   HandlerThread:2264511 [handler.py:handle_request():146] handle_request: internal_messages
+2025-05-07 19:04:01,078 DEBUG   HandlerThread:2264511 [handler.py:handle_request():146] handle_request: partial_history
+2025-05-07 19:04:01,079 DEBUG   SenderThread:2264511 [sender.py:send():380] send: history
+2025-05-07 19:04:01,079 DEBUG   SenderThread:2264511 [sender.py:send_request():407] send_request: summary_record
+2025-05-07 19:04:01,158 INFO    SenderThread:2264511 [sender.py:_save_file():1378] saving file wandb-summary.json with policy end
+2025-05-07 19:04:01,399 INFO    Thread-12 :2264511 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/retina/dembysj/Dropbox/research/diffik/wandb/run-20250507_175114-7esbgjw3/files/wandb-summary.json
+2025-05-07 19:04:03,159 DEBUG   HandlerThread:2264511 [handler.py:handle_request():146] handle_request: status_report
+2025-05-07 19:04:08,159 DEBUG   HandlerThread:2264511 [handler.py:handle_request():146] handle_request: status_report
+2025-05-07 19:04:12,810 DEBUG   HandlerThread:2264511 [handler.py:handle_request():146] handle_request: keepalive
+2025-05-07 19:04:12,852 DEBUG   HandlerThread:2264511 [handler.py:handle_request():146] handle_request: stop_status
+2025-05-07 19:04:12,852 DEBUG   SenderThread:2264511 [sender.py:send_request():407] send_request: stop_status
+2025-05-07 19:04:12,853 DEBUG   HandlerThread:2264511 [handler.py:handle_request():146] handle_request: internal_messages
+2025-05-07 19:04:13,170 DEBUG   HandlerThread:2264511 [handler.py:handle_request():146] handle_request: partial_history
+2025-05-07 19:04:13,171 DEBUG   SenderThread:2264511 [sender.py:send():380] send: history
+2025-05-07 19:04:13,171 DEBUG   SenderThread:2264511 [sender.py:send_request():407] send_request: summary_record
+2025-05-07 19:04:13,171 DEBUG   HandlerThread:2264511 [handler.py:handle_request():146] handle_request: status_report
+2025-05-07 19:04:13,238 INFO    SenderThread:2264511 [sender.py:_save_file():1378] saving file wandb-summary.json with policy end
+2025-05-07 19:04:13,410 INFO    Thread-12 :2264511 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/retina/dembysj/Dropbox/research/diffik/wandb/run-20250507_175114-7esbgjw3/files/wandb-summary.json
+2025-05-07 19:04:15,985 DEBUG   SenderThread:2264511 [sender.py:send():380] send: stats
+2025-05-07 19:04:18,986 DEBUG   HandlerThread:2264511 [handler.py:handle_request():146] handle_request: status_report

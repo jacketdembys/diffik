@@ -601,7 +601,7 @@ def train_loop(
         avg_orientation_error = X_errors_r[1,3:].mean()
 
         pose_loss = (avg_position_error + avg_orientation_error)/2        
-        scheduler_diff.step(pose_loss)
+        scheduler_diff.step(pose_loss) # the scheduler of lr
         current_lr = optimizer.param_groups[0]['lr']
 
 

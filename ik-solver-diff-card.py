@@ -424,7 +424,7 @@ def train_loop(
     best_pose_loss = float('inf')
     best_epoch = 0
     
-    scheduler_pre = torch.optim.lr_scheduler.ReduceLROnPlateau(aux_opt,mode='min', factor=0.5, patience=10, min_lr=1e-10, verbose=True)
+    scheduler_pre = torch.optim.lr_scheduler.ReduceLROnPlateau(aux_opt,mode='min', factor=0.5, patience=100, min_lr=1e-8, verbose=True)
    
     start_training_time = time.monotonic()
     for epoch in range(max_pretrain_epochs):
@@ -520,7 +520,7 @@ def train_loop(
     best_pose_loss = float('inf')
     best_epoch = 0
 
-    scheduler_diff = torch.optim.lr_scheduler.ReduceLROnPlateau(optimizer, mode='min', factor=0.5, patience=10, min_lr=1e-10, verbose=True)
+    scheduler_diff = torch.optim.lr_scheduler.ReduceLROnPlateau(optimizer, mode='min', factor=0.5, patience=100, min_lr=1e-8, verbose=True)
 
     start_diff_time = time.monotonic()
 

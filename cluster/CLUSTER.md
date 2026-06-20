@@ -23,13 +23,21 @@ on-the-fly in-container (deterministic by seed), so nothing needs to be baked in
    kubectl apply -f cluster/pvc.yaml      # then uncomment the volume lines in the job template
    ```
 
-## Launch experiments
+## Launch experiments (two phases)
+**Phase 1 — dataset-size sweep** (find the best dataset size):
 ```bash
-bash cluster/generate-jobs.sh            # edit the grid + WANDB_KEY inside first
+bash cluster/generate-jobs.sh            # 10 LBE dataset sizes; edit grid/WANDB_KEY inside
 kubectl get jobs -l k8s-app=diffik-job   # monitor
 kubectl logs -l k8s-app=diffik-job --tail=50
-bash cluster/delete-jobs.sh              # cleanup
 ```
+Analyze (e.g. `python scripts/pull_wandb.py`) and pick the best `n_trajectories`.
+
+**Phase 2 — model-size sweep** at that best dataset size:
+```bash
+DS_N=<best n_trajectories> bash cluster/generate-model-jobs.sh
+```
+
+Cleanup any time: `bash cluster/delete-jobs.sh`
 The wandb key is set in `generate-jobs.sh` (`WANDB_KEY`) and the Job runs
 `wandb login ${WANDB_KEY}` in the pod (same as the prior workflow). Rotate the key
 if the repo is shared publicly.

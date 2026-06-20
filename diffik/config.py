@@ -73,6 +73,7 @@ class Config:
     wandb: bool = False
     wandb_project: str = "diffik"
     wandb_entity: str = "jacketdembys"
+    wandb_mode: str = "online"   # force online (override any WANDB_MODE=offline in the image)
     data: DataConfig = field(default_factory=DataConfig)
     model: ModelConfig = field(default_factory=ModelConfig)
     diffusion: DiffusionConfig = field(default_factory=DiffusionConfig)

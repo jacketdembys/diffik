@@ -1,9 +1,11 @@
 #!/bin/bash
-# Launch DiffIK experiments as NRP Kubernetes Jobs (one Job per config).
+# PHASE 1 — LBE dataset-size sweep as NRP Kubernetes Jobs (one Job per dataset size).
 # Mirrors generate-gpu-jobs-for-ik.sh: loop the grid, envsubst the template, kubectl apply.
 # Each Job: git clone -> pip install -e . -> wandb login -> scripts/train.py --override ...
-# Results -> wandb (metrics, per-epoch loss, checkpoint artifact). Best-of-K / multimodality
-# are post-hoc evals (run eval_bestofk.py / eval_multimodality.py on the saved checkpoints).
+# Results -> wandb. Best-of-K / multimodality are post-hoc evals.
+#
+# The MODEL-SIZE sweep is PHASE 2 (cluster/generate-model-jobs.sh) and runs on the
+# BEST dataset size found here -- do not run it until this sweep is analyzed.
 #
 # Usage:  bash cluster/generate-jobs.sh
 set -euo pipefail
@@ -41,24 +43,10 @@ for n in 50 100 200 400 800 1600 3200 6400 12800 25600; do
      eval.n_per_pose=1 eval.seeded=true"
 done
 
-# ============================================================================
-# (B) Model-size sweep — fixed dataset (n_traj=6400 -> 204,800 train), vary capacity
-#     hidden x layers: 256x3, 512x4, 768x6, 1024x4
-# ============================================================================
-DS_N=6400
-for spec in 256x3 512x4 768x6 1024x4; do
-  h="${spec%x*}"; l="${spec#*x}"
-  launch "diffik-model-n${DS_N}-h${h}-l${l}" \
-    "name=lbe_n${DS_N}_h${h}_l${l} seed=${SEED} wandb=true \
-     data.kind=trajectory data.lbe=true data.n_trajectories=${DS_N} data.steps_per_traj=40 data.v_deg=1.0 \
-     model.type=lbe model.hidden_dim=${h} model.n_layers=${l} \
-     diffusion.T=1000 diffusion.fk_loss_weight=10.0 diffusion.rot_weight=0.1 diffusion.p_example_dropout=0.2 \
-     train.epochs=${MAXEPOCHS} train.patience=${PATIENCE} train.monitor_every=10 \
-     eval.n_per_pose=1 eval.seeded=true"
-done
+# Model-size sweep is PHASE 2 -> cluster/generate-model-jobs.sh (run after picking best).
 
 # ============================================================================
-# (C) OPTIONAL: seedless-trained MLP baseline (pure DIK-style). Uncomment to run.
+# OPTIONAL: seedless-trained MLP baseline (pure DIK-style). Uncomment to run.
 # ============================================================================
 # for n in 80000 320000 1000000; do
 #   launch "diffik-seedless-n${n}" \

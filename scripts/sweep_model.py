@@ -46,7 +46,7 @@ def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--regime", choices=["lbe", "seedless"], default="lbe")
     ap.add_argument("--n", type=int, required=True, help="dataset size: n_trajectories (lbe) or n_samples (seedless)")
-    ap.add_argument("--configs", default="256x3,512x4,768x6,1024x4", help="comma list of hiddenXlayers")
+    ap.add_argument("--configs", default="128x2,256x3,512x4,768x6,1024x4,1280x6", help="comma list of hiddenXlayers")
     ap.add_argument("--epochs", type=int, default=1000)
     ap.add_argument("--patience", type=int, default=8)
     ap.add_argument("--monitor_every", type=int, default=10)

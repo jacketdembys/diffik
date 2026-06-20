@@ -17,7 +17,7 @@ DS_N="${DS_N:?set DS_N=<best n_trajectories> (e.g. DS_N=6400) before running}"
 SEED=0
 MAXEPOCHS=1500
 PATIENCE=15
-SPECS="256x3 512x4 768x6 1024x4"   # hidden x layers
+SPECS="128x2 256x3 512x4 768x6 1024x4 1280x6"   # hidden x layers
 
 launch () { export JOBNAME="$1"; export OVERRIDES="$2"; echo "launch ${JOBNAME}"; envsubst < "${TEMPLATE}" | kubectl apply -f -; }
 

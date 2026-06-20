@@ -6,7 +6,7 @@ build-backend = "setuptools.build_meta"
 name = "diffik"
 version = "0.0.1"
 description = "Refinement-free sub-millimeter multimodal diffusion inverse kinematics"
-requires-python = ">=3.11"
+requires-python = ">=3.10"
 dependencies = [
     "torch>=2.0",
     "numpy",

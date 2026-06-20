@@ -1,0 +1,28 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.eggs/
+build/
+dist/
+.pytest_cache/
+.ipynb_checkpoints/
+
+# Project artifacts
+wandb/
+results/
+checkpoints/
+*.pth
+*.ckpt
+data/*.csv
+data/*.npz
+datasets/
+
+# OS / editor
+.DS_Store
+.vscode/
+.idea/
+runs/
+runs_es/
+*.npz
+*.log

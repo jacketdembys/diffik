@@ -1,0 +1,27 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "diffik"
+version = "0.0.1"
+description = "Refinement-free sub-millimeter multimodal diffusion inverse kinematics"
+requires-python = ">=3.11"
+dependencies = [
+    "torch>=2.0",
+    "numpy",
+    "pandas",
+    "scikit-learn",
+    "pyyaml",
+    "matplotlib",
+    "tqdm",
+]
+
+[project.optional-dependencies]
+dev = ["pytest", "roboticstoolbox-python"]
+
+[tool.setuptools.packages.find]
+include = ["diffik*"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]

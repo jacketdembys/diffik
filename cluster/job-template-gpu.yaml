@@ -1,0 +1,49 @@
+# DiffIK Kubernetes Job template for NRP Nautilus (envsubst'd by generate-jobs.sh).
+# Placeholders: ${JOBNAME} ${CONFIG} ${OVERRIDES} ${IMAGE} ${REPO} ${WANDB_KEY}
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: ${JOBNAME}
+  labels:
+    k8s-app: diffik-job
+spec:
+  ttlSecondsAfterFinished: 86400
+  backoffLimit: 0
+  template:
+    metadata:
+      labels:
+        k8s-app: diffik-job
+    spec:
+      affinity:
+        nodeAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            nodeSelectorTerms:
+              - matchExpressions:
+                  - key: nvidia.com/gpu.product
+                    operator: In
+                    values:
+                      - NVIDIA-L4
+                      - NVIDIA-GeForce-RTX-3090
+                      - NVIDIA-A10
+      containers:
+      - name: diffik
+        image: ${IMAGE}
+        resources:
+          limits: {memory: "32Gi", cpu: "9", nvidia.com/gpu: "1"}
+          requests: {memory: "32Gi", cpu: "9", nvidia.com/gpu: "1"}
+        command: ["/bin/sh", "-c"]
+        args:
+          # diffik:latest already has all deps (cuda 12 / torch 2.4); git-clone for the
+          # latest code and install the package (deps already satisfied -> no torch churn).
+          - >
+            cd /home &&
+            git clone ${REPO} diffik &&
+            cd diffik && pip install -e . &&
+            wandb login ${WANDB_KEY} &&
+            python scripts/train.py --config ${CONFIG} --override ${OVERRIDES}
+        # Persist runs/ to a PVC (optional; results also go to wandb). Uncomment to use:
+        # volumeMounts:
+        #   - {name: diffik-vol, mountPath: /home/diffik/runs}
+      # volumes:
+      #   - {name: diffik-vol, persistentVolumeClaim: {claimName: diffik-pvc}}
+      restartPolicy: Never

@@ -1,0 +1,38 @@
+# Full-scale LBE DiffIK on the trajectory dataset (cluster run).
+# The headline method: seeded sub-mm via Learning-by-Example + FK loss.
+name: panda_lbe_trajectory
+out_dir: runs
+seed: 0
+wandb: false
+wandb_project: diffik
+
+data:
+  kind: trajectory
+  lbe: true
+  robot: panda_7r
+  n_trajectories: 10000   # 10000 x 100 = 1,000,000 samples
+  steps_per_traj: 100
+  v_deg: 1.0
+  seed: 0
+
+model:
+  type: lbe
+  hidden_dim: 1024
+  n_layers: 4
+
+diffusion:
+  T: 1000
+  fk_loss_weight: 10.0
+  rot_weight: 0.1
+  p_example_dropout: 0.2
+
+train:
+  epochs: 1000
+  batch_size: 128
+  lr: 0.0003
+  checkpoint_every: 25
+
+eval:
+  n_per_pose: 1
+  sampler: ddpm
+  seeded: true

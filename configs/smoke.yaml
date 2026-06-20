@@ -1,0 +1,35 @@
+# Tiny config to validate the end-to-end train.py pipeline locally (CPU/MPS).
+name: smoke
+out_dir: runs
+seed: 0
+
+data:
+  kind: trajectory
+  lbe: true
+  robot: panda_7r
+  n_trajectories: 40
+  steps_per_traj: 30
+  v_deg: 1.0
+  seed: 0
+
+model:
+  type: lbe
+  hidden_dim: 256
+  n_layers: 3
+
+diffusion:
+  T: 100
+  fk_loss_weight: 10.0
+  rot_weight: 0.1
+  p_example_dropout: 0.3
+
+train:
+  epochs: 20
+  batch_size: 256
+  lr: 0.001
+  checkpoint_every: 10
+
+eval:
+  n_per_pose: 1
+  sampler: ddpm
+  seeded: true

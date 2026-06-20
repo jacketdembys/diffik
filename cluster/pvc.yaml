@@ -1,0 +1,13 @@
+# Optional PersistentVolumeClaim to persist runs/ (checkpoints, metrics) across Jobs.
+# Results also go to wandb, so this is only needed if you want the raw run dirs on NRP.
+# Apply once:  kubectl apply -f cluster/pvc.yaml
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: diffik-pvc
+spec:
+  accessModes: ["ReadWriteMany"]
+  resources:
+    requests:
+      storage: 50Gi
+  storageClassName: rook-cephfs   # adjust to your NRP storage class

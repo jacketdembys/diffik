@@ -1,0 +1,32 @@
+# Full-scale seedless DiffIK on the random dataset (cluster run).
+# The multimodal/diversity regime (DIK-style baseline): conditional diffusion + FK loss, no seed.
+name: panda_seedless_random
+out_dir: runs
+seed: 0
+
+data:
+  kind: random
+  lbe: false
+  robot: panda_7r
+  n_samples: 1000000
+  seed: 0
+
+model:
+  type: mlp
+  hidden_dim: 1024
+  n_layers: 4
+
+diffusion:
+  T: 1000
+  fk_loss_weight: 10.0
+  rot_weight: 0.1
+
+train:
+  epochs: 1000
+  batch_size: 128
+  lr: 0.0003
+  checkpoint_every: 25
+
+eval:
+  n_per_pose: 10     # sample multiple solutions to measure diversity + best-of-N
+  sampler: ddpm

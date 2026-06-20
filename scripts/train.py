@@ -91,29 +91,36 @@ def build_monitor(cfg, diffusion, val, q_norm, device):
     return monitor
 
 
-def compute_report_metrics(diffusion, test, q_norm, cfg, device, K=50, cap=512):
-    """Best-of-K accuracy + multimodality on a capped test subset, for both regimes
-    (seeded & seedless for LBE; seedless only for MLP). One pass per regime gives the
-    full headline set so wandb/metrics.json are self-sufficient for the report."""
-    test_sub = test.head(cap) if len(test) > cap else test
-    if cfg.model.type == "lbe":
-        regimes = [("seeded", True), ("seedless", False)]
-    else:
-        regimes = [("seedless", False)]
+def compute_report_metrics(diffusion, test, q_norm, cfg, device, K=50, mm_cap=512):
+    """For each regime (seeded & seedless for LBE; seedless only for MLP):
+    - best-of-K accuracy + IROS-style ranges on the FULL test set (chunked evaluate)
+    - multimodality shape (diversity/coverage) on a capped subset (valid_diversity is
+      O(K^2) per pose, so a subset is used there only).
+    Logged to wandb/metrics.json so the report is self-sufficient."""
+    regimes = [("seeded", True), ("seedless", False)] if cfg.model.type == "lbe" else [("seedless", False)]
+    test_sub = test.head(mm_cap) if len(test) > mm_cap else test
 
     out = {}
     for rname, use_seed in regimes:
-        kw = {}
-        if use_seed and getattr(test_sub, "example", None) is not None:
-            kw["example"] = test_sub.example.to(device)
-        gg = torch.Generator().manual_seed(cfg.seed)
+        has_ex = getattr(test, "example", None) is not None
+        # full-test best-of-K (accuracy + ranges)
+        kw = {"example": test.example.to(device)} if (use_seed and has_ex) else {}
+        g = torch.Generator().manual_seed(cfg.seed)
+        res = evaluate(diffusion, test, q_norm, robot=cfg.data.robot, n_per_pose=K,
+                       device=device, generator=g, **kw)
+        s = res.best_of_n
+        # multimodality shape on a subset
+        kwm = {"example": test_sub.example.to(device)} if (use_seed and test_sub.example is not None) else {}
+        gm = torch.Generator().manual_seed(cfg.seed)
         mm = evaluate_multimodality(diffusion, test_sub, q_norm, robot=cfg.data.robot, K=K,
-                                    device=device, generator=gg, tol_mm=10.0, tol_deg=5.0, **kw)
+                                    device=device, generator=gm, tol_mm=10.0, tol_deg=5.0, **kwm)
         out[rname] = {
-            "K": K, "n_poses": len(test_sub),
-            "bestK_pos_mm": mm.best_of_k.pos_mm_avg, "bestK_ori_deg": mm.best_of_k.ori_deg_avg,
-            "bestK_pct_pos_le_1mm": mm.best_of_k.pct_pos_le_1mm,
-            "bestK_pct_ori_le_1deg": mm.best_of_k.pct_ori_le_1deg,
+            "K": K, "n_test": len(test), "n_mm": len(test_sub),
+            "bestK_pos_mm": s.pos_mm_avg, "bestK_ori_deg": s.ori_deg_avg,
+            "bestK_pct_pos_le_1mm": s.pct_pos_le_1mm, "bestK_pct_pos_1_5mm": s.pct_pos_1_5mm,
+            "bestK_pct_pos_5_10mm": s.pct_pos_5_10mm, "bestK_pct_pos_gt_10mm": s.pct_pos_gt_10mm,
+            "bestK_pct_ori_le_1deg": s.pct_ori_le_1deg, "bestK_pct_ori_1_3deg": s.pct_ori_1_3deg,
+            "bestK_pct_ori_gt_3deg": s.pct_ori_gt_3deg,
             "diversity_all": mm.diversity_all, "mean_valid_per_pose": mm.mean_valid_per_pose,
             "frac_poses_multi": mm.frac_poses_multi, "valid_diversity": mm.valid_diversity,
         }
@@ -208,7 +215,7 @@ def run(cfg: Config) -> dict:
 
     # --- richer report metrics (capped subset): best-of-K + multimodality, both regimes ---
     # evaluate_multimodality returns best-of-K accuracy AND diversity/coverage in one pass.
-    report = compute_report_metrics(diffusion, test, q_norm, cfg, device, K=50, cap=512)
+    report = compute_report_metrics(diffusion, test, q_norm, cfg, device, K=50, mm_cap=512)
     for rn, rm in report.items():
         print(f"[report:{rn}] best-of-{rm['K']} pos {rm['bestK_pos_mm']:.2f}mm ori {rm['bestK_ori_deg']:.2f}deg"
               f" | valid/pose {rm['mean_valid_per_pose']:.1f} | valid_div {rm['valid_diversity']:.3f}")

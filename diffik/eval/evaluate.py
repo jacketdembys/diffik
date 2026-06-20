@@ -47,8 +47,12 @@ def evaluate(
     n_per_pose: int = 1,
     device: torch.device | str = "cpu",
     generator: torch.Generator | None = None,
+    chunk_poses: int = 4096,
     **sample_kwargs,
 ) -> EvalResult:
+    """Evaluate over the FULL dataset, chunked over poses to bound memory (so
+    best-of-K on large test sets doesn't OOM). The LBE ``example`` (if present in
+    sample_kwargs) is sliced per chunk to stay aligned with its poses."""
     device = torch.device(device)
     diffusion.to(device)
     diffusion.eval()
@@ -56,41 +60,46 @@ def evaluate(
 
     pose_n = dataset.pose.to(device)                 # [P, pose_dim] normalized
     q_true_n = dataset.q.to(device)                  # [P, dof] normalized
-    P = pose_n.shape[0]
+    P, dof = pose_n.shape[0], q_true_n.shape[1]
+    example = sample_kwargs.pop("example", None)
+    if example is not None:
+        example = example.to(device)
 
+    all_pos, all_ori, best_pos, best_ori = [], [], [], []
+    div_sum, div_n = 0.0, 0
     t0 = time.perf_counter()
-    samples_n = diffusion.sample(pose_n, n_per_pose=n_per_pose, generator=generator, **sample_kwargs)
+    for s0 in range(0, P, chunk_poses):
+        sl = slice(s0, min(s0 + chunk_poses, P))
+        kw = dict(sample_kwargs)
+        if example is not None:
+            kw["example"] = example[sl]
+        samples_n = diffusion.sample(pose_n[sl], n_per_pose=n_per_pose, generator=generator, **kw)  # [c,N,dof]
+        c = samples_n.shape[0]
+        q_pred = q_norm.inverse_transform(samples_n.cpu()).to(FK_DTYPE)
+        q_true = q_norm.inverse_transform(q_true_n[sl].cpu()).to(FK_DTYPE)
+        T_pred = forward_kinematics(q_pred.reshape(c * n_per_pose, dof), chain)
+        T_true = forward_kinematics(q_true, chain)
+        pos, ori = pose_error(T_pred, T_true.repeat_interleave(n_per_pose, dim=0))
+        pos = pos.reshape(c, n_per_pose)
+        ori = ori.reshape(c, n_per_pose)
+        all_pos.append(pos); all_ori.append(ori)
+        bi = pos.argmin(dim=1); r = torch.arange(c)
+        best_pos.append(pos[r, bi]); best_ori.append(ori[r, bi])
+        if n_per_pose >= 2:
+            div_sum += float(q_pred.double().std(dim=1, unbiased=False).mean()) * c
+            div_n += c
     sample_time = time.perf_counter() - t0
 
-    # denormalize to joint space, run FK in float64
-    q_pred = q_norm.inverse_transform(samples_n.cpu()).to(FK_DTYPE)          # [P,N,dof]
-    q_true = q_norm.inverse_transform(q_true_n.cpu()).to(FK_DTYPE)           # [P,dof]
-
-    dof = q_pred.shape[-1]
-    T_pred = forward_kinematics(q_pred.reshape(P * n_per_pose, dof), chain)
-    T_true = forward_kinematics(q_true, chain)
-    T_true_rep = T_true.repeat_interleave(n_per_pose, dim=0)
-
-    pos_mm, ori_deg = pose_error(T_pred, T_true_rep)        # [P*N]
-    pos_mm = pos_mm.reshape(P, n_per_pose)
-    ori_deg = ori_deg.reshape(P, n_per_pose)
-
-    mean_summary = summarize_errors(pos_mm, ori_deg)
-
-    # best-of-N: per pose, pick the candidate with smallest position error
-    best_idx = pos_mm.argmin(dim=1)                         # [P]
-    rows = torch.arange(P)
-    best_pos = pos_mm[rows, best_idx]
-    best_ori = ori_deg[rows, best_idx]
-    best_summary = summarize_errors(best_pos, best_ori)
+    all_pos = torch.cat(all_pos); all_ori = torch.cat(all_ori)   # [P, N]
+    best_pos = torch.cat(best_pos); best_ori = torch.cat(best_ori)  # [P]
 
     return EvalResult(
-        mean=mean_summary,
-        best_of_n=best_summary,
+        mean=summarize_errors(all_pos, all_ori),
+        best_of_n=summarize_errors(best_pos, best_ori),
         n_per_pose=n_per_pose,
-        diversity=diversity(q_pred),
+        diversity=(div_sum / div_n) if div_n else 0.0,
         sample_time_s=sample_time,
         ms_per_solution=sample_time / (P * n_per_pose) * 1000.0,
-        pos_mm_per_pose=best_pos.cpu().numpy(),
-        ori_deg_per_pose=best_ori.cpu().numpy(),
+        pos_mm_per_pose=best_pos.numpy(),
+        ori_deg_per_pose=best_ori.numpy(),
     )

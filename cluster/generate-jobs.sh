@@ -33,7 +33,8 @@ launch () {  # $1=jobname  $2=overrides
 # (A) LBE dataset-size sweep — doubling n_trajectories (n_train = n_traj*40*0.8)
 #     50..25600  ->  n_train 1,600 .. 819,200 (includes the 9th/10th cases)
 # ============================================================================
-for n in 50 100 200 400 800 1600 3200 6400 12800 25600; do
+#for n in 50 100 200 400 800 1600 3200 6400 12800 25600; do
+for n in 100 200; do
   launch "diffik-lbe-n${n}" \
     "name=lbe_n${n} seed=${SEED} wandb=true wandb_group=lbe_dataset_sweep \
      data.kind=trajectory data.lbe=true data.n_trajectories=${n} data.steps_per_traj=40 data.v_deg=1.0 \

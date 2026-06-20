@@ -29,6 +29,12 @@ class ErrorSummary:
     ori_deg_std: float
     pct_pos_le_1mm: float
     pct_ori_le_1deg: float
+    # error-distribution buckets (matching the IROS papers)
+    pct_pos_1_5mm: float = 0.0     # (1, 5] mm
+    pct_pos_5_10mm: float = 0.0    # (5, 10] mm
+    pct_pos_gt_10mm: float = 0.0   # > 10 mm
+    pct_ori_1_3deg: float = 0.0    # (1, 3] deg
+    pct_ori_gt_3deg: float = 0.0   # > 3 deg
 
     def as_dict(self) -> dict:
         return self.__dict__.copy()
@@ -36,10 +42,16 @@ class ErrorSummary:
     def __str__(self) -> str:
         return (
             f"n={self.n} | "
-            f"pos(mm) avg={self.pos_mm_avg:.3f} [min {self.pos_mm_min:.3f}, max {self.pos_mm_max:.3f}, std {self.pos_mm_std:.3f}] | "
-            f"ori(deg) avg={self.ori_deg_avg:.3f} [min {self.ori_deg_min:.3f}, max {self.ori_deg_max:.3f}, std {self.ori_deg_std:.3f}] | "
-            f"<=1mm {self.pct_pos_le_1mm:.2f}% | <=1deg {self.pct_ori_le_1deg:.2f}%"
+            f"pos(mm) avg={self.pos_mm_avg:.3f} [min {self.pos_mm_min:.3f}, max {self.pos_mm_max:.3f}] "
+            f"| ranges %: <=1 {self.pct_pos_le_1mm:.1f}, (1,5] {self.pct_pos_1_5mm:.1f}, "
+            f"(5,10] {self.pct_pos_5_10mm:.1f}, >10 {self.pct_pos_gt_10mm:.1f} | "
+            f"ori(deg) avg={self.ori_deg_avg:.3f} ranges %: <=1 {self.pct_ori_le_1deg:.1f}, "
+            f"(1,3] {self.pct_ori_1_3deg:.1f}, >3 {self.pct_ori_gt_3deg:.1f}"
         )
+
+
+def _pct(mask) -> float:
+    return float(mask.double().mean() * 100.0)
 
 
 def summarize_errors(
@@ -48,7 +60,8 @@ def summarize_errors(
     pos_thresh_mm: float = 1.0,
     ori_thresh_deg: float = 1.0,
 ) -> ErrorSummary:
-    """Summarize per-sample position (mm) and orientation (deg) error vectors."""
+    """Summarize per-sample position (mm) and orientation (deg) error vectors,
+    including the error-distribution buckets used in the IROS papers."""
     pos_mm = pos_mm.flatten().double()
     ori_deg = ori_deg.flatten().double()
     return ErrorSummary(
@@ -61,8 +74,13 @@ def summarize_errors(
         ori_deg_min=float(ori_deg.min()),
         ori_deg_max=float(ori_deg.max()),
         ori_deg_std=float(ori_deg.std(unbiased=False)),
-        pct_pos_le_1mm=float((pos_mm <= pos_thresh_mm).double().mean() * 100.0),
-        pct_ori_le_1deg=float((ori_deg <= ori_thresh_deg).double().mean() * 100.0),
+        pct_pos_le_1mm=_pct(pos_mm <= pos_thresh_mm),
+        pct_ori_le_1deg=_pct(ori_deg <= ori_thresh_deg),
+        pct_pos_1_5mm=_pct((pos_mm > 1.0) & (pos_mm <= 5.0)),
+        pct_pos_5_10mm=_pct((pos_mm > 5.0) & (pos_mm <= 10.0)),
+        pct_pos_gt_10mm=_pct(pos_mm > 10.0),
+        pct_ori_1_3deg=_pct((ori_deg > 1.0) & (ori_deg <= 3.0)),
+        pct_ori_gt_3deg=_pct(ori_deg > 3.0),
     )
 
 

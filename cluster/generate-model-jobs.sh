@@ -3,7 +3,8 @@
 # Vary denoiser capacity (hidden x layers -> #params) at a FIXED dataset.
 # Run this ONLY after the dataset sweep is analyzed and you've chosen DS_N below.
 #
-# Usage:  DS_N=<best n_trajectories>  bash cluster/generate-model-jobs.sh
+# Usage:  bash cluster/generate-model-jobs.sh           (defaults to the best dataset)
+#         DS_N=<n_trajectories> bash cluster/generate-model-jobs.sh   (override)
 set -euo pipefail
 
 export IMAGE="gitlab-registry.nrp-nautilus.io/udembys/diffik:latest"
@@ -12,8 +13,8 @@ export CONFIG="configs/panda_lbe_trajectory.yaml"
 export WANDB_KEY="d7f81da19c5965b1c5eff37a677caab3ffb5379c"   # rotate if repo public
 TEMPLATE="cluster/job-template-gpu.yaml"
 
-# >>> SET THIS to the best n_trajectories from the Phase-1 dataset sweep <<<
-DS_N="${DS_N:?set DS_N=<best n_trajectories> (e.g. DS_N=6400) before running}"
+# Best dataset from the Phase-1 scaling sweep: n_traj=6400 (204,800 train).
+DS_N="${DS_N:-6400}"
 SEED=0
 MAXEPOCHS=1500
 PATIENCE=15

@@ -55,7 +55,8 @@ def build_model(mc, pose_dim, dof):
     if mc.type == "lbe":
         return LBEDenoiser(dof=dof, pose_dim=pose_dim, hidden_dim=mc.hidden_dim,
                            n_layers=mc.n_layers, time_embed_dim=mc.time_embed_dim,
-                           pose_embed_dim=mc.pose_embed_dim, example_embed_dim=mc.example_embed_dim)
+                           pose_embed_dim=mc.pose_embed_dim, example_embed_dim=mc.example_embed_dim,
+                           backbone=mc.backbone, dropout=mc.dropout)
     return MLPDenoiser(dof=dof, pose_dim=pose_dim, hidden_dim=mc.hidden_dim, n_layers=mc.n_layers,
                        time_embed_dim=mc.time_embed_dim, pose_embed_dim=mc.pose_embed_dim)
 

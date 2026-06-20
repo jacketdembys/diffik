@@ -24,11 +24,13 @@ class DataConfig:
 @dataclass
 class ModelConfig:
     type: str = "lbe"                  # "lbe" or "mlp"
+    backbone: str = "plain"           # "plain" | "rmlp" | "dmlp" (LBE denoiser)
     hidden_dim: int = 1024
     n_layers: int = 4
     time_embed_dim: int = 128
     pose_embed_dim: int = 128
     example_embed_dim: int = 128
+    dropout: float = 0.0
 
 
 @dataclass

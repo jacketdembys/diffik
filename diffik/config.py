@@ -74,6 +74,7 @@ class Config:
     wandb_project: str = "diffik"
     wandb_entity: str = "jacketdembys"
     wandb_mode: str = "online"   # force online (override any WANDB_MODE=offline in the image)
+    wandb_group: str = ""        # groups related runs in the UI (e.g. a sweep); "" = no group
     data: DataConfig = field(default_factory=DataConfig)
     model: ModelConfig = field(default_factory=ModelConfig)
     diffusion: DiffusionConfig = field(default_factory=DiffusionConfig)

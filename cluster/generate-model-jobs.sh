@@ -24,7 +24,7 @@ launch () { export JOBNAME="$1"; export OVERRIDES="$2"; echo "launch ${JOBNAME}"
 for spec in ${SPECS}; do
   h="${spec%x*}"; l="${spec#*x}"
   launch "diffik-model-n${DS_N}-h${h}-l${l}" \
-    "name=lbe_n${DS_N}_h${h}_l${l} seed=${SEED} wandb=true \
+    "name=lbe_n${DS_N}_h${h}_l${l} seed=${SEED} wandb=true wandb_group=lbe_model_sweep_n${DS_N} \
      data.kind=trajectory data.lbe=true data.n_trajectories=${DS_N} data.steps_per_traj=40 data.v_deg=1.0 \
      model.type=lbe model.hidden_dim=${h} model.n_layers=${l} \
      diffusion.T=1000 diffusion.fk_loss_weight=10.0 diffusion.rot_weight=0.1 diffusion.p_example_dropout=0.2 \

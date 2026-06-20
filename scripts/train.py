@@ -145,7 +145,7 @@ def run(cfg: Config) -> dict:
         import wandb as wb
         # mode=online passed explicitly overrides any WANDB_MODE=offline set in the image
         wb.init(entity=cfg.wandb_entity, project=cfg.wandb_project, name=cfg.name,
-                config=cfg.to_dict(), mode=cfg.wandb_mode)
+                group=cfg.wandb_group or None, config=cfg.to_dict(), mode=cfg.wandb_mode)
 
     # --- data ---
     ds = build_dataset(cfg.data)

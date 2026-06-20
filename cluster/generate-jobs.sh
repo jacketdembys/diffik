@@ -35,7 +35,7 @@ launch () {  # $1=jobname  $2=overrides
 # ============================================================================
 for n in 50 100 200 400 800 1600 3200 6400 12800 25600; do
   launch "diffik-lbe-n${n}" \
-    "name=lbe_n${n} seed=${SEED} wandb=true \
+    "name=lbe_n${n} seed=${SEED} wandb=true wandb_group=lbe_dataset_sweep \
      data.kind=trajectory data.lbe=true data.n_trajectories=${n} data.steps_per_traj=40 data.v_deg=1.0 \
      model.type=lbe model.hidden_dim=1024 model.n_layers=4 \
      diffusion.T=1000 diffusion.fk_loss_weight=10.0 diffusion.rot_weight=0.1 diffusion.p_example_dropout=0.2 \
@@ -50,7 +50,7 @@ done
 # ============================================================================
 # for n in 80000 320000 1000000; do
 #   launch "diffik-seedless-n${n}" \
-#     "name=seedless_n${n} seed=${SEED} wandb=true \
+#     "name=seedless_n${n} seed=${SEED} wandb=true wandb_group=seedless_sweep \
 #      data.kind=random data.lbe=false data.n_samples=${n} \
 #      model.type=mlp model.hidden_dim=1024 model.n_layers=4 \
 #      diffusion.T=1000 diffusion.fk_loss_weight=10.0 diffusion.rot_weight=0.1 \

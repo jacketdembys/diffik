@@ -79,8 +79,9 @@ def main():
         g = torch.Generator().manual_seed(0)
         res = evaluate(diff, test, q_norm, robot=dc["robot"], n_per_pose=args.K, device=device, generator=g, **kw)
         print(f"=== {r.name}  (n_train={r.summary.get('n_train','?')}, test={len(test)})")
-        print(f"  per-sample : {res.mean}")
-        print(f"  best-of-{args.K} : {res.best_of_n}")
+        print(f"  best-of-{args.K} (min): {res.best_of_n}")
+        print(f"  mean-of-{args.K}      : {res.mean}")
+        print(f"  worst-of-{args.K}(max): {res.worst_of_n}")
 
 
 if __name__ == "__main__":

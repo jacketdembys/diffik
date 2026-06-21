@@ -109,7 +109,9 @@ def compute_report_metrics(diffusion, test, q_norm, cfg, device, K=50, mm_cap=51
         g = torch.Generator().manual_seed(cfg.seed)
         res = evaluate(diffusion, test, q_norm, robot=cfg.data.robot, n_per_pose=K,
                        device=device, generator=g, **kw)
-        s = res.best_of_n
+        s = res.best_of_n        # per-pose MIN over K
+        mn = res.mean            # mean over K
+        wr = res.worst_of_n      # per-pose MAX over K
         # multimodality shape on a subset
         kwm = {"example": test_sub.example.to(device)} if (use_seed and test_sub.example is not None) else {}
         gm = torch.Generator().manual_seed(cfg.seed)
@@ -117,7 +119,11 @@ def compute_report_metrics(diffusion, test, q_norm, cfg, device, K=50, mm_cap=51
                                     device=device, generator=gm, tol_mm=10.0, tol_deg=5.0, **kwm)
         out[rname] = {
             "K": K, "n_test": len(test), "n_mm": len(test_sub),
+            # min / mean / max over the K solutions per pose (averaged over poses)
             "bestK_pos_mm": s.pos_mm_avg, "bestK_ori_deg": s.ori_deg_avg,
+            "meanK_pos_mm": mn.pos_mm_avg, "meanK_ori_deg": mn.ori_deg_avg,
+            "worstK_pos_mm": wr.pos_mm_avg, "worstK_ori_deg": wr.ori_deg_avg,
+            # best-of-K error-distribution buckets
             "bestK_pct_pos_le_1mm": s.pct_pos_le_1mm, "bestK_pct_pos_1_5mm": s.pct_pos_1_5mm,
             "bestK_pct_pos_5_10mm": s.pct_pos_5_10mm, "bestK_pct_pos_gt_10mm": s.pct_pos_gt_10mm,
             "bestK_pct_ori_le_1deg": s.pct_ori_le_1deg, "bestK_pct_ori_1_3deg": s.pct_ori_1_3deg,

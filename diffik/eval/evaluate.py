@@ -20,9 +20,10 @@ FK_DTYPE = torch.float64
 
 @dataclass
 class EvalResult:
-    mean: ErrorSummary           # over all P*N samples
-    best_of_n: ErrorSummary      # per-pose best (by position error), over P
+    mean: ErrorSummary           # over all P*N samples (= mean-of-K per pose)
+    best_of_n: ErrorSummary      # per-pose MIN (by position error), over P
     n_per_pose: int
+    worst_of_n: ErrorSummary = None  # per-pose MAX (by position error), over P
     diversity: float
     sample_time_s: float
     ms_per_solution: float
@@ -65,7 +66,8 @@ def evaluate(
     if example is not None:
         example = example.to(device)
 
-    all_pos, all_ori, best_pos, best_ori = [], [], [], []
+    all_pos, all_ori = [], []
+    best_pos, best_ori, worst_pos, worst_ori = [], [], [], []
     div_sum, div_n = 0.0, 0
     t0 = time.perf_counter()
     for s0 in range(0, P, chunk_poses):
@@ -83,19 +85,22 @@ def evaluate(
         pos = pos.reshape(c, n_per_pose)
         ori = ori.reshape(c, n_per_pose)
         all_pos.append(pos); all_ori.append(ori)
-        bi = pos.argmin(dim=1); r = torch.arange(c)
-        best_pos.append(pos[r, bi]); best_ori.append(ori[r, bi])
+        r = torch.arange(c)
+        bi = pos.argmin(dim=1); best_pos.append(pos[r, bi]); best_ori.append(ori[r, bi])
+        wi = pos.argmax(dim=1); worst_pos.append(pos[r, wi]); worst_ori.append(ori[r, wi])
         if n_per_pose >= 2:
             div_sum += float(q_pred.double().std(dim=1, unbiased=False).mean()) * c
             div_n += c
     sample_time = time.perf_counter() - t0
 
-    all_pos = torch.cat(all_pos); all_ori = torch.cat(all_ori)   # [P, N]
-    best_pos = torch.cat(best_pos); best_ori = torch.cat(best_ori)  # [P]
+    all_pos = torch.cat(all_pos); all_ori = torch.cat(all_ori)        # [P, N]
+    best_pos = torch.cat(best_pos); best_ori = torch.cat(best_ori)    # [P]
+    worst_pos = torch.cat(worst_pos); worst_ori = torch.cat(worst_ori)  # [P]
 
     return EvalResult(
         mean=summarize_errors(all_pos, all_ori),
         best_of_n=summarize_errors(best_pos, best_ori),
+        worst_of_n=summarize_errors(worst_pos, worst_ori),
         n_per_pose=n_per_pose,
         diversity=(div_sum / div_n) if div_n else 0.0,
         sample_time_s=sample_time,

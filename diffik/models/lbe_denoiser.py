@@ -16,49 +16,54 @@ from .embeddings import sinusoidal_embedding
 
 
 class ResidualBlock(nn.Module):
+    """Faithful to ResMLPSum's ResidualBlockSum (identity shortcut at hidden==hidden):
+    fc1 -> ReLU -> fc2, + x, -> ReLU."""
+
     def __init__(self, dim: int, dropout: float = 0.0):
         super().__init__()
         self.fc1 = nn.Linear(dim, dim)
         self.fc2 = nn.Linear(dim, dim)
-        self.act = nn.SiLU()
+        self.relu = nn.ReLU(inplace=True)
         self.drop = nn.Dropout(dropout)
 
     def forward(self, x):
-        return self.act(x + self.drop(self.fc2(self.act(self.fc1(x)))))
+        out = self.drop(self.fc2(self.relu(self.fc1(x))))
+        return self.relu(out + x)
 
 
-class DenseBlock(nn.Module):
-    """n FC layers, each fed the concatenation of all previous outputs; a
-    transition layer reduces the concatenation back to ``dim``."""
+class DenseBackbone(nn.Module):
+    """Faithful to DenseMLP: each block is fc -> ReLU -> fc; its output is
+    concatenated with all previous block outputs, then a transition Linear maps
+    back to ``dim`` (per-block FC layers, unlike the original's shared self.fc)."""
 
     def __init__(self, dim: int, n_layers: int, dropout: float = 0.0):
         super().__init__()
-        self.act = nn.SiLU()
+        self.relu = nn.ReLU(inplace=True)
         self.drop = nn.Dropout(dropout)
-        self.layers = nn.ModuleList()
-        in_dim = dim
-        for _ in range(n_layers):
-            self.layers.append(nn.Linear(in_dim, dim))
-            in_dim += dim
-        self.transition = nn.Linear(in_dim, dim)
+        self.fc1 = nn.ModuleList(nn.Linear(dim, dim) for _ in range(n_layers))
+        self.fc2 = nn.ModuleList(nn.Linear(dim, dim) for _ in range(n_layers))
+        self.trans = nn.ModuleList(nn.Linear((i + 2) * dim, dim) for i in range(n_layers))
 
     def forward(self, x):
         feats = [x]
-        for layer in self.layers:
-            feats.append(self.drop(self.act(layer(torch.cat(feats, dim=-1)))))
-        return self.act(self.transition(torch.cat(feats, dim=-1)))
+        prev = x
+        for i in range(len(self.fc1)):
+            h = self.drop(self.fc2[i](self.relu(self.fc1[i](prev))))
+            feats.append(h)
+            prev = self.trans[i](torch.cat(feats, dim=-1))
+        return prev
 
 
 def make_backbone(kind: str, hidden_dim: int, n_layers: int, dropout: float = 0.0) -> nn.Module:
     if kind == "plain":
         layers = []
         for _ in range(n_layers):
-            layers += [nn.Linear(hidden_dim, hidden_dim), nn.SiLU(), nn.Dropout(dropout)]
+            layers += [nn.Linear(hidden_dim, hidden_dim), nn.ReLU(inplace=True), nn.Dropout(dropout)]
         return nn.Sequential(*layers)
     if kind == "rmlp":
         return nn.Sequential(*[ResidualBlock(hidden_dim, dropout) for _ in range(n_layers)])
     if kind == "dmlp":
-        return DenseBlock(hidden_dim, n_layers, dropout)
+        return DenseBackbone(hidden_dim, n_layers, dropout)
     raise ValueError(f"unknown backbone '{kind}'")
 
 
@@ -97,7 +102,7 @@ class LBEDenoiser(nn.Module):
         self.null_example = nn.Parameter(torch.randn(example_embed_dim) * 0.02)
 
         in_dim = dof + pose_embed_dim + time_embed_dim + example_embed_dim
-        self.input_proj = nn.Sequential(nn.Linear(in_dim, hidden_dim), nn.SiLU())
+        self.input_proj = nn.Linear(in_dim, hidden_dim)   # bare Linear, like ResMLPSum/DenseMLP
         self.backbone = make_backbone(backbone, hidden_dim, n_layers, dropout)
         self.output_proj = nn.Linear(hidden_dim, dof)
 

@@ -23,10 +23,10 @@ class EvalResult:
     mean: ErrorSummary           # over all P*N samples (= mean-of-K per pose)
     best_of_n: ErrorSummary      # per-pose MIN (by position error), over P
     n_per_pose: int
-    worst_of_n: ErrorSummary = None  # per-pose MAX (by position error), over P
     diversity: float
     sample_time_s: float
     ms_per_solution: float
+    worst_of_n: ErrorSummary = None      # per-pose MAX (by position error), over P
     pos_mm_per_pose: np.ndarray = None   # [P] best-of-N position error (mm)
     ori_deg_per_pose: np.ndarray = None  # [P] best-of-N orientation error (deg)
 

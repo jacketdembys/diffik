@@ -48,11 +48,12 @@ def evaluate(
     n_per_pose: int = 1,
     device: torch.device | str = "cpu",
     generator: torch.Generator | None = None,
-    chunk_poses: int = 4096,
+    chunk_samples: int = 8192,
     **sample_kwargs,
 ) -> EvalResult:
-    """Evaluate over the FULL dataset, chunked over poses to bound memory (so
-    best-of-K on large test sets doesn't OOM). The LBE ``example`` (if present in
+    """Evaluate over the FULL dataset, chunked to bound the per-chunk sampling
+    batch to ~chunk_samples (= poses x n_per_pose). This keeps best-of-K on large
+    test sets from OOMing on bigger models. The LBE ``example`` (if present in
     sample_kwargs) is sliced per chunk to stay aligned with its poses."""
     device = torch.device(device)
     diffusion.to(device)
@@ -69,9 +70,10 @@ def evaluate(
     all_pos, all_ori = [], []
     best_pos, best_ori, worst_pos, worst_ori = [], [], [], []
     div_sum, div_n = 0.0, 0
+    step = max(1, chunk_samples // max(n_per_pose, 1))   # poses per chunk -> ~chunk_samples batch
     t0 = time.perf_counter()
-    for s0 in range(0, P, chunk_poses):
-        sl = slice(s0, min(s0 + chunk_poses, P))
+    for s0 in range(0, P, step):
+        sl = slice(s0, min(s0 + step, P))
         kw = dict(sample_kwargs)
         if example is not None:
             kw["example"] = example[sl]

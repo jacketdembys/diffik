@@ -27,10 +27,12 @@ def main():
     ap.add_argument("--project", default="diffik")
     ap.add_argument("--run", default="lbe_n6400_h768_l6_rmlp")
     ap.add_argument("--K", type=int, default=20)
-    ap.add_argument("--n_poses", type=int, default=256, help="test subset for the A/B (speed)")
+    ap.add_argument("--n_poses", type=int, default=256, help="test subset; <=0 = full test set")
     ap.add_argument("--ztv", type=int, default=50, help="zero-terminal-variance: # final deterministic steps")
     ap.add_argument("--regimes", default="seedless,seeded", help="comma list: seedless,seeded")
     ap.add_argument("--samplers", default="ddpm,ddim,ztv", help="comma list: ddpm,ddim,ztv")
+    ap.add_argument("--wandb", action="store_true", help="log results to a wandb run")
+    ap.add_argument("--wandb_group", default="ab_samplers")
     args = ap.parse_args()
     want_reg = set(args.regimes.split(","))
     want_smp = set(args.samplers.split(","))
@@ -45,8 +47,15 @@ def main():
     ds = generate_trajectory(robot=dc["robot"], n_trajectories=dc["n_trajectories"],
                              steps_per_traj=dc["steps_per_traj"], v_deg=dc["v_deg"], seed=cfg["seed"])
     _, _, test, q_norm, _ = build_datasets_lbe(ds, v_deg=dc["v_deg"], v_mm=dc["v_mm"], seed=cfg["seed"])
-    test = test.head(args.n_poses) if len(test) > args.n_poses else test
+    if args.n_poses > 0 and len(test) > args.n_poses:
+        test = test.head(args.n_poses)
     pose_dim, dof = ds.pose.shape[1], ds.q.shape[1]
+
+    wb = None
+    if args.wandb:
+        wb = wandb.init(project=args.project, entity=args.entity, group=args.wandb_group,
+                        name=f"ab_{args.run}_{args.samplers}", mode="online",
+                        config={"run": args.run, "K": args.K, "n_poses": len(test), "ztv": args.ztv})
 
     model = LBEDenoiser(dof=dof, pose_dim=pose_dim, hidden_dim=mc["hidden_dim"],
                         n_layers=mc["n_layers"], backbone=mc.get("backbone", "plain"))
@@ -75,7 +84,18 @@ def main():
                            device=device, generator=g, **kwargs)
             print(f"{sname:<26}{res.best_of_n.pos_mm_avg:>10.2f}{res.best_of_n.ori_deg_avg:>10.2f}"
                   f"{res.mean.pos_mm_avg:>10.2f}{res.diversity:>11.4f}")
+            if wb is not None:
+                p = f"{rname}/{_skey}"
+                wb.summary.update({
+                    f"{p}/bestK_pos_mm": res.best_of_n.pos_mm_avg, f"{p}/bestK_ori_deg": res.best_of_n.ori_deg_avg,
+                    f"{p}/meanK_pos_mm": res.mean.pos_mm_avg, f"{p}/worstK_pos_mm": res.worst_of_n.pos_mm_avg,
+                    f"{p}/diversity": res.diversity,
+                    f"{p}/bestK_pct_pos_le_1mm": res.best_of_n.pct_pos_le_1mm,
+                    f"{p}/bestK_pct_ori_le_1deg": res.best_of_n.pct_ori_le_1deg,
+                })
         print()
+    if wb is not None:
+        wb.finish()
 
 
 if __name__ == "__main__":

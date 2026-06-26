@@ -1,0 +1,42 @@
+# DiffIK eval-job template (runs ab_samplers.py on the cluster GPU).
+# Placeholders: ${JOBNAME} ${ABARGS} ${IMAGE} ${REPO} ${WANDB_KEY}
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: ${JOBNAME}
+  labels:
+    k8s-app: diffik-job
+spec:
+  ttlSecondsAfterFinished: 86400
+  backoffLimit: 0
+  template:
+    metadata:
+      labels:
+        k8s-app: diffik-job
+    spec:
+      affinity:
+        nodeAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            nodeSelectorTerms:
+              - matchExpressions:
+                  - key: nvidia.com/gpu.product
+                    operator: In
+                    values:
+                      - NVIDIA-L4
+                      - NVIDIA-GeForce-RTX-3090
+                      - NVIDIA-A10
+      containers:
+      - name: diffik
+        image: ${IMAGE}
+        resources:
+          limits: {memory: "32Gi", cpu: "9", nvidia.com/gpu: "1"}
+          requests: {memory: "32Gi", cpu: "9", nvidia.com/gpu: "1"}
+        command: ["/bin/sh", "-c"]
+        args:
+          - >
+            cd /home &&
+            git clone ${REPO} diffik &&
+            cd diffik && pip install -e . &&
+            wandb login ${WANDB_KEY} &&
+            python scripts/ab_samplers.py ${ABARGS}
+      restartPolicy: Never

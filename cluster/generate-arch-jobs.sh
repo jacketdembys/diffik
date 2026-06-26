@@ -4,8 +4,9 @@
 # so this is the main remaining lever toward sub-mm. Runs report full-test best/mean/
 # worst-of-K (min/mean/max over the K solutions) + ranges to wandb.
 #
-# Usage:  bash cluster/generate-arch-jobs.sh
-#         HIDDEN=512 LAYERS=4 bash cluster/generate-arch-jobs.sh   (other size)
+# Usage:  bash cluster/generate-arch-jobs.sh                                  (all 3 backbones, 768x6, n6400)
+#         HIDDEN=512 LAYERS=4 bash cluster/generate-arch-jobs.sh              (other size)
+#         DS_N=25600 BACKBONES=rmlp bash cluster/generate-arch-jobs.sh       (best backbone on largest dataset)
 set -euo pipefail
 
 export IMAGE="gitlab-registry.nrp-nautilus.io/udembys/diffik:latest"
@@ -18,7 +19,7 @@ DS_N="${DS_N:-6400}"        # best dataset (204,800 train)
 HIDDEN="${HIDDEN:-768}"     # best size from the model-size sweep
 LAYERS="${LAYERS:-6}"
 SEED=0; MAXEPOCHS=1500; PATIENCE=15
-BACKBONES="plain rmlp dmlp"
+BACKBONES="${BACKBONES:-plain rmlp dmlp}"   # e.g. BACKBONES=rmlp to run one
 
 launch () { export JOBNAME="$1"; export OVERRIDES="$2"; echo "launch ${JOBNAME}"; envsubst < "${TEMPLATE}" | kubectl apply -f -; }
 

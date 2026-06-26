@@ -37,6 +37,7 @@ class LBEDiffusion(GaussianDiffusion):
         sampler: str = "ddpm",
         ddim_steps: int | None = None,
         eta: float = 0.0,
+        ztv_last: int = 0,
         guidance_scale: float = 1.0,
     ) -> torch.Tensor:
         """Sample joints. example=None -> seedless; example given -> seeded.
@@ -65,7 +66,7 @@ class LBEDiffusion(GaussianDiffusion):
             return eps_u + guidance_scale * (eps_c - eps_u)
 
         if sampler == "ddpm":
-            x = self._ddpm_sample(x, eps_fn, generator)
+            x = self._ddpm_sample(x, eps_fn, generator, ztv_last=ztv_last)
         elif sampler == "ddim":
             x = self._ddim_sample(x, eps_fn, generator, ddim_steps, eta)
         else:

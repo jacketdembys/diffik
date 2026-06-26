@@ -135,6 +135,7 @@ class GaussianDiffusion(nn.Module):
         sampler: str = "ddpm",
         ddim_steps: int | None = None,
         eta: float = 0.0,
+        ztv_last: int = 0,
     ) -> torch.Tensor:
         """Sample joint configurations conditioned on ``pose``.
 
@@ -156,15 +157,19 @@ class GaussianDiffusion(nn.Module):
         eps_fn = lambda xx, t: self._eps_from_pred(xx, cond, t)
 
         if sampler == "ddpm":
-            x = self._ddpm_sample(x, eps_fn, generator)
+            x = self._ddpm_sample(x, eps_fn, generator, ztv_last=ztv_last)
         elif sampler == "ddim":
             x = self._ddim_sample(x, eps_fn, generator, ddim_steps, eta)
         else:
             raise ValueError(f"unknown sampler '{sampler}'")
         return x.view(P, n_per_pose, self.dof)
 
-    def _ddpm_sample(self, x, eps_fn, generator):
-        """eps_fn(x, t_tensor) -> predicted noise. Lets subclasses inject CFG."""
+    def _ddpm_sample(self, x, eps_fn, generator, ztv_last: int = 0):
+        """eps_fn(x, t_tensor) -> predicted noise. Lets subclasses inject CFG.
+
+        ztv_last>0 = zero terminal variance: stop injecting noise for the final
+        ``ztv_last`` low-noise steps (t_ < ztv_last become deterministic), keeping
+        early stochasticity (mode diversity) but polishing the endpoint."""
         sch = self.schedule
         B = x.shape[0]
         for t_ in reversed(range(self.T)):
@@ -172,7 +177,7 @@ class GaussianDiffusion(nn.Module):
             eps = eps_fn(x, t)
             beta_t, alpha_t, ab_t = sch.betas[t_], sch.alphas[t_], sch.alpha_bar[t_]
             mean = (1.0 / torch.sqrt(alpha_t)) * (x - (beta_t / torch.sqrt(1.0 - ab_t)) * eps)
-            if t_ > 0:
+            if t_ > 0 and t_ >= ztv_last:
                 z = self._randn((B, self.dof), x.device, generator)
                 x = mean + torch.sqrt(beta_t) * z
             else:

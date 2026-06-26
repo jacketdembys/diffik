@@ -38,6 +38,7 @@ def main():
     want_smp = set(args.samplers.split(","))
 
     device = get_device()
+    os.environ["WANDB_MODE"] = "online"   # image defaults to offline; need online to pull/log artifacts
     api = wandb.Api()
     art = api.artifact(f"{args.entity}/{args.project}/{args.run}-ckpt:latest")
     ckpt = os.path.join(art.download(), "checkpoint.pth")

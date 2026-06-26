@@ -38,5 +38,6 @@ spec:
             git clone ${REPO} diffik &&
             cd diffik && pip install -e . &&
             wandb login ${WANDB_KEY} &&
+            export WANDB_MODE=online &&
             python scripts/ab_samplers.py ${ABARGS}
       restartPolicy: Never

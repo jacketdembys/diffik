@@ -29,7 +29,11 @@ def main():
     ap.add_argument("--K", type=int, default=20)
     ap.add_argument("--n_poses", type=int, default=256, help="test subset for the A/B (speed)")
     ap.add_argument("--ztv", type=int, default=50, help="zero-terminal-variance: # final deterministic steps")
+    ap.add_argument("--regimes", default="seedless,seeded", help="comma list: seedless,seeded")
+    ap.add_argument("--samplers", default="ddpm,ddim,ztv", help="comma list: ddpm,ddim,ztv")
     args = ap.parse_args()
+    want_reg = set(args.regimes.split(","))
+    want_smp = set(args.samplers.split(","))
 
     device = get_device()
     api = wandb.Api()
@@ -50,18 +54,19 @@ def main():
     diff, q_norm, _, _ = load_checkpoint(ckpt, diff, map_location=device)
 
     samplers = [
-        ("DDPM (stochastic)", {"sampler": "ddpm"}),
-        ("DDIM eta=0 (determ.)", {"sampler": "ddim", "eta": 0.0}),
-        (f"ZTV-{args.ztv} (determ. tail)", {"sampler": "ddpm", "ztv_last": args.ztv}),
+        ("ddpm", "DDPM (stochastic)", {"sampler": "ddpm"}),
+        ("ddim", "DDIM eta=0 (determ.)", {"sampler": "ddim", "eta": 0.0}),
+        ("ztv", f"ZTV-{args.ztv} (determ. tail)", {"sampler": "ddpm", "ztv_last": args.ztv}),
     ]
-    regimes = [("seedless", False), ("seeded", True)]
+    samplers = [(k, n, kw) for (k, n, kw) in samplers if k in want_smp]
+    regimes = [(n, s) for (n, s) in [("seedless", False), ("seeded", True)] if n in want_reg]
 
     print(f"=== {args.run} | A/B samplers | K={args.K} | n_poses={len(test)} | device={device}\n")
     for rname, use_seed in regimes:
         ex = test.example.to(device) if (use_seed and test.example is not None) else None
         print(f"--- {rname} ---")
         print(f"{'sampler':<26}{'bestK_pos':>10}{'bestK_ori':>10}{'meanK_pos':>10}{'diversity':>11}")
-        for sname, kw in samplers:
+        for _skey, sname, kw in samplers:
             g = torch.Generator().manual_seed(0)
             kwargs = dict(kw)
             if ex is not None:

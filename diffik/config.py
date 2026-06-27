@@ -39,7 +39,9 @@ class DiffusionConfig:
     prediction_type: str = "eps"
     fk_loss_weight: float = 10.0
     rot_weight: float = 0.1
-    fk_weighting: str = "alpha_bar"
+    fk_weighting: str = "alpha_bar"   # none|alpha_bar|alpha_bar_pow|snr|low_t_window
+    fk_weight_gamma: float = 1.0      # exponent (alpha_bar_pow) or min-SNR clamp (snr)
+    fk_t_window: int = 0              # low_t_window: supervise FK only for t < this (0 -> T//10)
     p_example_dropout: float = 0.2
 
 

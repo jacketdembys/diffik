@@ -177,6 +177,7 @@ def run(cfg: Config) -> dict:
     chain = get_robot(cfg.data.robot)
     common = dict(dof=dof, chain=chain, q_norm=q_norm, fk_loss_weight=cfg.diffusion.fk_loss_weight,
                   rot_weight=cfg.diffusion.rot_weight, fk_weighting=cfg.diffusion.fk_weighting,
+                  fk_weight_gamma=cfg.diffusion.fk_weight_gamma, fk_t_window=cfg.diffusion.fk_t_window,
                   prediction_type=cfg.diffusion.prediction_type)
     if cfg.model.type == "lbe":
         diffusion = LBEDiffusion(model, schedule, p_example_dropout=cfg.diffusion.p_example_dropout, **common)

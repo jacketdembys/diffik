@@ -34,6 +34,8 @@ class GaussianDiffusion(nn.Module):
         q_norm=None,
         fk_loss_weight: float = 0.0,
         fk_weighting: str = "alpha_bar",
+        fk_weight_gamma: float = 1.0,
+        fk_t_window: int = 0,
         rot_weight: float = 0.1,
         prediction_type: str = "eps",
     ):
@@ -45,6 +47,8 @@ class GaussianDiffusion(nn.Module):
         self.q_norm = q_norm
         self.fk_loss_weight = fk_loss_weight
         self.fk_weighting = fk_weighting
+        self.fk_weight_gamma = fk_weight_gamma
+        self.fk_t_window = fk_t_window
         self.rot_weight = rot_weight
         self.prediction_type = prediction_type
 
@@ -82,13 +86,33 @@ class GaussianDiffusion(nn.Module):
         rot_l = ((T_pred[:, :3, :3] - T_tgt[:, :3, :3]) ** 2).sum(dim=(-1, -2))  # [B]
         fk_per = pos_l + self.rot_weight * rot_l
 
-        if self.fk_weighting == "alpha_bar":
-            w = self.schedule.alpha_bar[t]
-        elif self.fk_weighting == "none":
-            w = torch.ones_like(fk_per)
-        else:
-            raise ValueError(self.fk_weighting)
+        w = self._fk_weight(t, fk_per)
         return (w * fk_per).sum() / (w.sum() + 1e-8)
+
+    def _fk_weight(self, t, fk_per):
+        """Per-sample weight that concentrates the FK loss on low-noise timesteps,
+        where x0_hat is close enough to the manifold for FK to sharpen the endpoint:
+          none          : uniform
+          alpha_bar     : w = ab_t                       (gentle)
+          alpha_bar_pow : w = ab_t ** gamma              (gamma>1 -> sharper low-noise focus)
+          snr           : w = min(ab_t/(1-ab_t), gamma)  (min-SNR-clamped; strong low-noise focus)
+          low_t_window  : w = 1 for t < fk_t_window else 0 (hard: only the lowest-noise steps)
+        """
+        kind = self.fk_weighting
+        if kind == "none":
+            return torch.ones_like(fk_per)
+        ab = self.schedule.alpha_bar[t]
+        if kind == "alpha_bar":
+            return ab
+        if kind == "alpha_bar_pow":
+            return ab ** self.fk_weight_gamma
+        if kind == "snr":
+            snr = ab / (1.0 - ab + 1e-8)
+            return torch.clamp(snr, max=self.fk_weight_gamma) if self.fk_weight_gamma > 0 else snr
+        if kind == "low_t_window":
+            win = self.fk_t_window if self.fk_t_window > 0 else max(1, self.T // 10)
+            return (t < win).to(fk_per.dtype)
+        raise ValueError(f"unknown fk_weighting '{kind}'")
 
     def _losses_from_pred(self, x0, x_t, t, noise, pred):
         """Denoising (+ optional FK) loss given a model prediction. Shared by the

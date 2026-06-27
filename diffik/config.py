@@ -31,6 +31,7 @@ class ModelConfig:
     pose_embed_dim: int = 128
     example_embed_dim: int = 128
     dropout: float = 0.0
+    self_cond: bool = False           # self-conditioning (feed prev x0_hat back in)
 
 
 @dataclass

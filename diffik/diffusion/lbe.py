@@ -18,13 +18,22 @@ class LBEDiffusion(GaussianDiffusion):
         self.p_example_dropout = p_example_dropout
 
     def loss(self, x0: torch.Tensor, pose: torch.Tensor, example: torch.Tensor):
-        """Denoising (+FK) loss with random example-dropout for CFG."""
+        """Denoising (+FK) loss with random example-dropout for CFG.
+
+        Self-conditioning (if the model has self_cond): on ~50% of steps, do a
+        no-grad pass to get x0_hat and feed it back as x_self on the real pass;
+        the other ~50% feed zeros, so the model learns both."""
         B = x0.shape[0]
         t = torch.randint(0, self.T, (B,), device=x0.device)
         noise = torch.randn_like(x0)
         x_t = self.schedule.q_sample(x0, t, noise)
         drop_mask = torch.rand(B, device=x0.device) < self.p_example_dropout
-        pred = self.model(x_t, pose, t, example=example, drop_mask=drop_mask)
+        x_self = None
+        if getattr(self.model, "self_cond", False) and torch.rand(()) < 0.5:
+            with torch.no_grad():
+                pred0 = self.model(x_t, pose, t, example=example, drop_mask=drop_mask, x_self=None)
+                x_self = self._x0_hat(x_t, None, t, pred0).detach()
+        pred = self.model(x_t, pose, t, example=example, drop_mask=drop_mask, x_self=x_self)
         return self._losses_from_pred(x0, x_t, t, noise, pred)
 
     @torch.no_grad()
@@ -52,15 +61,15 @@ class LBEDiffusion(GaussianDiffusion):
         ex = example.repeat_interleave(n_per_pose, dim=0) if example is not None else None
         x = self._randn((B, self.dof), device, generator)
 
-        def eps_fn(xx, t):
+        def eps_fn(xx, t, x_self=None):
             if ex is None:
-                pred = self.model(xx, cond_pose, t, example=None)
+                pred = self.model(xx, cond_pose, t, example=None, x_self=x_self)
                 return self._eps_from_pred(xx, None, t, pred)
             if guidance_scale == 1.0:
-                pred = self.model(xx, cond_pose, t, example=ex)
+                pred = self.model(xx, cond_pose, t, example=ex, x_self=x_self)
                 return self._eps_from_pred(xx, None, t, pred)
-            pred_c = self.model(xx, cond_pose, t, example=ex)
-            pred_u = self.model(xx, cond_pose, t, example=None)
+            pred_c = self.model(xx, cond_pose, t, example=ex, x_self=x_self)
+            pred_u = self.model(xx, cond_pose, t, example=None, x_self=x_self)
             eps_c = self._eps_from_pred(xx, None, t, pred_c)
             eps_u = self._eps_from_pred(xx, None, t, pred_u)
             return eps_u + guidance_scale * (eps_c - eps_u)

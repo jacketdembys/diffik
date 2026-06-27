@@ -178,7 +178,7 @@ class GaussianDiffusion(nn.Module):
         B = P * n_per_pose
         cond = pose.repeat_interleave(n_per_pose, dim=0)
         x = self._randn((B, self.dof), device, generator)
-        eps_fn = lambda xx, t: self._eps_from_pred(xx, cond, t)
+        eps_fn = lambda xx, t, x_self=None: self._eps_from_pred(xx, cond, t)  # base MLP: no self-cond
 
         if sampler == "ddpm":
             x = self._ddpm_sample(x, eps_fn, generator, ztv_last=ztv_last)
@@ -196,9 +196,13 @@ class GaussianDiffusion(nn.Module):
         early stochasticity (mode diversity) but polishing the endpoint."""
         sch = self.schedule
         B = x.shape[0]
+        sc = getattr(self.model, "self_cond", False)
+        x_self = None
         for t_ in reversed(range(self.T)):
             t = torch.full((B,), t_, device=x.device, dtype=torch.long)
-            eps = eps_fn(x, t)
+            eps = eps_fn(x, t, x_self)
+            if sc:
+                x_self = sch.predict_x0_from_eps(x, t, eps)
             beta_t, alpha_t, ab_t = sch.betas[t_], sch.alphas[t_], sch.alpha_bar[t_]
             mean = (1.0 / torch.sqrt(alpha_t)) * (x - (beta_t / torch.sqrt(1.0 - ab_t)) * eps)
             if t_ > 0 and t_ >= ztv_last:
@@ -216,6 +220,8 @@ class GaussianDiffusion(nn.Module):
         else:
             seq = torch.linspace(0, self.T - 1, ddim_steps).round().long().unique().tolist()
 
+        sc = getattr(self.model, "self_cond", False)
+        x_self = None
         for i in reversed(range(len(seq))):
             t_cur = seq[i]
             t_prev = seq[i - 1] if i > 0 else -1
@@ -223,8 +229,10 @@ class GaussianDiffusion(nn.Module):
             ab_t = sch.alpha_bar[t_cur]
             ab_prev = sch.alpha_bar[t_prev] if t_prev >= 0 else torch.ones_like(ab_t)
 
-            eps = eps_fn(x, t)
+            eps = eps_fn(x, t, x_self)
             x0_hat = (x - torch.sqrt(1.0 - ab_t) * eps) / torch.sqrt(ab_t)
+            if sc:
+                x_self = x0_hat
 
             if eta > 0 and t_prev >= 0:
                 sigma = eta * torch.sqrt((1 - ab_prev) / (1 - ab_t)) * torch.sqrt(1 - ab_t / ab_prev)

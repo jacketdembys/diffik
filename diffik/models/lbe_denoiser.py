@@ -79,6 +79,7 @@ class LBEDenoiser(nn.Module):
         n_layers: int = 4,
         backbone: str = "plain",
         dropout: float = 0.0,
+        self_cond: bool = False,
     ):
         super().__init__()
         self.dof = dof
@@ -86,6 +87,7 @@ class LBEDenoiser(nn.Module):
         self.time_embed_dim = time_embed_dim
         self.example_dim = pose_dim + dof  # (De, Qe)
         self.backbone_kind = backbone
+        self.self_cond = self_cond
 
         self.time_mlp = nn.Sequential(
             nn.Linear(time_embed_dim, time_embed_dim), nn.SiLU(),
@@ -101,12 +103,12 @@ class LBEDenoiser(nn.Module):
         )
         self.null_example = nn.Parameter(torch.randn(example_embed_dim) * 0.02)
 
-        in_dim = dof + pose_embed_dim + time_embed_dim + example_embed_dim
+        in_dim = dof + pose_embed_dim + time_embed_dim + example_embed_dim + (dof if self_cond else 0)
         self.input_proj = nn.Linear(in_dim, hidden_dim)   # bare Linear, like ResMLPSum/DenseMLP
         self.backbone = make_backbone(backbone, hidden_dim, n_layers, dropout)
         self.output_proj = nn.Linear(hidden_dim, dof)
 
-    def forward(self, x_t, pose, t, example=None, drop_mask=None):
+    def forward(self, x_t, pose, t, example=None, drop_mask=None, x_self=None):
         B = x_t.shape[0]
         te = self.time_mlp(sinusoidal_embedding(t, self.time_embed_dim))
         pe = self.pose_mlp(pose)
@@ -117,5 +119,8 @@ class LBEDenoiser(nn.Module):
             if drop_mask is not None:
                 null = self.null_example.unsqueeze(0).expand(B, -1)
                 ee = torch.where(drop_mask.unsqueeze(-1), null, ee)
-        h = self.input_proj(torch.cat([x_t, pe, te, ee], dim=-1))
+        parts = [x_t, pe, te, ee]
+        if self.self_cond:                                    # previous x0_hat estimate (zeros if none)
+            parts.append(x_self if x_self is not None else torch.zeros_like(x_t))
+        h = self.input_proj(torch.cat(parts, dim=-1))
         return self.output_proj(self.backbone(h))

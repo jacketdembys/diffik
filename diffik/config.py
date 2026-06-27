@@ -62,7 +62,7 @@ class TrainConfig:
 @dataclass
 class EvalConfig:
     n_per_pose: int = 1
-    sampler: str = "ddpm"              # "ddpm" or "ddim"
+    sampler: str = "ddim"             # "ddpm" or "ddim"; DDIM eta=0 adopted (sharper, multimodality kept)
     ddim_steps: int | None = None
     eta: float = 0.0
     guidance_scale: float = 1.0

@@ -100,12 +100,16 @@ def compute_report_metrics(diffusion, test, q_norm, cfg, device, K=50, mm_cap=51
     Logged to wandb/metrics.json so the report is self-sufficient."""
     regimes = [("seeded", True), ("seedless", False)] if cfg.model.type == "lbe" else [("seedless", False)]
     test_sub = test.head(mm_cap) if len(test) > mm_cap else test
+    ec = cfg.eval
+    samp = dict(sampler=ec.sampler, ddim_steps=ec.ddim_steps, eta=ec.eta)  # report uses the chosen sampler
 
     out = {}
     for rname, use_seed in regimes:
         has_ex = getattr(test, "example", None) is not None
         # full-test best-of-K (accuracy + ranges)
-        kw = {"example": test.example.to(device)} if (use_seed and has_ex) else {}
+        kw = dict(samp)
+        if use_seed and has_ex:
+            kw["example"] = test.example.to(device)
         g = torch.Generator().manual_seed(cfg.seed)
         res = evaluate(diffusion, test, q_norm, robot=cfg.data.robot, n_per_pose=K,
                        device=device, generator=g, **kw)
@@ -113,7 +117,9 @@ def compute_report_metrics(diffusion, test, q_norm, cfg, device, K=50, mm_cap=51
         mn = res.mean            # mean over K
         wr = res.worst_of_n      # per-pose MAX over K
         # multimodality shape on a subset
-        kwm = {"example": test_sub.example.to(device)} if (use_seed and test_sub.example is not None) else {}
+        kwm = dict(samp)
+        if use_seed and test_sub.example is not None:
+            kwm["example"] = test_sub.example.to(device)
         gm = torch.Generator().manual_seed(cfg.seed)
         mm = evaluate_multimodality(diffusion, test_sub, q_norm, robot=cfg.data.robot, K=K,
                                     device=device, generator=gm, tol_mm=10.0, tol_deg=5.0, **kwm)

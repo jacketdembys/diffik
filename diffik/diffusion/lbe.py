@@ -32,7 +32,7 @@ class LBEDiffusion(GaussianDiffusion):
         if getattr(self.model, "self_cond", False) and torch.rand(()) < 0.5:
             with torch.no_grad():
                 pred0 = self.model(x_t, pose, t, example=example, drop_mask=drop_mask, x_self=None)
-                x_self = self._x0_hat(x_t, None, t, pred0).detach()
+                x_self = self._clamp_self(self._x0_hat(x_t, None, t, pred0)).detach()
         pred = self.model(x_t, pose, t, example=example, drop_mask=drop_mask, x_self=x_self)
         return self._losses_from_pred(x0, x_t, t, noise, pred)
 

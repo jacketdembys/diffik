@@ -38,6 +38,7 @@ class GaussianDiffusion(nn.Module):
         fk_t_window: int = 0,
         rot_weight: float = 0.1,
         prediction_type: str = "eps",
+        self_cond_clamp: float = 4.0,
     ):
         super().__init__()
         self.model = model
@@ -51,6 +52,7 @@ class GaussianDiffusion(nn.Module):
         self.fk_t_window = fk_t_window
         self.rot_weight = rot_weight
         self.prediction_type = prediction_type
+        self.self_cond_clamp = self_cond_clamp   # bound x0_hat fed back as x_self (norm space ~N(0,1))
 
     @property
     def T(self) -> int:
@@ -67,6 +69,12 @@ class GaussianDiffusion(nn.Module):
     @property
     def use_fk_loss(self) -> bool:
         return self.fk_loss_weight > 0.0 and self.chain is not None and self.q_norm is not None
+
+    def _clamp_self(self, x0):
+        """Clamp x0_hat before reusing it as the self-conditioning input: eps-pred
+        x0_hat explodes at high-noise t, which destabilizes self-conditioning."""
+        c = self.self_cond_clamp
+        return x0.clamp(-c, c) if c and c > 0 else x0
 
     def _x0_hat(self, x_t, pose, t, pred):
         if self.prediction_type == "eps":
@@ -202,7 +210,7 @@ class GaussianDiffusion(nn.Module):
             t = torch.full((B,), t_, device=x.device, dtype=torch.long)
             eps = eps_fn(x, t, x_self)
             if sc:
-                x_self = sch.predict_x0_from_eps(x, t, eps)
+                x_self = self._clamp_self(sch.predict_x0_from_eps(x, t, eps))
             beta_t, alpha_t, ab_t = sch.betas[t_], sch.alphas[t_], sch.alpha_bar[t_]
             mean = (1.0 / torch.sqrt(alpha_t)) * (x - (beta_t / torch.sqrt(1.0 - ab_t)) * eps)
             if t_ > 0 and t_ >= ztv_last:
@@ -232,7 +240,7 @@ class GaussianDiffusion(nn.Module):
             eps = eps_fn(x, t, x_self)
             x0_hat = (x - torch.sqrt(1.0 - ab_t) * eps) / torch.sqrt(ab_t)
             if sc:
-                x_self = x0_hat
+                x_self = self._clamp_self(x0_hat)
 
             if eta > 0 and t_prev >= 0:
                 sigma = eta * torch.sqrt((1 - ab_prev) / (1 - ab_t)) * torch.sqrt(1 - ab_t / ab_prev)

@@ -47,6 +47,7 @@ def main():
     ap.add_argument("--regime", choices=["seeded", "seedless"], default="seeded")
     ap.add_argument("--K", type=int, default=20); ap.add_argument("--steps", type=int, default=40)
     ap.add_argument("--lam", type=float, default=1e-3)
+    ap.add_argument("--guidance", type=float, default=1.0, help="CFG scale w (seeded regime): 0=seedless-like, 1=seeded, >1 over-seeded")
     ap.add_argument("--n_poses", type=int, default=0, help="0 = full test set")
     ap.add_argument("--chunk_samples", type=int, default=8192)
     ap.add_argument("--modes_cap", type=int, default=1024, help="poses used for distinct-mode counting")
@@ -94,7 +95,7 @@ def main():
             ex = None if args.regime == "seedless" else test.example[sl].to(device)
             g = torch.Generator().manual_seed(s0)
             samp = diff.sample(test.pose[sl].to(device), example=ex, n_per_pose=K,
-                               sampler="ddim", eta=0.0, generator=g)
+                               sampler="ddim", eta=0.0, generator=g, guidance_scale=args.guidance)
             qf = q_norm.inverse_transform(samp.cpu()).to(FK).reshape(c * K, dof)
         for s in range(0, S + 1):
             if s > 0:

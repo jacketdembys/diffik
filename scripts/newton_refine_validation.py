@@ -60,15 +60,32 @@ def dls_step(q, T_d, chain, lam):
     return q + (J.transpose(1, 2) @ y).squeeze(-1)
 
 
-def report(tag, q_PKd, T_d_PK, chain, K):
+def distinct_modes(q_PKd, pos_PK, tol_mm, joint_tol):
+    """Mean # of DISTINCT solutions per pose among the sub-tol_mm candidates
+    (greedy joint-space clustering: within joint_tol rad == same branch)."""
+    P, K, _ = q_PKd.shape
+    total = 0
+    for p in range(P):
+        valid = q_PKd[p][pos_PK[p] <= tol_mm]
+        reps = []
+        for v in valid:
+            if all((v - r).norm() > joint_tol for r in reps):
+                reps.append(v)
+        total += len(reps)
+    return total / P
+
+
+def report(tag, q_PKd, T_d_PK, chain, K, joint_tol=0.1):
     P = q_PKd.shape[0]
     T_pred = forward_kinematics(q_PKd.reshape(P * K, -1), chain)
     pos, ori = pose_error(T_pred, T_d_PK)
     pos, ori = pos.reshape(P, K), ori.reshape(P, K)
     bi = pos.argmin(1); r = torch.arange(P)
     div = float(q_PKd.std(dim=1, unbiased=False).mean())
+    modes = distinct_modes(q_PKd, pos, tol_mm=1.0, joint_tol=joint_tol)
     print(f"  {tag:<11} best-of-K pos {pos[r,bi].mean():7.3f}mm ori {ori[r,bi].mean():6.3f}deg | "
-          f"mean {pos.mean():7.3f}mm | %<=1mm {float((pos.min(1).values<=1).float().mean())*100:5.1f} | div {div:.4f}")
+          f"mean {pos.mean():7.3f}mm | %<=1mm {float((pos.min(1).values<=1).float().mean())*100:5.1f} | "
+          f"div {div:.4f} | distinct sub-mm modes/pose {modes:.2f}")
 
 
 def main():
@@ -77,6 +94,8 @@ def main():
     ap.add_argument("--run", default="lbe_n6400_h768_l6_rmlp_rw01scoff")
     ap.add_argument("--K", type=int, default=20); ap.add_argument("--n_poses", type=int, default=256)
     ap.add_argument("--steps", type=int, default=10); ap.add_argument("--lam", type=float, default=1e-3)
+    ap.add_argument("--seedless", action="store_true", help="sample without the LBE example (diverse regime)")
+    ap.add_argument("--joint_tol", type=float, default=0.1, help="rad; distinct-mode clustering threshold")
     args = ap.parse_args()
 
     os.environ["WANDB_MODE"] = "online"
@@ -100,7 +119,7 @@ def main():
 
     chain = get_robot(dc["robot"], dtype=FK)
     P, K = len(test), args.K
-    ex = test.example.to(device)
+    ex = None if args.seedless else test.example.to(device)
     g = torch.Generator().manual_seed(0)
     samp = diff.sample(test.pose.to(device), example=ex, n_per_pose=K, sampler="ddim", eta=0.0, generator=g)
     q = q_norm.inverse_transform(samp.cpu()).to(FK)                      # [P,K,dof]
@@ -110,14 +129,15 @@ def main():
     T_d_PK = T_d.repeat_interleave(K, dim=0)
     lim = torch.tensor(PANDA_JOINT_LIMITS, dtype=FK)
 
-    print(f"=== {args.run} | Newton refine | K={K} n_poses={P} lam={args.lam} ===")
-    report("step 0", q, T_d_PK, chain, K)
+    regime = "SEEDLESS" if args.seedless else "seeded"
+    print(f"=== {args.run} | Newton refine | {regime} | K={K} n_poses={P} lam={args.lam} ===")
+    report("step 0", q, T_d_PK, chain, K, args.joint_tol)
     qf = q.reshape(P * K, dof)
     for s in range(1, args.steps + 1):
         qf = dls_step(qf, T_d_PK, chain, args.lam)
         qf = torch.clamp(qf, lim[:, 0], lim[:, 1])
         if s in (1, 2, 3, 5, 10):
-            report(f"step {s}", qf.reshape(P, K, dof), T_d_PK, chain, K)
+            report(f"step {s}", qf.reshape(P, K, dof), T_d_PK, chain, K, args.joint_tol)
 
 
 if __name__ == "__main__":
